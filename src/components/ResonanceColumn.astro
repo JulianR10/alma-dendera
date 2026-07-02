@@ -65,11 +65,18 @@ const sections = [
   });
 
   function alignWaypoints() {
+    const svg = column.querySelector('.resonance-line');
+    const svgRect = svg.getBoundingClientRect();
     const navRect = column.querySelector('nav').getBoundingClientRect();
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
     waypoints.forEach((wp, i) => {
-      const svgY = (i + 1) * 200;
-      const fraction = svgY / 1000;
-      wp.style.top = (fraction * navRect.height) + 'px';
+      const sectionCenter = (i + 0.5) * window.innerHeight;
+      const scrollPct = Math.min(sectionCenter / maxScroll, 1);
+      const pt = path.getPointAtLength(scrollPct * length);
+      const yInViewport = svgRect.top + (pt.y / 1000) * svgRect.height;
+      const yInNav = yInViewport - navRect.top;
+      wp.style.top = yInNav + 'px';
     });
   }
 
