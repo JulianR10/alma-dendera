@@ -34,7 +34,6 @@ import '../styles/global.css';
           <span class="scroll-text">descubre</span>
         </div>
       </section>
-
       <section id="comprension"></section>
       <section id="servicios"></section>
       <section id="contacto"></section>
@@ -65,10 +64,10 @@ import '../styles/global.css';
   }
 </script>
 
-<style is:global>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #12100E; }
-  section { height: 100vh; min-height: 100vh; }
+<style>
+  :global(*) { margin: 0; padding: 0; box-sizing: border-box; }
+  :global(body) { background: #12100E; }
+  :global(section) { height: 100vh; min-height: 100vh; }
 
   #hero {
     position: relative;
@@ -207,13 +206,13 @@ import '../styles/global.css';
     50% { opacity: 1; transform: scaleY(1.3); }
   }
 
-  #comprension { background: #F7F3EC; }
-  #servicios { background: #12100E; }
-  #contacto { background: #12100E; }
+  :global(#comprension) { background: #F7F3EC; }
+  :global(#servicios) { background: #12100E; }
+  :global(#contacto) { background: #12100E; }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-title, .hero-tagline { animation: none; opacity: 1; }
-    .wave-ring { animation: none; opacity: 0.08; }
-    .scroll-line { animation: none; opacity: 0.5; }
+    :global(.hero-title), :global(.hero-tagline) { animation: none; opacity: 1; }
+    :global(.wave-ring) { animation: none; opacity: 0.08; }
+    :global(.scroll-line) { animation: none; opacity: 0.5; }
   }
 </style>
