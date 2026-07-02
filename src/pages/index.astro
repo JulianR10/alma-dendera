@@ -9,58 +9,20 @@ import '../styles/global.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alma Dendera — Soundhealing</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..144&family=IBM+Plex+Mono&family=Public+Sans&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <ResonanceColumn />
-
     <main>
-      <section id="hero" class="section">
-
-      <section id="comprension" class="section"></section>
-
-      <section id="servicios" class="section"></section>
-
-      <section id="sobre-ella" class="section"></section>
-
-      <section id="contacto" class="section"></section>
+      <section id="hero"></section>
+      <section id="comprension"></section>
+      <section id="servicios"></section>
+      <section id="contacto"></section>
     </main>
   </body>
 </html>
 
 <style is:global>
-  .section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  #hero {
-    background: var(--color-bg-dark, #12100E);
-  }
-
-  #comprension {
-    background: var(--color-bg-light, #F7F3EC);
-    color: var(--color-bg-dark, #12100E);
-  }
-
-  #servicios {
-    background: var(--color-bg-dark, #12100E);
-  }
-
-  #sobre-ella {
-    background: var(--color-bg-light, #F7F3EC);
-    color: var(--color-bg-dark, #12100E);
-  }
-
-  #contacto {
-    background: var(--color-bg-dark, #12100E);
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #12100E; }
+  section { min-height: 100vh; }
 </style>
