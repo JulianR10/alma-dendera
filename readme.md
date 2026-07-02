@@ -10,7 +10,7 @@ Soundhealing, vibroacústica y reiki — sitio web one-page con narrativa de scr
 |---|---|
 | Framework | [Astro](https://astro.build) (SSG — genera HTML estático en build) |
 | Animaciones | [GSAP](https://gsap.com) v3 (incluye ScrollTrigger, no requiere instalación aparte) |
-| Tipografía | Google Fonts — Fraunces, Public Sans, IBM Plex Mono |
+| Tipografía | Google Fonts — DM Sans, Public Sans, IBM Plex Mono |
 
 ### Reglas del proyecto
 
@@ -84,7 +84,7 @@ Las secciones alternan entre fondo oscuro y hueso claro — ese cambio de tono e
 
 | Rol | Fuente |
 |---|---|
-| Display / títulos | Fraunces (serif, optical sizing) |
+| Display / títulos | DM Sans |
 | Cuerpo | Public Sans |
 | Labels / eyebrows / captions | IBM Plex Mono |
 

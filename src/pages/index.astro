@@ -1,6 +1,5 @@
 ---
 import ResonanceColumn from '@components/ResonanceColumn.astro';
-import bgHero from '../images/paisaje-handpan.webp';
 import '../styles/global.css';
 ---
 
@@ -13,7 +12,7 @@ import '../styles/global.css';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=IBM+Plex+Mono&family=Public+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..144&family=IBM+Plex+Mono&family=Public+Sans&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -22,9 +21,6 @@ import '../styles/global.css';
 
     <main>
       <section id="hero" class="section">
-        <img src={bgHero.src} alt="" class="hero-bg" aria-hidden="true" />
-        <div class="hero-overlay"></div>
-      </section>
 
       <section id="comprension" class="section"></section>
 
@@ -47,26 +43,7 @@ import '../styles/global.css';
   }
 
   #hero {
-    position: relative;
-    overflow: hidden;
     background: var(--color-bg-dark, #12100E);
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    z-index: 0;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(to right, #12100E 0%, transparent 60%);
   }
 
   #comprension {
