@@ -1,12 +1,28 @@
 ---
-// Columna de resonancia — Desktop: vertical | Mobile: barra horizontal superior
-// Animaciones aisladas con GSAP, scoped a este componente
+const sections = [
+  { id: 'hero', label: 'Hero' },
+  { id: 'comprension', label: 'Comprensión' },
+  { id: 'servicios', label: 'Servicios' },
+  { id: 'sobre-ella', label: 'Sobre ella' },
+  { id: 'contacto', label: 'Contacto' },
+];
 ---
+
 <div id="resonance-column" class="resonance-column">
   <div class="resonance-line" aria-hidden="true"></div>
-  <div class="waypoint" data-point="1"></div>
-  <div class="waypoint" data-point="2"></div>
-  <div class="waypoint" data-point="3"></div>
+  <nav aria-label="Navegación del camino">
+    {sections.map((section, i) => (
+      <button
+        class="waypoint"
+        data-section={section.id}
+        data-index={i}
+        aria-label={`Ir a ${section.label}`}
+      >
+        <span class="waypoint-dot"></span>
+        <span class="waypoint-label">{section.label}</span>
+      </button>
+    ))}
+  </nav>
 </div>
 
 <script>
@@ -15,17 +31,69 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animaciones scoped — solo afectan a #resonance-column
-  gsap.to('#resonance-column .resonance-line', {
-    scaleY: 1,
-    transformOrigin: 'top center',
-    scrollTrigger: {
-      trigger: document.body,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 1,
-    },
+  const column = document.getElementById('resonance-column');
+  const line = column.querySelector('.resonance-line');
+  const waypoints = column.querySelectorAll('.waypoint');
+
+  // Click → smooth scroll a la sección
+  waypoints.forEach((wp) => {
+    wp.addEventListener('click', () => {
+      const section = document.getElementById(wp.dataset.section);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   });
+
+  // Línea de progreso — responsive con matchMedia de GSAP
+  const mm = gsap.matchMedia();
+
+  mm.add('(min-width: 769px)', () => {
+    gsap.to(line, {
+      scaleY: 1,
+      transformOrigin: 'top center',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1,
+      },
+    });
+  });
+
+  mm.add('(max-width: 768px)', () => {
+    gsap.to(line, {
+      width: '100%',
+      transformOrigin: 'left center',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1,
+      },
+    });
+  });
+
+  // Active waypoint tracking
+  for (const wp of waypoints) {
+    const sectionId = wp.dataset.section;
+    const section = document.getElementById(sectionId);
+    if (!section) continue;
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top center',
+      end: 'bottom center',
+      onEnter: () => {
+        waypoints.forEach((w) => w.classList.remove('active'));
+        wp.classList.add('active');
+      },
+      onEnterBack: () => {
+        waypoints.forEach((w) => w.classList.remove('active'));
+        wp.classList.add('active');
+      },
+    });
+  }
 </script>
 
 <style>
@@ -34,53 +102,122 @@
     top: 0;
     right: 2rem;
     height: 100vh;
-    width: 2px;
     z-index: 100;
-    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
   }
 
   .resonance-line {
-    width: 100%;
-    height: 100%;
-    background: #C99B4A;
+    position: absolute;
+    top: 10vh;
+    bottom: 10vh;
+    width: 2px;
+    background: var(--color-accent, #C99B4A);
     transform: scaleY(0);
+    transform-origin: top center;
+  }
+
+  nav {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 10vh 0;
   }
 
   .waypoint {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #6B4550;
-    transition: background 0.4s ease;
+    all: unset;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: auto;
   }
 
-  .waypoint[data-point="1"] { top: 25%; }
-  .waypoint[data-point="2"] { top: 50%; }
-  .waypoint[data-point="3"] { top: 75%; }
+  .waypoint-dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-secondary, #6B4550);
+    border: 2px solid transparent;
+    transition: background 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
 
+  .waypoint:hover .waypoint-dot {
+    transform: scale(1.35);
+  }
+
+  .waypoint.active .waypoint-dot {
+    background: var(--color-accent, #C99B4A);
+    border-color: var(--color-accent, #C99B4A);
+    box-shadow: 0 0 8px rgba(201, 155, 74, 0.5);
+  }
+
+  .waypoint-label {
+    position: absolute;
+    right: calc(100% + 16px);
+    white-space: nowrap;
+    font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted, #B9C4C2);
+    opacity: 0;
+    transform: translateX(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+
+  .waypoint:hover .waypoint-label,
+  .waypoint.active .waypoint-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Mobile */
   @media (max-width: 768px) {
     .resonance-column {
       top: 0;
       right: 0;
       left: 0;
-      height: 3px;
-      width: 100%;
+      height: auto;
+      flex-direction: row;
+      padding: 0;
+      justify-content: center;
     }
 
     .resonance-line {
-      height: 100%;
+      top: auto;
+      bottom: auto;
+      height: 3px;
       width: 0%;
       transform: none;
     }
 
-    .waypoint {
-      top: -2.5px !important;
-      left: auto;
+    nav {
+      flex-direction: row;
+      gap: 0;
+      padding: 0;
+      width: 100%;
+      justify-content: space-around;
+      position: absolute;
+      top: -8px;
     }
 
-    .waypoint[data-point="1"] { left: 25%; }
-    .waypoint[data-point="2"] { left: 50%; }
-    .waypoint[data-point="3"] { left: 75%; }
+    .waypoint-dot {
+      width: 14px;
+      height: 14px;
+    }
+
+    .waypoint-label {
+      display: none;
+    }
   }
 </style>

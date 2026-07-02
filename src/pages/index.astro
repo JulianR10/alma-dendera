@@ -1,5 +1,8 @@
 ---
 // Alma Dendera — entrada del camino sonoro
+import ResonanceColumn from '@components/ResonanceColumn.astro';
+import logo from '../images/logo.webp';
+import '../styles/global.css';
 ---
 
 <!DOCTYPE html>
@@ -8,8 +11,160 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alma Dendera — Soundhealing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=IBM+Plex+Mono&family=Public+Sans&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Alma Dendera</h1>
+    <ResonanceColumn />
+
+    <main>
+      <section id="hero" class="section hero-section">
+        <div class="hero-content">
+          <img src={logo.src} alt="Alma Dendera" class="hero-logo" width={logo.width} height={logo.height} />
+          <h1 class="hero-title">Alma Dendera</h1>
+          <p class="hero-tagline">Sonido que encuentra el camino de vuelta</p>
+          <div class="hero-waves" aria-hidden="true">
+            <span class="wave-ring"></span>
+            <span class="wave-ring"></span>
+            <span class="wave-ring"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprension" class="section comprension-section">
+        <h2>Comprensión</h2>
+      </section>
+
+      <section id="servicios" class="section servicios-section">
+        <h2>Servicios</h2>
+      </section>
+
+      <section id="sobre-ella" class="section sobre-section">
+        <h2>Sobre ella</h2>
+      </section>
+
+      <section id="contacto" class="section contacto-section">
+        <h2>Contacto</h2>
+      </section>
+    </main>
   </body>
 </html>
+
+<style is:global>
+  .section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .hero-section {
+    background: var(--color-bg-dark, #12100E);
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-display, 'Fraunces', serif);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--color-accent, #C99B4A);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-body, 'Public Sans', sans-serif);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: var(--color-muted, #B9C4C2);
+    max-width: 28rem;
+    line-height: 1.5;
+  }
+
+  .hero-waves {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .wave-ring {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(201, 155, 74, 0.12);
+    animation: breathe 6s ease-in-out infinite;
+  }
+
+  .wave-ring:nth-child(2) {
+    width: 320px;
+    height: 320px;
+    animation-delay: -2s;
+  }
+
+  .wave-ring:nth-child(3) {
+    width: 460px;
+    height: 460px;
+    animation-delay: -4s;
+  }
+
+  @keyframes breathe {
+    0%, 100% {
+      transform: scale(0.8);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.6;
+    }
+  }
+
+  .comprension-section {
+    background: var(--color-bg-light, #F7F3EC);
+    color: var(--color-bg-dark, #12100E);
+  }
+
+  .servicios-section {
+    background: var(--color-bg-dark, #12100E);
+  }
+
+  .sobre-section {
+    background: var(--color-bg-light, #F7F3EC);
+    color: var(--color-bg-dark, #12100E);
+  }
+
+  .contacto-section {
+    background: var(--color-bg-dark, #12100E);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave-ring {
+      animation: none;
+      opacity: 0.3;
+    }
+  }
+</style>
