@@ -8,7 +8,24 @@ const sections = [
 ---
 
 <div id="resonance-column" class="resonance-column">
-  <div class="resonance-line" aria-hidden="true"></div>
+  <svg class="resonance-line" viewBox="0 0 30 1000" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M 15,0
+             C 17,33 17,67 15,100
+             C 11,133 11,167 15,200
+             C 22,233 22,267 15,300
+             C 5,333 5,367 15,400
+             C 27,433 27,467 15,500
+             C 3,533 3,567 15,600
+             C 25,633 25,667 15,700
+             C 8,733 8,767 15,800
+             C 19,833 19,867 15,900
+             C 13,933 13,967 15,1000"
+          fill="none"
+          stroke="#C99B4A"
+          stroke-width="2"
+          stroke-linecap="round" />
+  </svg>
+  <div class="resonance-line-mobile" aria-hidden="true"></div>
   <nav aria-label="Navegación del camino">
     {sections.map((section, i) => (
       <button
@@ -31,8 +48,13 @@ const sections = [
   gsap.registerPlugin(ScrollTrigger);
 
   const column = document.getElementById('resonance-column');
-  const line = column.querySelector('.resonance-line');
+  const path = column.querySelector('.resonance-line path');
+  const mobileLine = column.querySelector('.resonance-line-mobile');
   const waypoints = column.querySelectorAll('.waypoint');
+
+  const length = path.getTotalLength();
+  path.style.strokeDasharray = length;
+  path.style.strokeDashoffset = length;
 
   waypoints.forEach((wp) => {
     wp.addEventListener('click', () => {
@@ -44,29 +66,36 @@ const sections = [
   const mm = gsap.matchMedia();
 
   mm.add('(min-width: 769px)', () => {
-    gsap.to(line, {
-      scaleY: 1,
-      transformOrigin: 'top center',
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1,
-      },
-    });
+    path.style.strokeDashoffset = length;
+    gsap.fromTo(path,
+      { strokeDashoffset: length },
+      {
+        strokeDashoffset: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+        },
+      }
+    );
   });
 
   mm.add('(max-width: 768px)', () => {
-    gsap.to(line, {
-      width: '100%',
-      transformOrigin: 'left center',
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1,
-      },
-    });
+    gsap.fromTo(mobileLine,
+      { width: '0%' },
+      {
+        width: '100%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+        },
+      }
+    );
   });
 
   for (const wp of waypoints) {
@@ -93,7 +122,8 @@ const sections = [
   .resonance-column {
     position: fixed;
     top: 0;
-    right: 2rem;
+    right: 1.5rem;
+    width: 30px;
     height: 100vh;
     z-index: 100;
     display: flex;
@@ -106,10 +136,13 @@ const sections = [
     position: absolute;
     top: 10vh;
     bottom: 10vh;
-    width: 2px;
-    background: #C99B4A;
-    transform: scaleY(0);
-    transform-origin: top center;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .resonance-line-mobile {
+    display: none;
   }
 
   nav {
@@ -178,6 +211,7 @@ const sections = [
       top: 0;
       right: 0;
       left: 0;
+      width: 100%;
       height: auto;
       flex-direction: row;
       padding: 0;
@@ -185,11 +219,17 @@ const sections = [
     }
 
     .resonance-line {
-      top: auto;
-      bottom: auto;
+      display: none;
+    }
+
+    .resonance-line-mobile {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
       height: 3px;
       width: 0%;
-      transform: none;
+      background: #C99B4A;
     }
 
     nav {

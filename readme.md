@@ -15,8 +15,7 @@ Soundhealing, vibroacústica y reiki — sitio web one-page con narrativa de scr
 ### Reglas del proyecto
 
 - **Animaciones aisladas**: cada componente declara su propio `<script>` con GSAP. No hay animaciones globales sueltas. Esto evita conflictos con la hidratación parcial de Astro.
-- **Reduced motion**: toda animación ambiental respeta `prefers-reduced-motion`. Ya incluido en `src/styles/global.css`.
-- **Música**: archivo `.mp3` estático activado por botón. Sin autoplay.
+- **Reduced motion**: toda animación ambiental respeta `prefers-reduced-motion`. Ya incluido en `src/styles/global.css`.La 
 
 ---
 
