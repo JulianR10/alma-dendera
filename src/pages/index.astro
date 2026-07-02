@@ -2,6 +2,7 @@
 // Alma Dendera — entrada del camino sonoro
 import ResonanceColumn from '@components/ResonanceColumn.astro';
 import logo from '../images/logo.webp';
+import bgHero from '../images/paisaje-handpan.webp';
 import '../styles/global.css';
 ---
 
@@ -23,6 +24,7 @@ import '../styles/global.css';
 
     <main>
       <section id="hero" class="section hero-section">
+        <img src={bgHero.src} alt="" class="hero-bg" aria-hidden="true" />
         <div class="hero-content">
           <img src={logo.src} alt="Alma Dendera" class="hero-logo" width={logo.width} height={logo.height} />
           <h1 class="hero-title">Alma Dendera</h1>
@@ -70,6 +72,19 @@ import '../styles/global.css';
     position: relative;
     overflow: hidden;
   }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    opacity: 0.25;
+  }
+
+
 
   .hero-content {
     position: relative;
