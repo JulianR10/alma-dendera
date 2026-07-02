@@ -36,6 +36,7 @@ const sections = [
       >
         <span class="waypoint-dot"></span>
         <span class="waypoint-label">{section.label}</span>
+        <span class="waypoint-connector" aria-hidden="true"></span>
       </button>
     ))}
   </nav>
@@ -66,7 +67,6 @@ const sections = [
   const mm = gsap.matchMedia();
 
   mm.add('(min-width: 769px)', () => {
-    path.style.strokeDashoffset = length;
     gsap.fromTo(path,
       { strokeDashoffset: length },
       {
@@ -126,10 +126,6 @@ const sections = [
     width: 30px;
     height: 100vh;
     z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 
   .resonance-line {
@@ -146,22 +142,26 @@ const sections = [
   }
 
   nav {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    padding: 10vh 0;
+    position: absolute;
+    top: 10vh;
+    bottom: 10vh;
+    left: 0;
+    right: 0;
   }
 
   .waypoint {
     all: unset;
-    position: relative;
-    display: flex;
-    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
     pointer-events: auto;
   }
+
+  .waypoint[data-index="0"] { top: 20%; }
+  .waypoint[data-index="1"] { top: 40%; }
+  .waypoint[data-index="2"] { top: 60%; }
+  .waypoint[data-index="3"] { top: 80%; }
 
   .waypoint-dot {
     display: block;
@@ -188,6 +188,8 @@ const sections = [
   .waypoint-label {
     position: absolute;
     right: calc(100% + 16px);
+    top: 50%;
+    transform: translateY(-50%);
     white-space: nowrap;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
@@ -195,15 +197,13 @@ const sections = [
     text-transform: uppercase;
     color: #B9C4C2;
     opacity: 0;
-    transform: translateX(6px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.25s ease;
     pointer-events: none;
   }
 
   .waypoint:hover .waypoint-label,
   .waypoint.active .waypoint-label {
     opacity: 1;
-    transform: translateX(0);
   }
 
   @media (max-width: 768px) {
@@ -213,9 +213,6 @@ const sections = [
       left: 0;
       width: 100%;
       height: auto;
-      flex-direction: row;
-      padding: 0;
-      justify-content: center;
     }
 
     .resonance-line {
@@ -233,13 +230,21 @@ const sections = [
     }
 
     nav {
-      flex-direction: row;
-      gap: 0;
-      padding: 0;
-      width: 100%;
-      justify-content: space-around;
       position: absolute;
-      top: -8px;
+      top: 0;
+      bottom: auto;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 0;
+      height: 14px;
+    }
+
+    .waypoint {
+      position: static;
+      transform: none;
     }
 
     .waypoint-dot {
