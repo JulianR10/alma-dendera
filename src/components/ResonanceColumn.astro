@@ -11,13 +11,13 @@ const sections = [
   <svg class="resonance-line" viewBox="0 0 30 1000" preserveAspectRatio="none" aria-hidden="true">
     <path d="M 15,0
              C 17,33 17,67 15,100
-             C 11,133 11,167 8,200
+             C 11,133 11,167 15,200
              C 22,233 22,267 15,300
-             C 5,333 5,367 8,400
+             C 5,333 5,367 15,400
              C 27,433 27,467 15,500
-             C 3,533 3,567 8,600
+             C 3,533 3,567 15,600
              C 25,633 25,667 15,700
-             C 8,733 8,767 8,800
+             C 8,733 8,767 15,800
              C 19,833 19,867 15,900
              C 13,933 13,967 15,1000"
           fill="none"
@@ -34,6 +34,7 @@ const sections = [
         data-index={i}
         aria-label={`Ir a ${section.label}`}
       >
+        <span class="waypoint-mask"></span>
         <span class="waypoint-dot"></span>
         <span class="waypoint-label">{section.label}</span>
       </button>
@@ -253,7 +254,20 @@ const sections = [
       height: 14px;
     }
 
-    .waypoint-label {
+  .waypoint-mask {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #12100E;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .waypoint-label {
       display: none;
     }
   }
