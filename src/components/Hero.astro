@@ -1,0 +1,75 @@
+---
+import MusicToggle from './MusicToggle.astro';
+import ScrollIndicator from './ScrollIndicator.astro';
+import logoSrc from '../images/logo.webp';
+import magaSrc from '../images/MagaFondo.webp';
+---
+
+<section class="hero" aria-label="Alma Dendera — hero">
+  <img
+    src={magaSrc.src}
+    alt=""
+    aria-hidden="true"
+    class="hero__maga"
+    width={magaSrc.width}
+    height={magaSrc.height}
+    loading="eager"
+    decoding="async"
+    data-animate="hero-maga"
+  />
+  <div class="hero__topbar">
+    <MusicToggle />
+  </div>
+
+  <div class="hero__center">
+    <h1 class="hero__logo-wrap" data-animate="hero-logo">
+      <img
+        src={logoSrc.src}
+        alt="Alma Dendera"
+        class="hero__logo"
+        width={logoSrc.width}
+        height={logoSrc.height}
+        loading="eager"
+        decoding="async"
+      />
+    </h1>
+
+    <p
+      class="hero__eyebrow"
+      data-animate="hero-eyebrow"
+      aria-label="Soundhealing · Vibroacústica · Reiki"
+    >
+      <span class="hero__eyebrow-item">Soundhealing</span>
+      <span class="hero__eyebrow-dot" aria-hidden="true">·</span>
+      <span class="hero__eyebrow-item">Vibroacústica</span>
+      <span class="hero__eyebrow-dot" aria-hidden="true">·</span>
+      <span class="hero__eyebrow-item">Reiki</span>
+    </p>
+    <p class="hero__tagline" data-animate="hero-phrase">Un respiro para volver a vos.</p>
+  </div>
+
+  <div class="hero__hint-wrap">
+    <ScrollIndicator />
+  </div>
+
+  <svg class="hero__divider" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 32 C 240 56, 480 8, 720 32 C 960 56, 1200 8, 1440 32 L 1440 64 L 0 64 Z"></path>
+  </svg>
+
+  <audio id="bg-music" src="/audio/ambiente.mp3" preload="auto" loop playsinline aria-hidden="true"
+  ></audio>
+</section>
+
+<script>
+  import { init } from '../lib/animations/registry';
+  import '../lib/animations/hero';
+  import { AudioController } from '../lib/audio/controller';
+
+  init();
+
+  const audio = document.getElementById('bg-music');
+  if (audio instanceof HTMLAudioElement) {
+    const controller = new AudioController('bg-music', 'music-toggle');
+    void controller;
+  }
+</script>
