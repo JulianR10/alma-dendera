@@ -1,75 +1,107 @@
 ---
 import MusicToggle from './MusicToggle.astro';
-import ScrollIndicator from './ScrollIndicator.astro';
+import ResonanceColumn from './ResonanceColumn.astro';
 import logoSrc from '../images/logo.webp';
-import magaSrc from '../images/MagaFondo.webp';
+import fondoSrc from '../images/fondoMaga2.webp';
+import MorphIcon from 'morphicons/astro';
+import { Menu } from 'lucide';
+import { NAV_LINKS } from '../lib/navigation';
 ---
 
-<section class="hero" aria-label="Alma Dendera — hero">
-  <img
-    src={magaSrc.src}
-    alt=""
-    aria-hidden="true"
-    class="hero__maga"
-    width={magaSrc.width}
-    height={magaSrc.height}
-    loading="eager"
-    decoding="async"
-    data-animate="hero-maga"
-  />
-  <div class="hero__topbar">
-    <MusicToggle />
+<section id="hero" class="hero" aria-label="Alma Dendera — hero">
+  <div class="hero__maga-wrap" aria-hidden="true">
+    <img
+      src={fondoSrc.src}
+      alt=""
+      aria-hidden="true"
+      class="hero__maga"
+      width={fondoSrc.width}
+      height={fondoSrc.height}
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      data-animate="hero-maga"
+    />
   </div>
+  <div class="hero__gradient" aria-hidden="true"></div>
+  <nav class="hero__nav" aria-label="Principal">
+    <h1 class="hero__logo-wrap" data-animate="hero-logo">
+      <a href="#hero" class="hero__nav-logo" aria-label="Alma Dendera — Inicio">
+        <img
+          src={logoSrc.src}
+          alt="Alma Dendera"
+          class="hero__logo"
+          width={logoSrc.width}
+          height={logoSrc.height}
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+    </h1>
+    <ResonanceColumn />
+    <MusicToggle />
+  </nav>
+
+  <button
+    id="menu-toggle"
+    type="button"
+    class="hero__menu-toggle"
+    aria-label="Abrir menú"
+    aria-expanded="false"
+  >
+    <MorphIcon icon={Menu} />
+  </button>
 
   <div class="hero__center">
-    <h1 class="hero__logo-wrap" data-animate="hero-logo">
-      <img
-        src={logoSrc.src}
-        alt="Alma Dendera"
-        class="hero__logo"
-        width={logoSrc.width}
-        height={logoSrc.height}
-        loading="eager"
-        decoding="async"
-      />
-    </h1>
+    <p class="hero__tagline" data-animate="hero-phrase">
+      Un <span class="hero__breath" data-animate="hero-breath" aria-label="respiro">respiro</span> para
+      volver a vos, habitar tu cuerpo<br /> y relajar los sentidos.
+    </p>
 
     <p
-      class="hero__eyebrow"
+      class="hero__eyebrow kicker"
       data-animate="hero-eyebrow"
       aria-label="Soundhealing · Vibroacústica · Reiki"
     >
-      <span class="hero__eyebrow-item">Soundhealing</span>
-      <span class="hero__eyebrow-dot" aria-hidden="true">·</span>
-      <span class="hero__eyebrow-item">Vibroacústica</span>
-      <span class="hero__eyebrow-dot" aria-hidden="true">·</span>
-      <span class="hero__eyebrow-item">Reiki</span>
+      <span class="hero__eyebrow-pair"
+        ><span class="hero__eyebrow-dot" aria-hidden="true">·</span><span class="hero__eyebrow-item"
+          >Soundhealing</span
+        ></span
+      >
+      <span class="hero__eyebrow-pair"
+        ><span class="hero__eyebrow-dot" aria-hidden="true">·</span><span class="hero__eyebrow-item"
+          >Vibroacústica</span
+        ></span
+      >
+      <span class="hero__eyebrow-pair"
+        ><span class="hero__eyebrow-dot" aria-hidden="true">·</span><span class="hero__eyebrow-item"
+          >Reiki</span
+        ></span
+      >
     </p>
-    <p class="hero__tagline" data-animate="hero-phrase">Un respiro para volver a vos.</p>
-  </div>
 
-  <div class="hero__hint-wrap">
-    <ScrollIndicator />
+    <a href="#sobre-mi" class="hero__cta" data-animate="hero-cta" data-spotlight
+      ><span>Me gustaría conocer más</span></a
+    >
   </div>
-
-  <svg class="hero__divider" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 32 C 240 56, 480 8, 720 32 C 960 56, 1200 8, 1440 32 L 1440 64 L 0 64 Z"></path>
-  </svg>
 
   <audio id="bg-music" src="/audio/ambiente.mp3" preload="auto" loop playsinline aria-hidden="true"
   ></audio>
+
+  <div class="hero__mobile-menu" id="mobile-menu">
+    <nav aria-label="Menú de navegación">
+      <ol class="hero__mobile-list">
+        {
+          NAV_LINKS.map((link, index) => (
+            <li class={`hero__mobile-item${index === 0 ? ' is-active' : ''}`}>
+              <a href={link.href} class="hero__mobile-link">
+                <span class="hero__mobile-dot" aria-hidden="true" />
+                <span class="hero__mobile-label">{link.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+  </div>
 </section>
-
-<script>
-  import { init } from '../lib/animations/registry';
-  import '../lib/animations/hero';
-  import { AudioController } from '../lib/audio/controller';
-
-  init();
-
-  const audio = document.getElementById('bg-music');
-  if (audio instanceof HTMLAudioElement) {
-    const controller = new AudioController('bg-music', 'music-toggle');
-    void controller;
-  }
-</script>

@@ -1,5 +1,5 @@
 ---
-
+import soundSrc from '../images/sound.webp';
 ---
 
 <button
@@ -9,5 +9,12 @@
   aria-label="Reproducir sonido"
   aria-pressed="false"
 >
-  <span class="music-toggle__dot" aria-hidden="true"></span>
+  <img
+    src={soundSrc.src}
+    alt="Sonido"
+    width={soundSrc.width}
+    height={soundSrc.height}
+    loading="lazy"
+    decoding="async"
+  />
 </button>

@@ -1,0 +1,77 @@
+:root {
+  /* ——— Brand ——— */
+  --color-primary: #69492b;
+  --color-primary-light: #fae8ca;
+  --color-primary-soft: #fefbf5;
+  --color-paper: #f5f2ec;
+  --color-muted: #d8d2c4;
+  --color-ink: #2b2b2b;
+  --color-deep: #2d2517;
+  --color-deep-hover: #1e1a11;
+  --color-on-deep: var(--color-primary-soft);
+  --color-on-image: var(--color-primary-soft);
+  --color-surface: var(--color-paper);
+  --color-surface-alt: var(--color-primary-light);
+  --color-brand: var(--color-primary);
+  --color-on-brand: var(--color-primary-soft);
+  --color-on-surface: var(--color-ink);
+  --color-on-surface-muted: rgba(43, 43, 43, 0.72);
+  --color-overlay-nav: rgba(45, 37, 23, 0.32);
+  --color-overlay-nav-border: rgba(45, 37, 23, 0.14);
+
+  /* ——— Ink opacity ——— */
+  --ink-50: rgba(43, 43, 43, 0.5);
+  --ink-72: rgba(43, 43, 43, 0.72);
+  --ink-82: rgba(43, 43, 43, 0.82);
+
+  /* ——— Lines ——— */
+  --line-soft: rgba(105, 73, 43, 0.1);
+  --line-faint: rgba(105, 73, 43, 0.08);
+
+  /* ——— Fonts ——— */
+  --font-title: 'Inter', sans-serif;
+  --font-body: 'Public Sans', sans-serif;
+
+  /* ——— Breakpoints ——— */
+  --bp-md: 768px;
+
+  /* ——— Typography (fluid) ——— */
+  --text-xs: 11px;
+  --text-sm: clamp(13px, 0.85vw + 0.55rem, 14px);
+  --text-base: clamp(15px, 0.9vw + 0.65rem, 16px);
+  --text-lg: clamp(17px, 1vw + 0.7rem, 19px);
+  --text-xl: clamp(28px, 2.8vw + 0.5rem, 44px);
+  --text-2xl: clamp(32px, 4.4vw + 0.5rem, 64px);
+
+  /* ——— Spacing (fluid) ——— */
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: clamp(10px, 0.8vw + 0.2rem, 12px);
+  --space-sm: clamp(12px, 1vw + 0.3rem, 16px);
+  --space-md: clamp(16px, 1.4vw + 0.3rem, 24px);
+  --space-lg: clamp(24px, 2vw + 0.5rem, 32px);
+  --space-xl: clamp(32px, 3vw + 0.5rem, 48px);
+  --space-2xl: clamp(48px, 4vw + 1rem, 72px);
+  --space-3xl: clamp(72px, 6vw + 1rem, 96px);
+
+  /* ——— Layout ——— */
+  --gutter: clamp(20px, 5vw, 6vw);
+  --container-max: 1120px;
+  --wrap-inline: max(var(--gutter), calc((100vw - var(--container-max)) / 2));
+  --section-pad-top: clamp(72px, 8vw + 1rem, 96px);
+  --section-pad-bottom: clamp(24px, 3vw + 0.5rem, 32px);
+  --section-pad-top-safe: calc(var(--section-pad-top) + env(safe-area-inset-top));
+  --section-pad-bottom-safe: calc(var(--section-pad-bottom) + env(safe-area-inset-bottom));
+
+  /* ——— Card ——— */
+  --card-radius: 18px;
+
+  /* ——— Component ——— */
+  --cta-py: clamp(10px, 0.9vw + 0.3rem, 12px);
+  --cta-px: clamp(22px, 2vw + 0.3rem, 28px);
+  --cta-text: var(--text-sm);
+  --btn-size: 40px;
+  --icon-size: 24px;
+  --logo-size: clamp(82px, 7vw + 1rem, 104px);
+  --logo-size-mobile: clamp(72px, 6vw + 1rem, 92px);
+}

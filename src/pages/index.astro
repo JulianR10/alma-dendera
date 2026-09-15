@@ -1,25 +1,120 @@
 ---
 import '../styles/global.css';
 import Hero from '../components/Hero.astro';
+import SobreMi from '../components/SobreMi.astro';
+import Sessions from '../components/Sessions.astro';
+import QuoteBand from '../components/QuoteBand.astro';
+import Contacto from '../components/Contacto.astro';
+import fondoSrc from '../images/fondoMaga2.webp';
+import { INSTAGRAM_HREF, SITE, WHATSAPP_HREF } from '../lib/site';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': '#almadendera',
+      name: SITE.name,
+      description: SITE.description,
+      areaServed: {
+        '@type': 'City',
+        name: 'Buenos Aires',
+        containedInPlace: { '@type': 'Country', name: 'Argentina' },
+      },
+      founder: { '@id': '#magali' },
+      employee: { '@id': '#magali' },
+      sameAs: [INSTAGRAM_HREF],
+      availableChannel: {
+        '@type': 'ServiceChannel',
+        serviceUrl: WHATSAPP_HREF,
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': '#magali',
+      name: SITE.personName,
+      jobTitle: 'Terapeuta de soundhealing, vibroacústica y reiki',
+      worksFor: { '@id': '#almadendera' },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: SITE.city,
+        addressCountry: 'AR',
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-AR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alma Dendera — Soundhealing · Vibroacústica · Reiki</title>
-    <meta
-      name="description"
-      content="Alma Dendera — sesiones de soundhealing, vibroacústica y reiki en Rosario. Una hora para volver al cuerpo y encontrar calma. Acompaña, no reemplaza tratamiento médico."
-    />
+    <title>{SITE.title}</title>
+    <meta name="description" content={SITE.description} />
+    <meta name="author" content={SITE.personName} />
+    <meta name="theme-color" content="#f5f2ec" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:title" content={SITE.title} />
+    <meta property="og:description" content={SITE.description} />
+    <meta property="og:image" content={fondoSrc.src} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={SITE.title} />
+    <meta name="twitter:description" content={SITE.description} />
+    <meta name="twitter:image" content={fondoSrc.src} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <main>
       <Hero />
-      <section class="placeholder-section" aria-label="Comprensión - placeholder">
-        <p class="placeholder-label">Siguiente sección — Comprensión</p>
-      </section>
+      <SobreMi />
+      <div class="services-wrapper">
+        <Sessions />
+      </div>
+      <QuoteBand />
+      <Contacto />
     </main>
+
+    <script>
+      import { init } from '../lib/animations/registry';
+      import '../lib/animations/hero';
+      import '../lib/animations/about';
+      import '../lib/animations/sessions';
+      import '../lib/animations/quote';
+      import '../lib/animations/contact';
+      import { initResonance } from '../lib/animations/resonance';
+      import { initSmoothScroll } from '../lib/scroll/smooth';
+      import { initHeroSessionsTransition } from '../lib/animations/heroSessions';
+      import { init as initIncense } from '../lib/canvas/incense';
+      import { AudioController } from '../lib/audio/controller';
+      import { attachSpotlight } from '../lib/spotlight';
+      import { initMobileMenu } from '../lib/navigation';
+      initSmoothScroll();
+      init();
+      initResonance();
+      initHeroSessionsTransition();
+      initMobileMenu();
+      attachSpotlight();
+      const win = window as unknown as { __almaAudio?: AudioController };
+      if (!win.__almaAudio) {
+        const audio = document.getElementById('bg-music');
+        if (audio instanceof HTMLAudioElement) {
+          win.__almaAudio = new AudioController('bg-music', 'music-toggle');
+        }
+      }
+      const startIncense = (): void => {
+        const canvas = document.querySelector<HTMLCanvasElement>('.incense__canvas');
+        if (canvas) initIncense(canvas);
+      };
+      const idleWindow = window as unknown as {
+        requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => void;
+      };
+      if (typeof idleWindow.requestIdleCallback === 'function') {
+        idleWindow.requestIdleCallback(startIncense, { timeout: 3000 });
+      } else {
+        startIncense();
+      }
+    </script>
   </body>
 </html>

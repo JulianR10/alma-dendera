@@ -1,0 +1,65 @@
+---
+import { INSTAGRAM_HREF, SITE, WHATSAPP_HREF } from '../lib/site';
+---
+
+<section id="contacto" class="contact" aria-labelledby="contact-title" data-animate="contact-copy">
+  <svg
+    class="contact__field"
+    data-animate="contact-wave"
+    viewBox="0 0 1440 800"
+    preserveAspectRatio="xMaxYMid slice"
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient id="contact-wave-fade" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="white" stop-opacity="0"></stop>
+        <stop offset="0.38" stop-color="white" stop-opacity="1"></stop>
+      </linearGradient>
+      <mask id="contact-wave-cut">
+        <rect width="1440" height="800" fill="url(#contact-wave-fade)"></rect>
+      </mask>
+    </defs>
+    <g mask="url(#contact-wave-cut)">
+      <path
+        class="contact__wave contact__wave--a"
+        d="M0 430 C 180 360, 360 500, 540 430 S 900 330, 1080 430 S 1320 520, 1440 430"></path>
+      <path
+        class="contact__wave contact__wave--b"
+        d="M0 390 C 200 450, 400 330, 600 390 S 960 470, 1140 390 S 1340 320, 1440 390"></path>
+    </g>
+  </svg>
+  <h2 id="contact-title" class="contact__title display-title">Si resonó, escribime.</h2>
+  <p class="contact__lead">
+    Te respondo yo. Decime qué estás buscando — soundhealing, reiki o un encuentro grupal — y qué
+    días te quedan bien. Después coordinamos día y hora por el mismo chat.
+  </p>
+  <a
+    class="contact__wa"
+    data-spotlight
+    href={WHATSAPP_HREF}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`Escribir a ${SITE.personName} por WhatsApp al ${SITE.whatsappDisplay} (se abre en una pestaña nueva)`}
+  >
+    <span>Escribir por WhatsApp</span>
+  </a>
+  <p class="contact__status">
+    <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer">{SITE.whatsappDisplay}</a>
+    <span aria-hidden="true"> · </span>
+    <span>{SITE.city}, cita previa</span>
+  </p>
+  <p class="contact__social">
+    <a
+      href={INSTAGRAM_HREF}
+      target="_blank"
+      rel="noopener noreferrer me"
+      aria-label={`Abrir Instagram de ${SITE.name}, @${SITE.instagramHandle} (se abre en una pestaña nueva)`}
+    >
+      Instagram @{SITE.instagramHandle}
+    </a>
+  </p>
+  <p class="contact__note">
+    Alma Dendera · {SITE.personName} · {SITE.city}. Acompaña, no reemplaza un tratamiento médico ni
+    psicológico.
+  </p>
+</section>

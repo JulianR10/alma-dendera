@@ -2,38 +2,6 @@ import gsap from 'gsap';
 import { define } from './registry';
 import { prefersReducedMotion } from './reducedMotion';
 
-define('hero-alma', (el) => {
-  const inner = el.querySelector('span');
-  const target = inner ?? el;
-
-  if (prefersReducedMotion()) {
-    gsap.set(target, { y: '0%', opacity: 1 });
-    return;
-  }
-
-  gsap.fromTo(
-    target,
-    { y: '110%', opacity: 0 },
-    { y: '0%', opacity: 1, duration: 1, delay: 0.25, ease: 'power4.out' },
-  );
-});
-
-define('hero-dendera', (el) => {
-  const inner = el.querySelector('span');
-  const target = inner ?? el;
-
-  if (prefersReducedMotion()) {
-    gsap.set(target, { y: '0%', opacity: 1 });
-    return;
-  }
-
-  gsap.fromTo(
-    target,
-    { y: '110%', opacity: 0 },
-    { y: '0%', opacity: 1, duration: 1, delay: 0.42, ease: 'power4.out' },
-  );
-});
-
 define('hero-logo', (el) => {
   if (prefersReducedMotion()) return;
   gsap.fromTo(
@@ -45,38 +13,14 @@ define('hero-logo', (el) => {
 
 define('hero-maga', (el) => {
   if (prefersReducedMotion()) {
-    gsap.set(el, { opacity: 0.92 });
+    gsap.set(el, { opacity: 1 });
     return;
   }
   gsap.fromTo(
     el,
-    { x: 24, opacity: 0, filter: 'blur(8px)' },
-    { x: 0, opacity: 0.92, filter: 'blur(0px)', duration: 1.3, delay: 0.35, ease: 'power3.out' },
+    { opacity: 0, filter: 'blur(10px)' },
+    { opacity: 1, filter: 'blur(0px)', duration: 1.4, delay: 0.15, ease: 'power3.out' },
   );
-});
-
-define('hero-line', (el) => {
-  if (prefersReducedMotion()) {
-    el.style.opacity = '0.95';
-    return;
-  }
-
-  const path = el.querySelector<SVGPathElement>('#live-wave');
-  if (!path) return;
-
-  const length = path.getTotalLength();
-  gsap.set(path, {
-    strokeDasharray: length,
-    strokeDashoffset: length,
-    opacity: 1,
-  });
-
-  gsap.to(path, {
-    strokeDashoffset: 0,
-    duration: 1.2,
-    delay: 0.15,
-    ease: 'power3.inOut',
-  });
 });
 
 define('hero-eyebrow', (el) => {
@@ -93,7 +37,7 @@ define('hero-eyebrow', (el) => {
       opacity: 1,
       filter: 'blur(0px)',
       duration: 0.65,
-      delay: 0.85,
+      delay: 1.05,
       stagger: 0.1,
       ease: 'power2.out',
       onComplete: () => {
@@ -127,20 +71,71 @@ define('hero-phrase', (el) => {
   gsap.fromTo(
     el,
     { y: 12, opacity: 0, filter: 'blur(6px)' },
-    { y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.1, delay: 0.95, ease: 'power2.out' },
+    {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 1.1,
+      delay: 0.78,
+      ease: 'power2.out',
+      onComplete: () => {
+        // Suelta el flattening del padre para que cada letra conserve su propia capa GPU.
+        gsap.set(el, { clearProps: 'transform,filter' });
+      },
+    },
   );
 });
 
-define('scroll-hint', (el) => {
-  if (prefersReducedMotion()) return;
-  gsap.fromTo(el, { opacity: 0 }, { opacity: 0.4, duration: 0.8, delay: 1.4, ease: 'power1.out' });
+const BREATH_DURATION = 4;
+const BREATH_LIFT = -7;
+const BREATH_SPREAD = 2.4;
+const BREATH_STAGGER = 0.15;
+const BREATH_REST_OPACITY = 0.94;
+// Arranca cuando termina la entrada de hero-phrase (delay 0.78 + duration 1.1).
+const BREATH_START_DELAY = 1.9;
 
-  const line = el.querySelector('.hero__hint-line');
-  if (line) {
-    gsap.fromTo(
-      line,
-      { scaleY: 0 },
-      { scaleY: 1, duration: 0.7, delay: 1.5, ease: 'power2.out', transformOrigin: 'top' },
-    );
+define('hero-breath', (el) => {
+  if (prefersReducedMotion()) return;
+  if (el.querySelector('.hero__breath-char')) return;
+
+  const text = el.textContent ?? '';
+  if (text.length === 0) return;
+  el.textContent = '';
+  el.setAttribute('aria-label', text);
+
+  for (const char of text) {
+    const span = document.createElement('span');
+    span.className = 'hero__breath-char';
+    span.textContent = char;
+    span.setAttribute('aria-hidden', 'true');
+    el.appendChild(span);
   }
+
+  const chars = el.querySelectorAll<HTMLElement>('.hero__breath-char');
+  const center = (chars.length - 1) / 2;
+
+  gsap.set(chars, { force3D: true, opacity: BREATH_REST_OPACITY });
+  gsap.to(chars, {
+    y: BREATH_LIFT,
+    x: (index: number) => (center - index) * BREATH_SPREAD,
+    opacity: 1,
+    duration: BREATH_DURATION,
+    ease: 'sine.inOut',
+    stagger: { each: BREATH_STAGGER, from: 'center' },
+    repeat: -1,
+    yoyo: true,
+    delay: BREATH_START_DELAY,
+  });
+});
+
+define('hero-cta', (el) => {
+  if (prefersReducedMotion()) {
+    gsap.set(el, { opacity: 1, y: 0 });
+    return;
+  }
+  gsap.fromTo(
+    el,
+    { y: 10, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.7, delay: 1.35, ease: 'power2.out' },
+  );
 });

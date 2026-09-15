@@ -1,0 +1,43 @@
+---
+import siluetaSrc from '../images/silueta.webp';
+---
+
+<section id="sobre-mi" class="about" aria-labelledby="about-title">
+  <figure class="about__figure" data-animate="about-figure">
+    <svg
+      class="about__ripples"
+      data-animate="about-ripples"
+      viewBox="0 0 800 400"
+      preserveAspectRatio="xMidYMax meet"
+      aria-hidden="true"
+    >
+      <ellipse cx="400" cy="318" rx="90" ry="24"></ellipse>
+      <ellipse cx="400" cy="318" rx="170" ry="46"></ellipse>
+      <ellipse cx="400" cy="318" rx="270" ry="74"></ellipse>
+      <ellipse cx="400" cy="318" rx="390" ry="110"></ellipse>
+    </svg>
+    <img
+      class="about__portrait"
+      src={siluetaSrc.src}
+      alt="Silueta de Magali en postura de yoga"
+      width={siluetaSrc.width}
+      height={siluetaSrc.height}
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
+  <div class="about__intro">
+    <h2 id="about-title" class="about__title display-title" data-animate="about-title">
+      Soy Magali.
+    </h2>
+    <p class="about__body" data-animate="about-copy">
+      Yo llegué al sonido porque me costaba frenar. La cabeza iba a mil y el cuerpo me pedía otra
+      cosa. La primera vez que me recosté en un baño sonoro entendí lo que se siente cuando el ruido
+      por fin baja.
+    </p>
+    <p class="about__body" data-animate="about-copy">
+      Eso es lo que te quiero compartir: una hora sin exigencias, donde no tenés que hacer nada
+      bien. Yo sostengo el espacio —con cuencos, vibroacústica o reiki— y vos venís como estás.
+    </p>
+  </div>
+</section>

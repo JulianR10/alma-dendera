@@ -1,0 +1,17 @@
+---
+interface Props {
+  baseX?: number;
+  baseY?: number;
+  lengthRatio?: number;
+}
+
+const { baseX = 0.5, baseY = 0.67, lengthRatio = 0.34 } = Astro.props;
+---
+
+<div class="incense" aria-hidden="true">
+  <canvas
+    class="incense__canvas"
+    data-base-x={String(baseX)}
+    data-base-y={String(baseY)}
+    data-length-ratio={String(lengthRatio)}></canvas>
+</div>
