@@ -11,6 +11,24 @@ declare global {
   }
 }
 
+let viewportRefreshBound = false;
+
+function bindViewportRefresh(): void {
+  if (viewportRefreshBound) return;
+  viewportRefreshBound = true;
+  let queued = false;
+  const queueRefresh = (): void => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      ScrollTrigger.refresh();
+    });
+  };
+  window.addEventListener('resize', queueRefresh);
+  window.addEventListener('orientationchange', queueRefresh);
+}
+
 function bindAnchors(lenis: Lenis): void {
   const anchors = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
   anchors.forEach((anchor) => {
@@ -27,6 +45,7 @@ function bindAnchors(lenis: Lenis): void {
 
 export function initSmoothScroll(): Lenis | null {
   if (typeof window === 'undefined') return null;
+  bindViewportRefresh();
   if (window.__almaLenis) return window.__almaLenis;
   if (prefersReducedMotion()) return null;
 

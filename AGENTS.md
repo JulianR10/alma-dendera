@@ -43,7 +43,7 @@ Antes de marcar cualquier entrega como hecha, verificar sin que lo pidas:
 
 - [ ] Contenedores: 1 por responsabilidad, sin `div` envolventes extra (`section.hero > img + nav + div.center + svg + audio`)
 - [ ] Semántica: un solo `h1`, estructura `h1>a>img`, `nav[aria-label]`, `aria-*` en toggle, sin `h1>a` invertido
-- [ ] Layout: `hero` en `grid` (`auto auto` + `gap clamp(20px,5vh,40px)`), `center` `width:50vw` `margin:0 0 0 6vw` (no `top:vh` absoluto), `safe-area-inset-*`, `100dvh/svh`
+- [ ] Layout: `hero` en `grid` (`auto auto` + `gap clamp(20px,5vh,40px)`), `center` `width:50vw` `margin:0 0 0 6vw` (no `top:vh` absoluto), `safe-area-inset-*` + `viewport-fit=cover`, alturas `100vh→100svh→100dvh` (dvh último), `clamp()` siempre con min<max
 - [ ] Estilo: sin `!important`/`any`/`setTimeout`/`console.log`, sin código muerto, sin `halo` (eliminado), sin `flow`, sin `mask` azul, sin `about-field` (eliminado)
 - [ ] Build: `npm run build` + `lint/format` limpios, `grep` sin `TODO`/`magaFondo` residual
 
