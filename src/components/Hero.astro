@@ -85,8 +85,13 @@ import { NAV_LINKS } from '../lib/navigation';
     >
   </div>
 
-  <audio id="bg-music" src="/audio/ambiente.mp3" preload="auto" loop playsinline aria-hidden="true"
-  ></audio>
+  <audio
+    id="bg-music"
+    src={`${import.meta.env.BASE_URL}audio/ambiente.mp3`}
+    preload="auto"
+    loop
+    playsinline
+    aria-hidden="true"></audio>
 
   <div class="hero__mobile-menu" id="mobile-menu">
     <nav aria-label="Menú de navegación">
