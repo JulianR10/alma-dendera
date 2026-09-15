@@ -219,12 +219,6 @@
   max-width: 34em;
 }
 
-.gather__kicker {
-  margin: 0;
-  color: var(--color-primary-soft);
-  opacity: 0.75;
-}
-
 .gather__name {
   color: var(--color-primary-soft);
 }
