@@ -20,16 +20,22 @@ export function initHeroSessionsTransition(): void {
   const centerLift = isMobile ? -40 : -70;
   const cardRise = isMobile ? 28 : 44;
 
-  gsap.to('.hero__maga', {
-    yPercent: 12,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: hero,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 0.8,
-    },
-  });
+  // En mobile el hero tiene altura svh fija (estable ante la barra del
+  // navegador) y scroll nativo: el parallax de la imagen sin overscan se
+  // percibía como zoom/salto en el primer scroll, así que se desactiva.
+  // Quedan el fade del centro y el rise del header de sesiones.
+  if (!isMobile) {
+    gsap.to('.hero__maga', {
+      yPercent: 12,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.8,
+      },
+    });
+  }
 
   gsap.to('.hero__center', {
     y: centerLift,

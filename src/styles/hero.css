@@ -210,6 +210,11 @@
 @media (max-width: 768px) {
   .hero {
     grid-template-rows: auto auto 1fr;
+    /* Altura anclada al viewport pequeño: cuando Chrome oculta la barra URL
+       el dvh crece en vivo y la foto con cover "se agranda"; con svh el hero
+       no se redimensiona y el scroll queda estable. */
+    height: 100vh;
+    height: 100svh;
   }
   .hero__maga {
     object-position: 62% 28%;
