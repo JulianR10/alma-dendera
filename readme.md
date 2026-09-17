@@ -194,7 +194,7 @@ Cálido, claro, sin jerga médica ni espiritual densa. Frases cortas. Aclarar si
 4. **Frase** — banda con cita de Magalí
 5. **Sobre mí** — "Soy Magalí", con la silueta montada sobre esa onda
 6. **Contacto** — WhatsApp, Instagram y ubicación
-7. **Footer** — navegación, redes y disclaimer médico
+7. **Footer** — marca, redes, disclaimer médico y crédito linkeado
 
 ---
 

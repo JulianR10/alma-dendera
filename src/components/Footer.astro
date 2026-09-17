@@ -2,7 +2,6 @@
 import firmaSrc from '../images/firmaBlanca.png';
 import logoSrc from '../images/logo.webp';
 import { INSTAGRAM_HREF, SITE } from '../lib/site';
-import { NAV_LINKS } from '../lib/navigation';
 ---
 
 <footer class="footer ambient-light">
@@ -23,20 +22,6 @@ import { NAV_LINKS } from '../lib/navigation';
       </a>
     </div>
 
-    <nav class="footer__nav" aria-label="Navegación del pie">
-      <ul class="footer__list">
-        {
-          NAV_LINKS.map((link) => (
-            <li>
-              <a class="footer__link" href={link.href}>
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-
     <div class="footer__legal">
       <p class="footer__disclaimer text-balance">
         Las sesiones acompañan procesos personales y no reemplazan ningún tratamiento médico o
@@ -44,15 +29,23 @@ import { NAV_LINKS } from '../lib/navigation';
       </p>
       <p class="footer__credit">
         <span class="footer__credit-label">Hecho por</span>
-        <img
-          class="footer__firma"
-          src={firmaSrc.src}
-          alt="Julián Recorte"
-          width={firmaSrc.width}
-          height={firmaSrc.height}
-          loading="lazy"
-          decoding="async"
-        />
+        <a
+          class="footer__firma-link"
+          href="https://julianrecarte.dev/es/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Julián Recarte — sitio personal"
+        >
+          <img
+            class="footer__firma"
+            src={firmaSrc.src}
+            alt="Julián Recorte"
+            width={firmaSrc.width}
+            height={firmaSrc.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
       </p>
     </div>
   </div>
