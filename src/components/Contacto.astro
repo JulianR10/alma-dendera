@@ -1,0 +1,34 @@
+---
+import { INSTAGRAM_HREF, SITE, WHATSAPP_HREF } from '../lib/site';
+---
+
+<section id="contacto" class="contacto ambient-light" aria-labelledby="contacto-title">
+  <div class="contacto__inner">
+    <h2 id="contacto-title" class="contacto__title display-title" data-animate="contact-title">
+      Escribime cuando quieras
+    </h2>
+    <p class="contacto__copy" data-animate="contact-copy">
+      Si es tu primera vez o te quedan dudas, contame cómo venís y vemos por dónde empezar.
+      Coordinamos día y horario por WhatsApp, sin apuro.
+    </p>
+    <div class="contacto__actions" data-animate="contact-actions">
+      <a
+        href={WHATSAPP_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta cta--solid contacto__cta"
+        data-spotlight
+      >
+        <span>Escribime por WhatsApp</span>
+      </a>
+      <a href={INSTAGRAM_HREF} target="_blank" rel="noopener noreferrer" class="contacto__link">
+        Instagram · @{SITE.instagramHandle}
+      </a>
+    </div>
+    <address class="contacto__meta" data-animate="contact-meta">
+      <span>{SITE.city}, Argentina</span>
+      <span aria-hidden="true">·</span>
+      <span>Con turno previo</span>
+    </address>
+  </div>
+</section>

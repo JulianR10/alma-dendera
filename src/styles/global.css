@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Public+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Cormorant+Garamond:ital,wght@1,300&family=Public+Sans:wght@300;400;500&display=swap');
 @import './tokens.css';
 @import './base.css';
 @import './hero.css';
@@ -9,33 +9,21 @@
 @import './quote-band.css';
 @import './sobre-mi.css';
 @import './en-la-sala.css';
+@import './contacto.css';
 @import './footer.css';
 @import './whatsapp-float.css';
 
+/* Solo se apaga lo que anima CSS: los @keyframes de about ya viven dentro de un
+   bloque (prefers-reduced-motion: no-preference) y las animaciones de GSAP consultan
+   prefersReducedMotion() en cada módulo. */
 @media (prefers-reduced-motion: reduce) {
-  .hero__logo,
-  .music-toggle__icon,
-  .hero__eyebrow-item,
-  .hero__eyebrow-dot,
-  .hero__breath,
-  .hero__breath-char,
-  .hero__cta,
-  .hero__cta::before,
-  .sessions__cta,
-  .sessions__cta::before,
-  .about__ripples .about__ripple-curve,
-  .sound,
-  .reki {
-    animation: none !important;
-    transition: none !important;
+  .cta,
+  .cta::before,
+  .music-toggle {
+    transition: none;
   }
 
-  .hero__cta::before,
-  .sessions__cta::before {
+  .cta::before {
     display: none;
-  }
-
-  .music-toggle__waves {
-    display: none !important;
   }
 }

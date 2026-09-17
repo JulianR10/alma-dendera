@@ -19,7 +19,7 @@
   place-items: center;
   pointer-events: auto;
   text-decoration: none;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 }
 
 .resonance__link:focus-visible {
@@ -34,7 +34,7 @@
 .resonance__dot {
   width: 10px;
   height: 10px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   border: 1.5px solid var(--color-primary-soft);
   background: rgba(254, 251, 245, 0.08);
   transition:
@@ -69,7 +69,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(560px, calc(100vw - 140px));
+  width: var(--resonance-w);
   height: 52px;
   margin: 0;
   pointer-events: none;
@@ -90,7 +90,7 @@
 .resonance__glass {
   position: absolute;
   inset: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-overlay-nav);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
@@ -146,7 +146,7 @@
   min-width: 44px;
   height: 48px;
   padding: var(--space-3xs) var(--space-2xs);
-  border-radius: 8px;
+  border-radius: var(--radius-xs);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
 }
 
@@ -193,28 +193,45 @@
 }
 
 @media (max-width: 768px) {
-  .resonance--nav {
-    width: calc(100vw - 120px);
-    max-width: none;
-    overflow-x: auto;
-    overflow-y: hidden;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  /* En mobile el hero ya lleva logo + hamburguesa, así que el progreso aparece
+     recién después del hero y al scrollear hacia arriba, sin labels: solo los puntos,
+     que siguen siendo links de 44px con aria-label. */
+  .hero__nav .resonance--nav {
+    display: flex;
+    /* Alineado a la izquierda: centrado quedaría debajo de la hamburguesa
+       en pantallas de 360px. */
+    left: var(--gutter);
+    width: auto;
+    max-width: calc(100vw - var(--gutter) - var(--btn-size) - var(--gutter) * 2);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
   }
 
-  .resonance--nav::-webkit-scrollbar {
-    display: none;
+  .hero__nav .resonance--nav.is-visible.is-past-hero {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .resonance--nav .resonance__list {
     width: max-content;
-    min-width: 100%;
+    min-width: 0;
     gap: 2px;
-    padding: 0 2px;
+    padding: 0 var(--space-3xs);
+  }
+
+  .resonance--nav .resonance__item {
+    flex: 0 0 auto;
+  }
+
+  .hero__nav .resonance--nav .resonance__label {
+    display: none;
   }
 
   .resonance--nav .resonance__link {
-    padding: var(--space-3xs) var(--space-xs);
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
   }
 }

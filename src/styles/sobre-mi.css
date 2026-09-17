@@ -1,5 +1,9 @@
 .about {
   position: relative;
+  /* Manchas cálidas: la de la izquierda acompaña el texto y la de la derecha se
+     corre detrás de la figura. */
+  --light-a: 66% 46% at 6% 20%;
+  --light-b: 62% 60% at 96% 86%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -8,7 +12,11 @@
   background: var(--color-primary-light);
   color: var(--color-ink);
   scroll-margin-top: 80px;
-  overflow: visible;
+  /* Los aros se centran en la figura y se pasan del borde derecho de la pantalla
+     en notebooks (~1280px), generando scroll horizontal. Se recortan en horizontal
+     y se deja el vertical visible para que la figura siga montándose sobre la sección anterior. */
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .about__figure {
@@ -18,8 +26,11 @@
   width: fit-content;
   z-index: 3;
   margin: 0;
-  margin-top: clamp(-180px, -16vh, -110px);
-  margin-top: clamp(-180px, -16dvh, -110px);
+  /* El montado se acota a lo que cubre la onda de crema de la banda de la frase:
+     la silueta empieza al 10% del alto de la imagen, así que estos ~110px la dejan
+     entera sobre crema. */
+  margin-top: clamp(-150px, -13vh, -90px);
+  margin-top: clamp(-150px, -13dvh, -90px);
   margin-bottom: clamp(72px, 16vw, 110px);
   padding: 0;
   pointer-events: none;

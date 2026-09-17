@@ -26,16 +26,17 @@ Astro SSG, GSAP v3 + ScrollTrigger, Lenis (smooth scroll), TypeScript strict. `l
 
 ```
 public/audio/ambiente.mp3
-src/components/ Hero, SobreMi, Sessions, QuoteBand, Contacto, Incense, MusicToggle, ResonanceColumn
+src/components/ Hero, Sessions, EnLaSala, SobreMi, QuoteBand, Contacto, Footer, WhatsAppFloat, Incense, MusicToggle, ResonanceColumn
 src/images/ logo.webp, fondoMaga2.webp, fondoSoundhealing.webp, fondoReiki.webp, silueta.webp, instrumentos.webp, sound.webp, magaEncuentros.webp
-src/lib/animations/registry, hero, heroSessions, about, sessions, quote, contact, resonance, reducedMotion | audio/controller | canvas/incense | scroll/smooth + spotlight, navigation, site
-src/pages/index.astro · src/styles/global.css + tokens/base/hero/sobre-mi/sessions/quote-band/contacto/incense/music-toggle/resonance
+src/lib/animations/registry, hero, heroSessions, about, aboutRipplesCursor, room, sessions, quote, contact, resonance, reducedMotion | audio/controller | canvas/incense | scroll/smooth + spotlight, navigation, site
+src/pages/index.astro · src/styles/global.css + tokens/base/hero/sobre-mi/sessions/quote-band/en-la-sala/contacto/footer/incense/music-toggle/resonance/whatsapp-float
 ```
 
 ## Estado
 
-**Hecho:** Hero (fondoMaga2 `cover`, nav + MusicToggle, tagline + eyebrow + CTA a #sesiones, menú mobile). Transición hero→sesiones seamless con Lenis + scrub (parallax maga/center/logo, rise de header y cards, sin hueco). Servicios "Dos maneras de reencontrarte" (título Inter 200): cards Soundhealing/Reiki en vidrio esmerilado (`backdrop-filter`) con copy corto voseo, cierre "Encuentros grupales" + Incense canvas a su derecha (varilla diagonal 12° sobre cuenco, humo topo, ciclo 8 min, top-fade, static/reduced-motion, pausa offscreen). SobreMi "Soy Magali" (`silueta.webp` + 4 aros `about__ripples` anclados al pie con `bottom:0` + `translate(-50%,20.5%)`, 100% visibles con `margin-bottom` reservado; onda ancha `about__field` eliminada por decisión). QuoteBand (frase Magali 2 líneas cursiva + firma, slot `imageSrc` listo para `fondoFrase.webp` 1920×640). Isla nav `.resonance--nav` (se oculta bajando 200px, reaparece subiendo con blur; el fade del hero apunta a `.hero__logo-wrap` para no taparla). Nota legal eliminada por decisión. Deploy GitHub Pages (`site` + `base:/alma-dendera/`, workflow `deploy.yml` en cada push a `main`). Favicon set completo desde `favicon.webp` 512 (`favicon.ico`, webp importado, `apple-touch-icon.png` 180 sobre hueso, `icon-192/512.png` + `manifest.webmanifest`). Terapeuta: **Magali · CABA**.
-**Falta (orden):** 1 Beneficios grid 2 Sobre ella 3 Testimonios 4 Contacto (WA/IG) 5 Footer disclaimer.
+**Hecho:** Hero (fondoMaga2 `cover`, nav + MusicToggle, tagline + eyebrow + CTA a #sesiones, menú mobile). Transición hero→sesiones seamless con Lenis + scrub (parallax maga/center/logo, rise de header y cards, sin hueco). Servicios "Dos maneras de volver a vos" (título Cinzel): cards Soundhealing/Reiki en vidrio esmerilado (`backdrop-filter`) con copy corto voseo, cierre "Encuentros grupales" + Incense canvas a su derecha (varilla diagonal 12° sobre cuenco, humo topo, ciclo 8 min, top-fade, static/reduced-motion, pausa offscreen). SobreMi "Soy Magali" (`silueta.webp` + 4 aros `about__ripples` anclados al pie con `bottom:0` + `translate(-50%,20.5%)`, 100% visibles con `margin-bottom` reservado; onda ancha `about__field` eliminada por decisión). QuoteBand (frase Magali 2 líneas cursiva + firma, slot `imageSrc` listo para `fondoFrase.webp` 1920×640). Isla nav `.resonance--nav` (se oculta bajando 200px, reaparece subiendo con blur; el fade del hero apunta a `.hero__logo-wrap` para no taparla). Deploy GitHub Pages (`site` + `base:/alma-dendera/`, workflow `deploy.yml` en cada push a `main`). Favicon set completo desde `favicon.webp` 512 (`favicon.ico`, webp importado, `apple-touch-icon.png` 180 sobre hueso, `icon-192/512.png` + `manifest.webmanifest`). Terapeuta: **Magali · CABA**.
+Escala de radios en tokens; píldora CTA única `.cta` con modificadores `--solid`/`--outline`. "En la sala" con los 4 pasos sobre la banda beige `--color-muted` como corte de capítulo. Contacto (`#contacto`, WA/IG/CABA) y Footer navegable (links, IG, ciudad, disclaimer). Columna de resonancia con **waypoints de sección** (`SECTION_WAYPOINTS`, 5) separada del menú completo (`NAV_LINKS`, 6); en mobile aparece recién pasado el hero, alineada a la izquierda y solo con puntos.
+**Falta (orden):** 1 Beneficios grid 2 Sobre ella 3 Testimonios.
 
 ## Checklist validación (auto — antes de dar por hecho)
 
@@ -43,18 +44,20 @@ Antes de marcar cualquier entrega como hecha, verificar sin que lo pidas:
 
 - [ ] Contenedores: 1 por responsabilidad, sin `div` envolventes extra (`section.hero > img + nav + div.center + svg + audio`)
 - [ ] Semántica: un solo `h1`, estructura `h1>a>img`, `nav[aria-label]`, `aria-*` en toggle, sin `h1>a` invertido
-- [ ] Layout: `hero` en `grid` (`auto auto` + `gap clamp(20px,5vh,40px)`), `center` `width:50vw` `margin:0 0 0 6vw` (no `top:vh` absoluto), `safe-area-inset-*` + `viewport-fit=cover`, alturas `100vh→100svh→100dvh` (dvh último), `clamp()` siempre con min<max
-- [ ] Estilo: sin `!important`/`any`/`setTimeout`/`console.log`, sin código muerto, sin `halo` (eliminado), sin `flow`, sin `mask` azul, sin `about-field` (eliminado)
+- [ ] Layout: `hero` en `grid` (`auto 1fr auto 3fr` + `gap 0`), `center` `width:min(50vw,46ch)` `margin:0 0 0 var(--wrap-inline)` (no `top:vh` absoluto), `safe-area-inset-*` + `viewport-fit=cover`, alturas `100vh→100svh→100dvh` (dvh último), `clamp()` siempre con min<max, **sin scroll horizontal en ningún viewport**
+- [ ] Contraste: cada texto chico (≤14px) sobre su superficie real ≥ 4.5:1, contando el `opacity` y las capas semitransparentes (backdrop del rail, `opacity` del footer)
+- [ ] Estilo: sin `!important`/`any`/`setTimeout`/`console.log`, sin código muerto (tokens e selectores sin uso incluidos)
 - [ ] Build: `npm run build` + `lint/format` limpios, `grep` sin `TODO`/`magaFondo` residual
 
 ## Diseño
 
-**Paleta:** Hero `#6DA1AE` / Alternativo `#F5F2EC` / Tinta `#2B2B2B` / Acento `#536B78` `#7F99A7` `#394A53` / Ciruela `#80617D` / Beige `#D8D2C4` — secciones alternan teal/hueso, AA sobre teal.
-**Tipo:** Cinzel (display), Public Sans (cuerpo), IBM Plex Mono (labels). **Copy:** cálido, frases cortas, sin jerga, aclara "acompaña no reemplaza tratamiento".
-**Recorrido scroll:** Hero → Sesiones → En la sala → Sobre ella → Frase → Footer.
+**Paleta y tipografía:** la fuente de verdad es `readme.md` (secciones "Paleta de color" y "Tipografía"). No dupliques hex ni nombres de fuentes acá: si cambia un token en `tokens.css`, actualizá la tabla del readme y listo.
+**Ritmo de fondos:** cálido `--color-primary-light` (hero, sesiones, sobre mí, contacto) → banda tan `--color-surface-band` (en la sala) → noche `--color-deep` (frase, footer). La banda se diferencia por tono cálido, nunca por desaturar: el beige grisáceo hacía que la sección pareciera de otra web. Sobre esa base plana: `.ambient-light` (clase reutilizable, dos manchas cálidas en `z-index:-1`) y la **onda de crema** que cierra la banda de la frase (`.quote-band::after`). Ojo: esa onda no es solo decorativa — es la superficie donde se monta la silueta de Sobre mí, que es marrón oscuro y sobre la banda daría 1.57:1.
+**Copy:** cálido, frases cortas, sin jerga, aclara "acompaña no reemplaza tratamiento".
+**Recorrido scroll:** Hero → Sesiones → En la sala → Frase → Sobre mí → Contacto → Footer.
 **Movimiento:** Transición cresta onda SVG, ambient 6s loop no distractivo, solo columna progresa, un momento de riesgo, `prefers-reduced-motion`.
 
-**Columna resonancia:** Nav lateral SVG wave + 3 waypoints (Hero / En la sala / Contacto). Progreso discreto (carga en Hero, avanza/retrocede 0.5s por sección, no pasa último). Mobile `<--bp-md` horizontal arriba. Waypoints clickeables. `ScrollTrigger onEnter/onLeaveBack`.
+**Columna resonancia:** rail de progreso con los waypoints de sección (Hero / Sesiones / En la sala / Sobre mí / Contacto). Progreso discreto (carga en Hero, avanza/retrocede 0.5s por sección, no pasa el último). Mobile `<--bp-md`: aparece pasado el hero, alineado a la izquierda, solo puntos, sin labels. Waypoints clickeables. `ScrollTrigger onEnter/onEnterBack`.
 **Naming:** Componentes PascalCase, módulos camelCase, data/clases/IDs kebab (`data-animate="hero-title"`).
 
 ## Mobile / iOS

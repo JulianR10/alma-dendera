@@ -66,7 +66,7 @@
 .whatsapp-float:focus-visible {
   outline: 2px solid var(--color-primary-soft);
   outline-offset: 3px;
-  border-radius: 28px;
+  border-radius: var(--radius-xl);
 }
 
 .whatsapp-float__icon {

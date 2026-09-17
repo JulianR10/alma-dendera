@@ -1,14 +1,12 @@
 ---
 import firmaSrc from '../images/firmaBlanca.png';
 import logoSrc from '../images/logo.webp';
+import { INSTAGRAM_HREF, SITE } from '../lib/site';
+import { NAV_LINKS } from '../lib/navigation';
 ---
 
-<footer class="footer">
+<footer class="footer ambient-light">
   <div class="footer__inner">
-    <p class="footer__disclaimer">
-      Las sesiones acompañan procesos personales y no reemplazan ningún tratamiento médico o
-      psicológico.
-    </p>
     <div class="footer__brand">
       <img
         class="footer__logo"
@@ -19,18 +17,43 @@ import logoSrc from '../images/logo.webp';
         loading="lazy"
         decoding="async"
       />
+      <p class="footer__city">{SITE.city}, Argentina</p>
+      <a class="footer__social" href={INSTAGRAM_HREF} target="_blank" rel="noopener noreferrer">
+        @{SITE.instagramHandle}
+      </a>
     </div>
-    <p class="footer__credit">
-      <span class="footer__credit-label">Hecho por</span>
-      <img
-        class="footer__firma"
-        src={firmaSrc.src}
-        alt="Julián Recorte"
-        width={firmaSrc.width}
-        height={firmaSrc.height}
-        loading="lazy"
-        decoding="async"
-      />
-    </p>
+
+    <nav class="footer__nav" aria-label="Navegación del pie">
+      <ul class="footer__list">
+        {
+          NAV_LINKS.map((link) => (
+            <li>
+              <a class="footer__link" href={link.href}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="footer__legal">
+      <p class="footer__disclaimer">
+        Las sesiones acompañan procesos personales y no reemplazan ningún tratamiento médico o
+        psicológico.
+      </p>
+      <p class="footer__credit">
+        <span class="footer__credit-label">Hecho por</span>
+        <img
+          class="footer__firma"
+          src={firmaSrc.src}
+          alt="Julián Recorte"
+          width={firmaSrc.width}
+          height={firmaSrc.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </p>
+    </div>
   </div>
 </footer>

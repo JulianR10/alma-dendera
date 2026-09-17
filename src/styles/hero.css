@@ -38,7 +38,6 @@
   object-fit: cover;
   object-position: 72% 38%;
   pointer-events: none;
-  will-change: transform;
 }
 
 /* ——— Nav ——— */
@@ -63,7 +62,7 @@
 .hero__nav-logo:focus-visible {
   outline: 2px solid var(--color-primary-soft);
   outline-offset: 4px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 .hero__logo-wrap {
@@ -94,6 +93,9 @@
   justify-self: start;
   align-self: start;
   margin: 0 0 0 var(--wrap-inline);
+  /* El tope de ancho no puede ir en ch: se resuelve contra la fuente del body (16px),
+     no contra la del título (hasta 48px), y aplasta la tagline a 6 líneas.
+     La medida la fija .hero__tagline en em, que sí escala con su propia fuente. */
   width: 50vw;
   display: flex;
   flex-direction: column;
@@ -101,7 +103,6 @@
   gap: 0;
   z-index: 2;
   text-align: left;
-  will-change: transform, opacity;
 }
 
 /* ——— Eyebrow ——— */
@@ -113,6 +114,10 @@
   gap: 0.6em 0.7em;
   color: var(--color-primary-soft);
   opacity: 0.9;
+  /* El eyebrow se apoya sobre la foto: sin sombra el hueso se pierde en las zonas claras. */
+  text-shadow:
+    0 1px 3px rgba(20, 14, 8, 0.6),
+    0 2px 14px rgba(20, 14, 8, 0.45);
 }
 
 .hero__eyebrow-item,
@@ -144,7 +149,7 @@
   background: rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(4px);
   border: none;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--color-primary-soft);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -159,7 +164,7 @@
 .hero__menu-toggle:focus-visible {
   outline: 2px solid var(--color-primary-soft);
   outline-offset: 4px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 .hero__menu-toggle morph-icon {
@@ -171,23 +176,25 @@
   display: none;
 }
 
+/* ——— CTA (el alto y el margen son del hero; la píldora vive en base.css) ——— */
+.hero__cta {
+  margin-top: var(--space-lg);
+}
+
 /* ——— Tagline ——— */
 .hero__tagline {
   margin: 0 0 var(--space-md);
-  max-width: 16.8em;
+  /* em = la fuente del propio título (hasta 48px) → ~30 caracteres por línea. */
+  max-width: 15.6em;
   font-family: var(--font-title);
-  font-weight: 100;
+  font-weight: 400;
   font-size: var(--text-2xl);
-  line-height: 1.08;
+  line-height: 1.16;
   color: var(--color-primary-soft);
   opacity: 0.98;
   letter-spacing: -0.02em;
   text-wrap: balance;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.32);
-}
-
-.hero__tagline br {
-  display: none;
 }
 
 .hero__breath {
@@ -199,13 +206,6 @@
   display: inline-block;
   transform: translateZ(0);
   backface-visibility: hidden;
-  will-change: transform, opacity;
-}
-
-@media (min-width: 768px) {
-  .hero__tagline br {
-    display: block;
-  }
 }
 
 @media (max-width: 768px) {
@@ -218,7 +218,7 @@
   .hero__center {
     grid-row: 2;
     margin: 50px var(--gutter) 0;
-    width: 75%;
+    width: 88%;
   }
   .hero__logo {
     width: var(--logo-size-mobile);
@@ -251,7 +251,6 @@
   .hero__breath {
     word-spacing: 0.15em;
   }
-  .hero__nav .resonance--nav,
   .hero__nav .music-toggle {
     display: none;
   }
@@ -314,7 +313,7 @@
   .hero__mobile-dot {
     width: 10px;
     height: 10px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     border: 1.5px solid rgba(254, 251, 245, 0.5);
     background: rgba(254, 251, 245, 0.06);
     flex-shrink: 0;

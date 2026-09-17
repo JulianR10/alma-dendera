@@ -1,12 +1,12 @@
 ---
-import { NAV_LINKS } from '../lib/navigation';
+import { SECTION_WAYPOINTS } from '../lib/navigation';
 ---
 
 <nav class="resonance resonance--nav is-light" aria-label="Progreso de secciones">
   <div class="resonance__glass" aria-hidden="true"></div>
   <ol class="resonance__list">
     {
-      NAV_LINKS.map((link, index) => (
+      SECTION_WAYPOINTS.map((link, index) => (
         <li class={`resonance__item${index === 0 ? ' is-active' : ''}`}>
           <a
             href={link.href}

@@ -1,48 +1,56 @@
 :root {
-  /* ——— Brand ——— */
-  --color-primary: #69492b;
-  --color-primary-light: #fae8ca;
-  --color-primary-soft: #fefbf5;
-  --color-paper: #f5f2ec;
-  --color-muted: #d8d2c4;
-  --color-ink: #2b2b2b;
-  --color-deep: #2d2517;
+  /* ——— Paleta: única fuente de verdad en readme.md → "Paleta de color" ———
+     Si tocás un hex acá, actualizá también la tabla del readme. */
+  --color-primary: #69492b; /* principal oscuro: títulos, bordes y botones outline */
+  --color-primary-light: #fae8ca; /* principal claro: superficie de hero, sesiones, sobre mí y contacto */
+  --color-primary-soft: #fefbf5; /* hueso: texto sobre superficies oscuras y fondo de la tarjeta de En la sala */
+  --color-paper: #f5f2ec; /* papel: fondo base del body */
+  /* Banda de corte de capítulo ("En la sala"): un tan cálido, no el beige grisáceo
+     anterior, que era el único tono desaturado del sitio y hacía que la sección
+     pareciera de otra web. */
+  --color-surface-band: #e7d6b8;
+  --color-ink: #2b2b2b; /* tinta: texto principal sobre claro */
+  --color-deep: #2d2517; /* oscuro cálido: footer, frase y encuentros */
   --color-deep-hover: #1e1a11;
-  --color-plum: #80617d;
+  /* 2% por debajo del #80617D de marca: es lo mínimo para que los labels chicos den AA sobre la crema. */
+  --color-plum: #7b5d78;
+  --color-surface-alt: var(--color-surface-band);
   --color-on-deep: var(--color-primary-soft);
-  --color-on-image: var(--color-primary-soft);
-  --color-surface: var(--color-paper);
-  --color-surface-alt: var(--color-primary-light);
-  --color-brand: var(--color-primary);
-  --color-on-brand: var(--color-primary-soft);
-  --color-on-surface: var(--color-ink);
-  --color-on-surface-muted: rgba(43, 43, 43, 0.72);
-  --color-overlay-nav: rgba(45, 37, 23, 0.32);
-  --color-overlay-nav-border: rgba(45, 37, 23, 0.14);
+  /* El vidrio lleva texto hueso: con menos opacidad no llega a 4.5:1 sobre las secciones claras. */
+  --color-overlay-nav: rgba(45, 37, 23, 0.72);
+  --color-overlay-nav-border: rgba(45, 37, 23, 0.2);
 
   /* ——— Ink opacity ——— */
-  --ink-50: rgba(43, 43, 43, 0.5);
-  --ink-72: rgba(43, 43, 43, 0.72);
   --ink-82: rgba(43, 43, 43, 0.82);
 
   /* ——— Lines ——— */
   --line-soft: rgba(105, 73, 43, 0.1);
-  --line-faint: rgba(105, 73, 43, 0.08);
 
   /* ——— Fonts ——— */
-  --font-title: 'Inter', sans-serif;
+  --font-title: 'Cinzel', Georgia, serif;
+  --font-quote: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Public Sans', sans-serif;
 
   /* ——— Breakpoints ——— */
   --bp-md: 768px;
 
   /* ——— Typography (fluid) ——— */
-  --text-xs: 11px;
+  --text-xs: 12px;
   --text-sm: clamp(13px, 0.85vw + 0.55rem, 14px);
   --text-base: clamp(15px, 0.9vw + 0.65rem, 16px);
   --text-lg: clamp(17px, 1vw + 0.7rem, 19px);
-  --text-xl: clamp(28px, 2.8vw + 0.5rem, 44px);
-  --text-2xl: clamp(32px, 4.4vw + 0.5rem, 64px);
+  --text-xl: clamp(22px, 2vw + 0.4rem, 34px);
+  --text-2xl: clamp(26px, 3.2vw + 0.4rem, 48px);
+
+  /* ——— Radii ——— */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+  --radius-blob-a: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  --radius-blob-b: 70% 30% 30% 70% / 70% 70% 30% 30%;
 
   /* ——— Spacing (fluid) ——— */
   --space-3xs: 4px;
@@ -64,15 +72,13 @@
   --section-pad-top-safe: calc(var(--section-pad-top) + env(safe-area-inset-top));
   --section-pad-bottom-safe: calc(var(--section-pad-bottom) + env(safe-area-inset-bottom));
 
-  /* ——— Card ——— */
-  --card-radius: 18px;
-
   /* ——— Component ——— */
   --cta-py: clamp(10px, 0.9vw + 0.3rem, 12px);
   --cta-px: clamp(22px, 2vw + 0.3rem, 28px);
   --cta-text: var(--text-sm);
-  --btn-size: 40px;
+  --btn-size: 44px;
   --icon-size: 24px;
   --logo-size: clamp(82px, 7vw + 1rem, 104px);
   --logo-size-mobile: clamp(72px, 6vw + 1rem, 92px);
+  --resonance-w: min(540px, calc(100vw - 320px));
 }

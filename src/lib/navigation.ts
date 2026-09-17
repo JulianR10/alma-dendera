@@ -6,11 +6,23 @@ export interface NavLink {
   label: string;
 }
 
+/** Menú completo: todo destino al que se puede saltar. */
 export const NAV_LINKS: NavLink[] = [
   { href: '#hero', label: 'Inicio' },
   { href: '#soundhealing', label: 'Soundhealing' },
   { href: '#reiki', label: 'Reiki' },
+  { href: '#en-la-sala', label: 'En la sala' },
   { href: '#sobre-mi', label: 'Sobre mí' },
+  { href: '#contacto', label: 'Contacto' },
+];
+
+/** Capítulos reales del scroll: son los que marca la columna de resonancia. */
+export const SECTION_WAYPOINTS: NavLink[] = [
+  { href: '#hero', label: 'Inicio' },
+  { href: '#sesiones', label: 'Sesiones' },
+  { href: '#en-la-sala', label: 'En la sala' },
+  { href: '#sobre-mi', label: 'Sobre mí' },
+  { href: '#contacto', label: 'Contacto' },
 ];
 
 export function initMobileMenu(): void {

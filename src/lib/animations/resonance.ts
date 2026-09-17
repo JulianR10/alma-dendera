@@ -1,10 +1,11 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { NAV_LINKS } from '../navigation';
+import { SECTION_WAYPOINTS } from '../navigation';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SECTION_IDS: string[] = NAV_LINKS.map((link) => link.href.slice(1));
+const SECTION_IDS: string[] = SECTION_WAYPOINTS.map((link) => link.href.slice(1));
+const PAST_HERO_RATIO = 0.6;
 
 export function initResonance(): void {
   const resonance = document.querySelector<HTMLElement>('.resonance');
@@ -45,6 +46,8 @@ export function initResonance(): void {
         lastY = y;
         const isAtTop = y < 10;
         const isUp = self.direction === -1;
+        // En mobile el rail solo aparece después del hero (si no choca con el logo).
+        glassNav.classList.toggle('is-past-hero', y > window.innerHeight * PAST_HERO_RATIO);
         if (isAtTop) {
           downAcc = 0;
           glassNav.classList.add('is-visible');

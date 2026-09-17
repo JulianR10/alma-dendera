@@ -5,6 +5,7 @@ import SobreMi from '../components/SobreMi.astro';
 import EnLaSala from '../components/EnLaSala.astro';
 import Sessions from '../components/Sessions.astro';
 import QuoteBand from '../components/QuoteBand.astro';
+import Contacto from '../components/Contacto.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import fondoSrc from '../images/fondoMaga2.webp';
@@ -75,12 +76,11 @@ const jsonLd = {
   <body>
     <main>
       <Hero />
-      <div class="services-wrapper">
-        <Sessions />
-      </div>
+      <Sessions />
       <EnLaSala />
-      <SobreMi />
       <QuoteBand />
+      <SobreMi />
+      <Contacto />
     </main>
     <Footer />
     <WhatsAppFloat />
@@ -92,6 +92,7 @@ const jsonLd = {
       import '../lib/animations/room';
       import '../lib/animations/sessions';
       import '../lib/animations/quote';
+      import '../lib/animations/contact';
       import { initResonance } from '../lib/animations/resonance';
       import { initSmoothScroll } from '../lib/scroll/smooth';
       import { initHeroSessionsTransition } from '../lib/animations/heroSessions';

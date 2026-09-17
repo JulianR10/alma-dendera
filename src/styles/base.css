@@ -19,7 +19,9 @@ body {
 }
 
 main {
-  background: var(--color-primary-light);
+  /* Base neutra: es el fondo que asoma alrededor de la tarjeta de "En la sala"
+     y marca el corte de capítulo entre las bandas cálidas. */
+  background: var(--color-surface-alt);
 }
 
 body::before {
@@ -32,9 +34,8 @@ body::before {
   background: repeating-conic-gradient(rgba(0, 0, 0, 0.03) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
 }
 
-/* ——— CTA pill (reusable: hero + sessions) ——— */
-.hero__cta,
-.sessions__cta {
+/* ——— CTA pill (compartido: hero, sesiones y contacto) ——— */
+.cta {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -49,37 +50,32 @@ body::before {
   letter-spacing: 0.04em;
   line-height: 1;
   text-decoration: none;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   text-align: center;
 }
 
-.hero__cta::before,
-.sessions__cta::before {
+.cta::before {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
   z-index: 0;
 }
 
-.hero__cta:hover::before,
-.hero__cta:focus-visible::before,
-.sessions__cta:hover::before,
-.sessions__cta:focus-visible::before {
+.cta:hover::before,
+.cta:focus-visible::before {
   opacity: 1;
 }
 
-.hero__cta > span,
-.sessions__cta > span {
+.cta > span {
   position: relative;
   z-index: 1;
 }
 
-.hero__cta {
-  margin-top: var(--space-lg);
+.cta--solid {
   background: var(--color-deep);
   color: var(--color-primary-soft);
   border: 1px solid var(--color-deep);
@@ -93,13 +89,13 @@ body::before {
     transform 0.2s ease;
 }
 
-.hero__cta:hover {
+.cta--solid:hover {
   background: var(--color-deep-hover);
   border-color: var(--color-deep-hover);
   transform: translateY(-1px);
 }
 
-.hero__cta::before {
+.cta--solid::before {
   background: radial-gradient(
     circle 220px at var(--x, 50%) var(--y, 50%),
     rgba(0, 0, 0, 0.16) 0%,
@@ -108,13 +104,12 @@ body::before {
   );
 }
 
-.hero__cta:focus-visible {
+.cta--solid:focus-visible {
   outline: 2px solid var(--color-primary-soft);
   outline-offset: 3px;
 }
 
-.sessions__cta {
-  margin: var(--space-xl) auto 0;
+.cta--outline {
   display: flex;
   width: fit-content;
   background: transparent;
@@ -124,7 +119,7 @@ body::before {
   box-shadow: none;
 }
 
-.sessions__cta::before {
+.cta--outline::before {
   background: radial-gradient(
     circle 220px at var(--x, 50%) var(--y, 50%),
     rgba(255, 255, 255, 0.22) 0%,
@@ -133,15 +128,44 @@ body::before {
   );
 }
 
-.sessions__cta:hover {
+.cta--outline:hover {
   background: var(--color-primary);
   color: var(--color-primary-soft);
   transform: translateY(-1px);
 }
 
-.sessions__cta:focus-visible {
+.cta--outline:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
+}
+
+/* ——— Luz ambiental ———
+   Los fondos son planos a propósito; esto les devuelve profundidad con dos manchas
+   cálidas. El `z-index: -1` la deja por encima del fondo de la sección y por debajo
+   de todo el contenido, así nunca lava el texto: el `isolation` del contenedor es lo
+   que evita que ese -1 se escape detrás del propio fondo. */
+.ambient-light {
+  position: relative;
+  isolation: isolate;
+}
+
+.ambient-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      var(--light-a, 64% 48% at 12% 14%),
+      var(--light-a-tone, rgba(254, 251, 245, 0.72)),
+      transparent 72%
+    ),
+    radial-gradient(
+      var(--light-b, 58% 52% at 88% 84%),
+      var(--light-b-tone, rgba(216, 210, 196, 0.42)),
+      transparent 74%
+    );
 }
 
 /* ——— Shared type utilities ——— */
@@ -154,7 +178,7 @@ body::before {
 
 .display-title {
   font-family: var(--font-title);
-  font-weight: 200;
-  letter-spacing: -0.02em;
-  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.14;
 }
