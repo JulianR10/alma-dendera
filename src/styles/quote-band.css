@@ -1,5 +1,4 @@
 .quote-band {
-  --quote-wave: clamp(120px, 12vh, 160px);
   position: relative;
   display: grid;
   grid-template-columns: 1fr minmax(0, 32em) 1fr;
@@ -7,32 +6,9 @@
   column-gap: var(--space-lg);
   overflow: hidden;
   min-height: 36vh;
-  /* El padding de abajo reserva el alto de la onda para que la frase nunca caiga
-     sobre la crema. */
-  padding: var(--space-2xl) var(--wrap-inline) calc(var(--space-md) + var(--quote-wave));
+  padding: var(--space-2xl) var(--wrap-inline);
   background: linear-gradient(160deg, var(--color-deep) 0%, #4a3a28 55%, var(--color-deep) 100%);
   isolation: isolate;
-}
-
-/* Corte de capítulo: la crema de "Sobre mí" sube con una onda sobre la banda oscura.
-   Además de unir las dos secciones, es la superficie sobre la que se monta la silueta:
-   es marrón oscuro (#5D3E22) y contra este fondo daría 1.57:1. */
-.quote-band::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 3;
-  width: 100%;
-  height: var(--quote-wave);
-  background: var(--color-primary-light);
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,16 C180,4 360,24 540,14 C720,4 900,24 1080,14 C1260,4 1350,20 1440,12 L1440,100 L0,100 Z' fill='black'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,16 C180,4 360,24 540,14 C720,4 900,24 1080,14 C1260,4 1350,20 1440,12 L1440,100 L0,100 Z' fill='black'/%3E%3C/svg%3E");
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  pointer-events: none;
 }
 
 .quote-band__bg {
@@ -117,7 +93,7 @@
     justify-items: center;
     overflow: hidden;
     min-height: 40vh;
-    padding: var(--space-xl) var(--wrap-inline) calc(var(--space-md) + var(--quote-wave));
+    padding: var(--space-xl) var(--wrap-inline);
   }
   .quote-band__overlay {
     z-index: 1;

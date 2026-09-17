@@ -22,12 +22,6 @@
   width: fit-content;
   z-index: 3;
   margin: 0;
-  /* El montado se acota a lo que cubre la onda de crema de la banda de la frase:
-     la silueta empieza al 10% del alto de la imagen, así que estos ~110px la dejan
-     entera sobre crema. */
-  margin-top: clamp(-150px, -13vh, -90px);
-  margin-top: clamp(-150px, -13dvh, -90px);
-  margin-bottom: clamp(72px, 16vw, 110px);
   padding: 0;
   pointer-events: none;
 }
@@ -120,6 +114,52 @@
   }
 }
 
+@media (max-width: 767px) {
+  /* El texto manda: una sola columna y la figura, absoluta, se adapta al alto
+     que resulte (mitad derecha oculta, .about ya recorta en x). */
+  .about {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'intro';
+    /* Los aros pasan por encima de la sección de abajo (overflow-y visible +
+       z-index sobre el contacto que viene después en el DOM). */
+    z-index: 1;
+  }
+
+  .about__intro {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-lg) 30% calc(var(--space-xl) + env(safe-area-inset-bottom))
+      var(--wrap-inline);
+  }
+
+  /* Eje compartido: retrato y aros se centran en el mismo punto, clavado en el
+     borde derecho (mitad visible, mitad oculta; .about recorta en x). */
+  .about__figure {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    margin: 0;
+  }
+
+  .about__portrait {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: auto;
+    transform: translateX(calc(50% - 50px));
+  }
+
+  .about__ripples {
+    left: auto;
+    right: 0;
+    width: 220%;
+    transform: translateX(calc(50% - 50px)) translateY(calc(20.5% - clamp(30px, 8vw + 12px, 50px)));
+  }
+}
+
 @media (min-width: 768px) {
   .about {
     grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
@@ -138,7 +178,7 @@
   .about__figure {
     align-self: end;
     justify-self: end;
-    height: calc(100% + clamp(84px, 12.6vh, 140px));
+    height: 100%;
     max-height: 66vh;
     margin-top: 0;
     margin-bottom: clamp(70px, 10vh, 100px);

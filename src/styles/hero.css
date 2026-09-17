@@ -219,6 +219,10 @@
     margin: 50px var(--gutter) 0;
     width: 88%;
   }
+  /* Titular más angosto: corta con ~una palabra menos por línea. */
+  .hero__tagline {
+    max-width: 12em;
+  }
   .hero__logo {
     width: var(--logo-size-mobile);
   }

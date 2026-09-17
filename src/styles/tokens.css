@@ -3,6 +3,7 @@
      Si tocás un hex acá, actualizá también la tabla del readme. */
   --color-primary: #69492b; /* principal oscuro: títulos, bordes y botones outline */
   --color-primary-light: #fae8ca; /* principal claro: superficie de hero, sesiones, en la sala, sobre mí y contacto */
+  --color-primary-sand: #f2debc; /* arena: apenas más oscuro que el claro, solo fondo de contacto */
   --color-primary-soft: #fefbf5; /* hueso: texto sobre superficies oscuras y fondo de la tarjeta de En la sala */
   --color-paper: #f5f2ec; /* papel: fondo base del body */
   --color-ink: #2b2b2b; /* tinta: texto principal sobre claro */

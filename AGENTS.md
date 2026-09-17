@@ -51,7 +51,7 @@ Antes de marcar cualquier entrega como hecha, verificar sin que lo pidas:
 ## Diseño
 
 **Paleta y tipografía:** la fuente de verdad es `readme.md` (secciones "Paleta de color" y "Tipografía"). No dupliques hex ni nombres de fuentes acá: si cambia un token en `tokens.css`, actualizá la tabla del readme y listo.
-**Ritmo de fondos:** cálido `--color-primary-light` (hero, sesiones, en la sala, sobre mí, contacto) → noche `--color-deep` (frase, footer). Sobre esa base plana: la **trama de puntos** de Contacto (`.contacto::before`) y la **onda de crema** que cierra la banda de la frase (`.quote-band::after`). Ojo: esa onda no es solo decorativa — es la superficie donde se monta la silueta de Sobre mí, que es marrón oscuro y sobre la banda daría 1.57:1.
+**Ritmo de fondos:** cálido `--color-primary-light` (hero, sesiones, en la sala, sobre mí, contacto) → noche `--color-deep` (frase, footer). Contacto va en arena `--color-primary-sand` (apenas más oscuro). Sobre esa base plana: la **trama de puntos** de Contacto (`.contacto::before`).
 **Copy:** cálido, frases cortas, sin jerga, aclara "acompaña no reemplaza tratamiento".
 **Recorrido scroll:** Hero → Sesiones → En la sala → Frase → Sobre mí → Contacto → Footer.
 **Movimiento:** Transición cresta onda SVG, ambient 6s loop no distractivo, solo columna progresa, un momento de riesgo, `prefers-reduced-motion`.

@@ -142,6 +142,7 @@ Técnica japonesa de imposición de manos que canaliza energía vital (ki) para 
 | --------------------- | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
 | **Principal oscuro**  | `--color-primary`       | `#69492B` · ![#69492B](https://img.shields.io/badge/-69492B-69492B) | Títulos, bordes, botones outline y texto de enlaces     |
 | **Principal claro**   | `--color-primary-light` | `#FAE8CA` · ![#FAE8CA](https://img.shields.io/badge/-FAE8CA-FAE8CA) | Superficie de hero, sesiones, en la sala, sobre mí y contacto |
+| Arena               | `--color-primary-sand`  | `#F2DEBC` · ![#F2DEBC](https://img.shields.io/badge/-F2DEBC-F2DEBC) | Solo fondo de contacto (apenas más oscuro, con trama) |
 | Variación extra clara | `--color-primary-soft`  | `#FEFBF5` · ![#FEFBF5](https://img.shields.io/badge/-FEFBF5-FEFBF5) | Texto sobre superficies oscuras y tarjeta de En la sala |
 | Variación papel       | `--color-paper`         | `#F5F2EC` · ![#F5F2EC](https://img.shields.io/badge/-F5F2EC-F5F2EC) | Fondo base del body                                     |
 | Variación tinta       | `--color-ink`           | `#2B2B2B` · ![#2B2B2B](https://img.shields.io/badge/-2B2B2B-2B2B2B) | Texto principal sobre claro                             |
@@ -151,7 +152,7 @@ Técnica japonesa de imposición de manos que canaliza energía vital (ki) para 
 
 ### Ritmo de fondos
 
-Las secciones alternan superficie para leerse como capítulos: **cálido** `#FAE8CA` (hero, sesiones, en la sala, sobre mí, contacto) → **noche** `#2D2517` (frase y footer). "En la sala" comparte el cálido de sesiones y el corte lo marca su tarjeta hueso.
+Las secciones alternan superficie para leerse como capítulos: **cálido** `#FAE8CA` (hero, sesiones, en la sala, sobre mí, contacto) → **noche** `#2D2517` (frase y footer). Contacto usa el arena `#F2DEBC`, apenas más oscuro, con la trama de puntos. "En la sala" comparte el cálido de sesiones y el corte lo marca su tarjeta hueso.
 
 ### Notas de implementación
 
@@ -161,7 +162,7 @@ Las secciones alternan superficie para leerse como capítulos: **cálido** `#FAE
 
 ### Profundidad sobre los fondos planos
 
-Los fondos son planos a propósito. Hay dos recursos de textura/profundidad: la **trama de puntos** de Contacto (`.contacto::before`, mosaico SVG tono-sobre-tono sobre el cálido) y la **onda de crema** (`.quote-band::after`) — la crema de "Sobre mí" sube con una onda sobre la banda oscura de la frase. Cumple dos funciones: es el corte de capítulo entre las dos secciones y es la superficie sobre la que se monta la silueta, que es marrón oscuro (`#5D3E22`) y contra el fondo de la banda daría 1.57:1. El alto sale de `--quote-wave` y el `padding-bottom` de la banda lo reserva para que la frase nunca caiga sobre la crema. (Las manchas radiales `.ambient-light` se retiraron: metían halos blancos que cortaban las secciones; la clase queda como ancla sin efecto.)
+Los fondos son planos a propósito. El recurso de textura es la **trama de puntos** de Contacto (`.contacto::before`, mosaico SVG tono-sobre-tono sobre el cálido). (Las manchas radiales `.ambient-light` se retiraron: metían halos blancos que cortaban las secciones; la clase queda como ancla sin efecto. La onda de crema de la frase también se retiró.)
 
 ---
 
@@ -190,7 +191,7 @@ Cálido, claro, sin jerga médica ni espiritual densa. Frases cortas. Aclarar si
 1. **Hero** — nombre, frase de esencia, CTA a sesiones
 2. **Servicios** — "Dos maneras de volver a vos" (cards Soundhealing/Reiki en vidrio + cierre grupal con incienso)
 3. **En la sala** — "¿Cómo es una sesión?" en 4 pasos
-4. **Frase** — banda con cita de Magalí, cerrada con la onda de crema
+4. **Frase** — banda con cita de Magalí
 5. **Sobre mí** — "Soy Magalí", con la silueta montada sobre esa onda
 6. **Contacto** — WhatsApp, Instagram y ubicación
 7. **Footer** — navegación, redes y disclaimer médico

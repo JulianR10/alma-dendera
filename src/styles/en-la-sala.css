@@ -145,6 +145,33 @@
        padding visual no quede en ~0. */
     padding: calc(var(--space-xl) + var(--room-wave)) 0;
   }
+
+  /* La silueta pasa a fondo centrado de la card, bien opacada para contraste. */
+  .room__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .room__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+
+  .room__media-img {
+    width: min(64%, 300px);
+    opacity: 0.15;
+  }
+
+  /* Blur en cada paso: la silueta de fondo se ve distorsionada detrás. */
+  .room__step {
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
 }
 
 @media (min-width: 768px) {
