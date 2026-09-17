@@ -2,13 +2,14 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { define } from './registry';
 import { prefersReducedMotion } from './reducedMotion';
+import { attachRipplesCursor } from './aboutRipplesCursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
 define('about-ripples', (el) => {
-  const rings = Array.from(el.querySelectorAll('ellipse'));
+  const rings = Array.from(el.querySelectorAll('.about__ripple-curve'));
   rings.forEach((ring, index) => {
-    if (!(ring instanceof SVGEllipseElement)) return;
+    if (!(ring instanceof SVGPathElement)) return;
     const length = ring.getTotalLength();
     gsap.set(ring, { svgOrigin: '400 318' });
     if (prefersReducedMotion()) {
@@ -31,6 +32,7 @@ define('about-ripples', (el) => {
       },
     );
   });
+  attachRipplesCursor(el);
 });
 
 define('about-figure', (el) => {

@@ -8,7 +8,9 @@
 @import './incense.css';
 @import './quote-band.css';
 @import './sobre-mi.css';
-@import './contacto.css';
+@import './en-la-sala.css';
+@import './footer.css';
+@import './whatsapp-float.css';
 
 @media (prefers-reduced-motion: reduce) {
   .hero__logo,
@@ -21,9 +23,7 @@
   .hero__cta::before,
   .sessions__cta,
   .sessions__cta::before,
-  .contact__wa,
-  .contact__wa::before,
-  .about__ripples ellipse,
+  .about__ripples .about__ripple-curve,
   .sound,
   .reki {
     animation: none !important;
@@ -31,8 +31,7 @@
   }
 
   .hero__cta::before,
-  .sessions__cta::before,
-  .contact__wa::before {
+  .sessions__cta::before {
     display: none;
   }
 

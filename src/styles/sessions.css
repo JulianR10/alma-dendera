@@ -71,10 +71,10 @@
 }
 
 .sound {
-  border-color: rgba(109, 161, 174, 0.25);
+  border-color: rgba(128, 97, 125, 0.25);
   box-shadow:
-    0 0 20px rgba(109, 161, 174, 0.1),
-    0 0 40px rgba(109, 161, 174, 0.04),
+    0 0 20px rgba(128, 97, 125, 0.1),
+    0 0 40px rgba(128, 97, 125, 0.04),
     0 2px 0 rgba(255, 255, 255, 0.4) inset,
     0 -2px 4px rgba(105, 73, 43, 0.06) inset,
     1px 2px 6px rgba(0, 0, 0, 0.04);
@@ -83,10 +83,10 @@
 .reki {
   margin-top: var(--space-md);
   overflow: hidden;
-  border-color: rgba(128, 97, 125, 0.25);
+  border-color: rgba(109, 161, 174, 0.25);
   box-shadow:
-    0 0 20px rgba(128, 97, 125, 0.1),
-    0 0 40px rgba(128, 97, 125, 0.04),
+    0 0 20px rgba(109, 161, 174, 0.1),
+    0 0 40px rgba(109, 161, 174, 0.04),
     0 2px 0 rgba(255, 255, 255, 0.4) inset,
     0 -2px 4px rgba(105, 73, 43, 0.06) inset,
     1px 2px 6px rgba(0, 0, 0, 0.04);
@@ -160,7 +160,7 @@
   font-size: var(--text-xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-on-surface-muted);
+  color: var(--color-plum);
   line-height: 1.6;
   border-top: 1px solid var(--line-soft);
 }
@@ -180,8 +180,8 @@
   background: var(--color-deep);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-  border-color: rgba(254, 251, 245, 0.22);
-  box-shadow: 0 18px 50px rgba(45, 37, 23, 0.28);
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .gather__img {

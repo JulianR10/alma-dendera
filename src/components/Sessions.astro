@@ -1,4 +1,5 @@
 ---
+import { WHATSAPP_HREF } from '../lib/site';
 import soundhealingSrc from '../images/fondoSoundhealing.webp';
 import reikiSrc from '../images/fondoReiki.webp';
 import encuentrosSrc from '../images/magaEncuentros.webp';
@@ -83,7 +84,9 @@ import encuentrosSrc from '../images/magaEncuentros.webp';
         si querés venir con alguien o probar por primera vez.
       </p>
       <a
-        href="#contacto"
+        href={WHATSAPP_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
         class="sessions__cta gather__cta"
         data-animate="sessions-cta"
         data-spotlight

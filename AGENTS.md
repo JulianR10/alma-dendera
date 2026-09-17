@@ -51,7 +51,7 @@ Antes de marcar cualquier entrega como hecha, verificar sin que lo pidas:
 
 **Paleta:** Hero `#6DA1AE` / Alternativo `#F5F2EC` / Tinta `#2B2B2B` / Acento `#536B78` `#7F99A7` `#394A53` / Ciruela `#80617D` / Beige `#D8D2C4` — secciones alternan teal/hueso, AA sobre teal.
 **Tipo:** Cinzel (display), Public Sans (cuerpo), IBM Plex Mono (labels). **Copy:** cálido, frases cortas, sin jerga, aclara "acompaña no reemplaza tratamiento".
-**Recorrido scroll:** Hero → En la sala → Beneficios → Sobre ella → Testimonios → Contacto → Footer.
+**Recorrido scroll:** Hero → Sesiones → En la sala → Sobre ella → Frase → Footer.
 **Movimiento:** Transición cresta onda SVG, ambient 6s loop no distractivo, solo columna progresa, un momento de riesgo, `prefers-reduced-motion`.
 
 **Columna resonancia:** Nav lateral SVG wave + 3 waypoints (Hero / En la sala / Contacto). Progreso discreto (carga en Hero, avanza/retrocede 0.5s por sección, no pasa último). Mobile `<--bp-md` horizontal arriba. Waypoints clickeables. `ScrollTrigger onEnter/onLeaveBack`.

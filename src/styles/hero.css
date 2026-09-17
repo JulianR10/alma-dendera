@@ -128,6 +128,10 @@
   display: contents;
 }
 
+.hero__eyebrow-pair:first-child .hero__eyebrow-dot {
+  display: none;
+}
+
 /* ——— Hamburger ——— */
 .hero__menu-toggle {
   display: none;
@@ -237,6 +241,9 @@
     display: flex;
     align-items: baseline;
     gap: 0.5em;
+  }
+  .hero__eyebrow-pair:first-child .hero__eyebrow-dot {
+    display: inline-block;
   }
   .hero__tagline {
     line-height: 1.3;

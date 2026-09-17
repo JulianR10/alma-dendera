@@ -2,9 +2,11 @@
 import '../styles/global.css';
 import Hero from '../components/Hero.astro';
 import SobreMi from '../components/SobreMi.astro';
+import EnLaSala from '../components/EnLaSala.astro';
 import Sessions from '../components/Sessions.astro';
 import QuoteBand from '../components/QuoteBand.astro';
-import Contacto from '../components/Contacto.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import fondoSrc from '../images/fondoMaga2.webp';
 import faviconSrc from '../images/favicon.webp';
 import { INSTAGRAM_HREF, SITE, WHATSAPP_HREF } from '../lib/site';
@@ -73,21 +75,23 @@ const jsonLd = {
   <body>
     <main>
       <Hero />
-      <SobreMi />
       <div class="services-wrapper">
         <Sessions />
       </div>
+      <EnLaSala />
+      <SobreMi />
       <QuoteBand />
-      <Contacto />
     </main>
+    <Footer />
+    <WhatsAppFloat />
 
     <script>
       import { init } from '../lib/animations/registry';
       import '../lib/animations/hero';
       import '../lib/animations/about';
+      import '../lib/animations/room';
       import '../lib/animations/sessions';
       import '../lib/animations/quote';
-      import '../lib/animations/contact';
       import { initResonance } from '../lib/animations/resonance';
       import { initSmoothScroll } from '../lib/scroll/smooth';
       import { initHeroSessionsTransition } from '../lib/animations/heroSessions';

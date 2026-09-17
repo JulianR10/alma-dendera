@@ -1,13 +1,14 @@
 export const SITE = {
   name: 'Alma Dendera',
-  personName: 'Magali',
+  personName: 'Magalí',
   city: 'CABA',
   title: 'Alma Dendera — Soundhealing · Vibroacústica · Reiki',
   description:
     'Alma Dendera — sesiones de soundhealing, vibroacústica y reiki en CABA. Una hora para volver al cuerpo y encontrar calma. Acompaña, no reemplaza tratamiento médico.',
   whatsapp: '5491100000000',
   whatsappDisplay: '+54 9 11 0000-0000',
-  whatsappMessage: 'Hola Magali, quiero consultar por una sesión en Alma Dendera.',
+  whatsappMessage: 'Hola Magalí, quiero consultar por una sesión en Alma Dendera.',
+  email: 'hola@almadendera.com.ar',
   instagramHandle: 'almadendera',
 } as const;
 

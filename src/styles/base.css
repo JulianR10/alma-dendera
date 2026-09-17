@@ -18,6 +18,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+main {
+  background: var(--color-primary-light);
+}
+
 body::before {
   content: '';
   position: fixed;
@@ -30,8 +34,7 @@ body::before {
 
 /* ——— CTA pill (reusable: hero + sessions) ——— */
 .hero__cta,
-.sessions__cta,
-.contact__wa {
+.sessions__cta {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -51,8 +54,7 @@ body::before {
 }
 
 .hero__cta::before,
-.sessions__cta::before,
-.contact__wa::before {
+.sessions__cta::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -66,15 +68,12 @@ body::before {
 .hero__cta:hover::before,
 .hero__cta:focus-visible::before,
 .sessions__cta:hover::before,
-.sessions__cta:focus-visible::before,
-.contact__wa:hover::before,
-.contact__wa:focus-visible::before {
+.sessions__cta:focus-visible::before {
   opacity: 1;
 }
 
 .hero__cta > span,
-.sessions__cta > span,
-.contact__wa > span {
+.sessions__cta > span {
   position: relative;
   z-index: 1;
 }

@@ -11,15 +11,47 @@ import siluetaSrc from '../images/silueta.webp';
       preserveAspectRatio="xMidYMax meet"
       aria-hidden="true"
     >
-      <ellipse cx="400" cy="318" rx="90" ry="24"></ellipse>
-      <ellipse cx="400" cy="318" rx="170" ry="46"></ellipse>
-      <ellipse cx="400" cy="318" rx="270" ry="74"></ellipse>
-      <ellipse cx="400" cy="318" rx="390" ry="110"></ellipse>
+      <g class="about__ripple-ring">
+        <path
+          class="about__ripple-curve"
+          data-cx="400"
+          data-cy="318"
+          data-rx="90"
+          data-ry="24"
+          d="M 310 318 a 90 24 0 1 0 180 0 a 90 24 0 1 0 -180 0"></path>
+      </g>
+      <g class="about__ripple-ring">
+        <path
+          class="about__ripple-curve"
+          data-cx="400"
+          data-cy="318"
+          data-rx="170"
+          data-ry="46"
+          d="M 230 318 a 170 46 0 1 0 340 0 a 170 46 0 1 0 -340 0"></path>
+      </g>
+      <g class="about__ripple-ring">
+        <path
+          class="about__ripple-curve"
+          data-cx="400"
+          data-cy="318"
+          data-rx="270"
+          data-ry="74"
+          d="M 130 318 a 270 74 0 1 0 540 0 a 270 74 0 1 0 -540 0"></path>
+      </g>
+      <g class="about__ripple-ring">
+        <path
+          class="about__ripple-curve"
+          data-cx="400"
+          data-cy="318"
+          data-rx="390"
+          data-ry="110"
+          d="M 10 318 a 390 110 0 1 0 780 0 a 390 110 0 1 0 -780 0"></path>
+      </g>
     </svg>
     <img
       class="about__portrait"
       src={siluetaSrc.src}
-      alt="Silueta de Magali en postura de yoga"
+      alt="Silueta de Magalí en postura de yoga"
       width={siluetaSrc.width}
       height={siluetaSrc.height}
       loading="lazy"
@@ -28,7 +60,7 @@ import siluetaSrc from '../images/silueta.webp';
   </figure>
   <div class="about__intro">
     <h2 id="about-title" class="about__title display-title" data-animate="about-title">
-      Soy Magali.
+      Soy Magalí.
     </h2>
     <p class="about__body" data-animate="about-copy">
       Yo llegué al sonido porque me costaba frenar. La cabeza iba a mil y el cuerpo me pedía otra

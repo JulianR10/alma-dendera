@@ -1,0 +1,36 @@
+---
+import firmaSrc from '../images/firmaBlanca.png';
+import logoSrc from '../images/logo.webp';
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p class="footer__disclaimer">
+      Las sesiones acompañan procesos personales y no reemplazan ningún tratamiento médico o
+      psicológico.
+    </p>
+    <div class="footer__brand">
+      <img
+        class="footer__logo"
+        src={logoSrc.src}
+        alt="Alma Dendera"
+        width={logoSrc.width}
+        height={logoSrc.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <p class="footer__credit">
+      <span class="footer__credit-label">Hecho por</span>
+      <img
+        class="footer__firma"
+        src={firmaSrc.src}
+        alt="Julián Recorte"
+        width={firmaSrc.width}
+        height={firmaSrc.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </p>
+  </div>
+</footer>

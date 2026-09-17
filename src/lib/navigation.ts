@@ -8,10 +8,9 @@ export interface NavLink {
 
 export const NAV_LINKS: NavLink[] = [
   { href: '#hero', label: 'Inicio' },
-  { href: '#sobre-mi', label: 'Sobre mí' },
   { href: '#soundhealing', label: 'Soundhealing' },
   { href: '#reiki', label: 'Reiki' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#sobre-mi', label: 'Sobre mí' },
 ];
 
 export function initMobileMenu(): void {
