@@ -72,7 +72,6 @@
   font-size: clamp(24px, 2vw + 0.8rem, 38px);
   line-height: 1.45;
   color: var(--color-primary-soft);
-  text-wrap: balance;
 }
 
 .quote-band__line {

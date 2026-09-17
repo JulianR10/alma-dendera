@@ -193,7 +193,6 @@
   color: var(--color-primary-soft);
   opacity: 0.98;
   letter-spacing: -0.02em;
-  text-wrap: balance;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.32);
 }
 

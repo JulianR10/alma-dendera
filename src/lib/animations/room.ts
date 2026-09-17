@@ -37,3 +37,4 @@ function siblingDelay(el: HTMLElement, step: number): number {
 define('room-title', (el) => reveal(el, 0, true));
 define('room-copy', (el) => reveal(el, 0, false));
 define('room-step', (el) => reveal(el, siblingDelay(el, 0.1), false));
+define('room-media', (el) => reveal(el, 0, false));

@@ -40,7 +40,23 @@ define('about-figure', (el) => {
     gsap.set(el, { clearProps: 'transform,opacity' });
     return;
   }
-  const rise = window.matchMedia('(max-width: 768px)').matches ? 60 : 90;
+  // En mobile el scrub sobre la figura parpadeaba (aparecer/desaparecer) con el
+  // scroll nativo: entrada única y queda fija.
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    gsap.fromTo(
+      el,
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '.about', start: 'top 85%', once: true },
+      },
+    );
+    return;
+  }
+  const rise = 90;
   gsap.fromTo(
     el,
     { y: rise, scale: 1.07 },

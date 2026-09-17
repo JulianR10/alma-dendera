@@ -2,19 +2,14 @@
   /* ——— Paleta: única fuente de verdad en readme.md → "Paleta de color" ———
      Si tocás un hex acá, actualizá también la tabla del readme. */
   --color-primary: #69492b; /* principal oscuro: títulos, bordes y botones outline */
-  --color-primary-light: #fae8ca; /* principal claro: superficie de hero, sesiones, sobre mí y contacto */
+  --color-primary-light: #fae8ca; /* principal claro: superficie de hero, sesiones, en la sala, sobre mí y contacto */
   --color-primary-soft: #fefbf5; /* hueso: texto sobre superficies oscuras y fondo de la tarjeta de En la sala */
   --color-paper: #f5f2ec; /* papel: fondo base del body */
-  /* Banda de corte de capítulo ("En la sala"): un tan cálido, no el beige grisáceo
-     anterior, que era el único tono desaturado del sitio y hacía que la sección
-     pareciera de otra web. */
-  --color-surface-band: #e7d6b8;
   --color-ink: #2b2b2b; /* tinta: texto principal sobre claro */
   --color-deep: #2d2517; /* oscuro cálido: footer, frase y encuentros */
   --color-deep-hover: #1e1a11;
   /* 2% por debajo del #80617D de marca: es lo mínimo para que los labels chicos den AA sobre la crema. */
   --color-plum: #7b5d78;
-  --color-surface-alt: var(--color-surface-band);
   --color-on-deep: var(--color-primary-soft);
   /* El vidrio lleva texto hueso: con menos opacidad no llega a 4.5:1 sobre las secciones claras. */
   --color-overlay-nav: rgba(45, 37, 23, 0.72);

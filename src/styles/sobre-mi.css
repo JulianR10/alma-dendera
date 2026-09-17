@@ -1,9 +1,5 @@
 .about {
   position: relative;
-  /* Manchas cálidas: la de la izquierda acompaña el texto y la de la derecha se
-     corre detrás de la figura. */
-  --light-a: 66% 46% at 6% 20%;
-  --light-b: 62% 60% at 96% 86%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:

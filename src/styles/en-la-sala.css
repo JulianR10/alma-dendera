@@ -16,13 +16,8 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* Tres manchas cálidas en vez de cuatro: el blanco puro del borde superior era el
-     único del sitio y enfriaba el card. */
-  background:
-    radial-gradient(140% 120% at 50% 46%, transparent 58%, rgba(105, 73, 43, 0.14) 100%),
-    radial-gradient(86% 55% at 50% 0%, rgba(254, 251, 245, 0.92), transparent 72%),
-    radial-gradient(78% 58% at 86% 86%, rgba(250, 232, 202, 0.7), transparent 72%),
-    var(--color-primary-soft);
+  /* Tarjeta hueso plana, sin halos: los radiales claros metían círculos blancos. */
+  background: var(--color-primary-soft);
   -webkit-mask-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath d='M0,34 C150,54 300,8 470,22 C640,36 780,52 960,38 C1140,24 1290,44 1440,26 L1440,56 L0,56 Z' fill='black'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath d='M0,22 C150,2 300,48 470,34 C640,20 780,4 960,18 C1140,32 1290,12 1440,30 L1440,0 L0,0 Z' fill='black'/%3E%3C/svg%3E"),
@@ -62,6 +57,8 @@
   display: grid;
   gap: var(--space-sm);
   align-content: start;
+  justify-items: center;
+  text-align: center;
 }
 
 .room__title {
@@ -129,6 +126,27 @@
   gap: var(--space-2xs);
 }
 
+.room__media {
+  margin: var(--space-sm) 0 0;
+  display: grid;
+  justify-items: center;
+}
+
+.room__media-img {
+  display: block;
+  width: min(100%, 230px);
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 767px) {
+  .room {
+    /* La onda recorta el fondo arriba/abajo: se suma su alto para que el
+       padding visual no quede en ~0. */
+    padding: calc(var(--space-xl) + var(--room-wave)) 0;
+  }
+}
+
 @media (min-width: 768px) {
   .room {
     padding: var(--space-2xl) 0;
@@ -156,7 +174,7 @@
   .room__step {
     border: 0;
     border-radius: 0;
-    /* Sobre la base fría, las celdas se aclaran para leerse como una grilla. */
+    /* Sobre la base cálida, las celdas hueso se leen como una grilla. */
     background: rgba(254, 251, 245, 0.7);
     padding: var(--space-lg);
   }

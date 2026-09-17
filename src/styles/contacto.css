@@ -1,15 +1,22 @@
 .contacto {
   position: relative;
-  /* Luz centrada para empujar la mirada al CTA. */
-  --light-a: 70% 70% at 50% 46%;
-  --light-a-tone: rgba(254, 251, 245, 0.82);
-  --light-b: 60% 50% at 90% 6%;
-  --light-b-tone: rgba(216, 210, 196, 0.4);
+  isolation: isolate;
   background: var(--color-primary-light);
   color: var(--color-ink);
   padding: var(--section-pad-top) var(--wrap-inline) var(--section-pad-bottom);
   padding-bottom: var(--section-pad-bottom-safe);
   scroll-margin-top: 80px;
+}
+
+/* Trama de puntos tono-sobre-tono: textura sin halos ni blancos. */
+.contacto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%2369492B' fill-opacity='0.1'/%3E%3C/svg%3E");
+  background-size: 22px 22px;
 }
 
 .contacto__inner {
@@ -25,7 +32,6 @@
   margin: 0;
   font-size: var(--text-2xl);
   color: var(--color-primary);
-  text-wrap: balance;
 }
 
 .contacto__copy {
@@ -36,7 +42,6 @@
   font-size: var(--text-base);
   line-height: 1.85;
   color: var(--ink-82);
-  text-wrap: balance;
 }
 
 .contacto__actions {

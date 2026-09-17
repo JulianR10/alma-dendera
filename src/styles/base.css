@@ -19,9 +19,9 @@ body {
 }
 
 main {
-  /* Base neutra: es el fondo que asoma alrededor de la tarjeta de "En la sala"
-     y marca el corte de capítulo entre las bandas cálidas. */
-  background: var(--color-surface-alt);
+  /* Base cálida única: la misma de sesiones, para que "En la sala" no abra
+     una banda aparte y el corte lo marque la tarjeta hueso. */
+  background: var(--color-primary-light);
 }
 
 body::before {
@@ -32,6 +32,14 @@ body::before {
   opacity: 0.04;
   z-index: 9999;
   background: repeating-conic-gradient(rgba(0, 0, 0, 0.03) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
+}
+
+/* En mobile la capa fija de grano repinta toda la pantalla en cada frame del
+   scroll (saltos en Safari/Chrome): se apaga y el fondo queda limpio. */
+@media (max-width: 768px) {
+  body::before {
+    display: none;
+  }
 }
 
 /* ——— CTA pill (compartido: hero, sesiones y contacto) ——— */
@@ -139,36 +147,19 @@ body::before {
   outline-offset: 3px;
 }
 
-/* ——— Luz ambiental ———
-   Los fondos son planos a propósito; esto les devuelve profundidad con dos manchas
-   cálidas. El `z-index: -1` la deja por encima del fondo de la sección y por debajo
-   de todo el contenido, así nunca lava el texto: el `isolation` del contenedor es lo
-   que evita que ese -1 se escape detrás del propio fondo. */
+/* ——— Luz ambiental (retirada) ———
+   Los fondos quedan planos: las manchas radiales claras metían halos blancos
+   que cortaban las secciones. Se conserva la clase como ancla sin efecto. */
 .ambient-light {
   position: relative;
   isolation: isolate;
 }
 
-.ambient-light::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      var(--light-a, 64% 48% at 12% 14%),
-      var(--light-a-tone, rgba(254, 251, 245, 0.72)),
-      transparent 72%
-    ),
-    radial-gradient(
-      var(--light-b, 58% 52% at 88% 84%),
-      var(--light-b-tone, rgba(216, 210, 196, 0.42)),
-      transparent 74%
-    );
+/* ——— Shared type utilities ——— */
+.text-balance {
+  text-wrap: balance;
 }
 
-/* ——— Shared type utilities ——— */
 .kicker {
   font-family: var(--font-body);
   font-size: var(--text-xs);

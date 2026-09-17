@@ -17,7 +17,12 @@ function bindViewportRefresh(): void {
   if (viewportRefreshBound) return;
   viewportRefreshBound = true;
   let queued = false;
+  // Solo el cambio de ANCHO invalida los triggers: en mobile la barra del
+  // navegador dispara resize al mostrarse/ocultarse y refrescar ahí produce saltos.
+  let lastWidth = window.innerWidth;
   const queueRefresh = (): void => {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
     if (queued) return;
     queued = true;
     requestAnimationFrame(() => {
@@ -48,6 +53,9 @@ export function initSmoothScroll(): Lenis | null {
   bindViewportRefresh();
   if (window.__almaLenis) return window.__almaLenis;
   if (prefersReducedMotion()) return null;
+  // En táctil el scroll nativo con momentum es más estable: Lenis + scrub
+  // producía saltos en Safari/Chrome mobile.
+  if (window.matchMedia('(pointer: coarse), (max-width: 768px)').matches) return null;
 
   const lenis = new Lenis({ lerp: 0.1 });
   window.__almaLenis = lenis;

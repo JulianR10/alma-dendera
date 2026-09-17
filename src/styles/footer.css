@@ -1,11 +1,6 @@
 .footer {
   background: var(--color-deep);
   color: var(--color-on-deep);
-  /* En oscuro la luz va muy baja: solo levanta el centro, no compite con el texto. */
-  --light-a: 80% 70% at 50% 0%;
-  --light-a-tone: rgba(254, 251, 245, 0.07);
-  --light-b: 70% 60% at 50% 110%;
-  --light-b-tone: rgba(254, 251, 245, 0.04);
   padding: var(--space-2xl) var(--wrap-inline) var(--space-lg);
   padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom));
 }
@@ -103,7 +98,6 @@
   font-weight: 300;
   line-height: 1.7;
   text-align: right;
-  text-wrap: balance;
   opacity: 0.72;
 }
 
