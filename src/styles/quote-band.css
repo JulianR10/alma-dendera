@@ -113,11 +113,13 @@
   }
   .quote-band__still {
     position: absolute;
-    inset: 0;
-    grid-column: 1;
+    inset: 0 10px;
     z-index: 0;
-    width: 100%;
-    margin-top: 0;
+    width: auto;
+    margin: 0;
+    /* El absolute con left/right fija la caja con 10px de gutter por lado:
+       sin grid-column ni justify heredado que lo ancle a un área de grid. */
+    justify-self: stretch;
   }
   .quote-band__still-img {
     object-fit: cover;
