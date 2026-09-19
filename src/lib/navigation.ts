@@ -34,13 +34,26 @@ export function initMobileMenu(): void {
   const icon = menuBtn.querySelector<MorphIconElement>('morph-icon');
   const links = mobileMenu.querySelectorAll<HTMLAnchorElement>('.hero__mobile-link');
 
+  const lockScroll = (): void => {
+    // En iOS `body{overflow:hidden}` solo no frena el documento: hay que
+    // bloquear también el `html`, si no la página sigue corriendo por detrás
+    // del menú y los taps se pierden con el momentum.
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  };
+
+  const unlockScroll = (): void => {
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  };
+
   const closeMenu = (): void => {
     menuBtn.setAttribute('aria-expanded', 'false');
     menuBtn.setAttribute('aria-label', 'Abrir menú');
     menuBtn.classList.remove('is-open');
     heroNav.classList.remove('is-open');
     mobileMenu.classList.remove('is-open');
-    document.body.style.overflow = '';
+    unlockScroll();
     if (icon) icon.icon = Menu;
   };
 
@@ -52,7 +65,7 @@ export function initMobileMenu(): void {
       menuBtn.classList.add('is-open');
       heroNav.classList.add('is-open');
       mobileMenu.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
+      lockScroll();
       if (icon) icon.icon = X;
     } else {
       closeMenu();

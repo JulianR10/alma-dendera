@@ -30,7 +30,10 @@ export function initResonance(): void {
   setActive(0);
 
   const glassNav = document.querySelector<HTMLElement>('.resonance--nav');
-  if (glassNav) {
+  // En mobile la isla no se muestra (solo queda la hamburguesa): no se crean
+  // sus triggers de aparición.
+  const isMobileNav = window.matchMedia('(max-width: 768px)').matches;
+  if (glassNav && !isMobileNav) {
     // Estado inicial: visible al cargar (se ve todo)
     glassNav.classList.add('is-visible');
     let lastY = window.scrollY;

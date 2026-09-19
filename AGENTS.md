@@ -56,7 +56,7 @@ Antes de marcar cualquier entrega como hecha, verificar sin que lo pidas:
 **Recorrido scroll:** Hero → Sesiones → En la sala → Frase → Sobre mí → Contacto → Footer.
 **Movimiento:** Transición cresta onda SVG, ambient 6s loop no distractivo, solo columna progresa, un momento de riesgo, `prefers-reduced-motion`.
 
-**Columna resonancia:** rail de progreso con los waypoints de sección (Hero / Sesiones / En la sala / Sobre mí / Contacto). Progreso discreto (carga en Hero, avanza/retrocede 0.5s por sección, no pasa el último). Mobile `<--bp-md`: aparece pasado el hero, alineado a la izquierda, solo puntos, sin labels. Waypoints clickeables. `ScrollTrigger onEnter/onEnterBack`.
+**Columna resonancia:** rail de progreso con los waypoints de sección (Hero / Sesiones / En la sala / Sobre mí / Contacto). Progreso discreto (carga en Hero, avanza/retrocede 0.5s por sección, no pasa el último). Solo desktop: en mobile la isla está oculta y queda únicamente el nav de la hamburguesa. Waypoints clickeables. `ScrollTrigger onEnter/onEnterBack`.
 **Naming:** Componentes PascalCase, módulos camelCase, data/clases/IDs kebab (`data-animate="hero-title"`).
 
 ## Mobile / iOS

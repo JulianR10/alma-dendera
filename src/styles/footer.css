@@ -7,8 +7,9 @@
 
 .footer__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
   gap: var(--space-lg) var(--space-xl);
   max-width: var(--container-max);
   margin-inline: auto;
@@ -17,7 +18,7 @@
 .footer__brand {
   display: grid;
   gap: var(--space-2xs);
-  justify-items: start;
+  justify-items: center;
 }
 
 .footer__logo {
@@ -59,21 +60,11 @@
 }
 
 .footer__legal {
-  grid-column: 2;
-  justify-self: end;
+  grid-column: 1;
+  justify-self: center;
   display: grid;
   gap: var(--space-sm);
-  justify-items: end;
-  max-width: 32ch;
-}
-
-.footer__disclaimer {
-  margin: 0;
-  font-size: var(--text-sm);
-  font-weight: 300;
-  line-height: 1.7;
-  text-align: right;
-  opacity: 0.72;
+  justify-items: center;
 }
 
 .footer__credit {
@@ -112,10 +103,6 @@
 
   .footer__legal {
     grid-column: 1;
-  }
-
-  .footer__disclaimer {
-    text-align: center;
   }
 
   .footer__logo {

@@ -54,6 +54,32 @@
   display: block;
 }
 
+.quote-band__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.quote-band__caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -0.12em;
+  background: var(--color-primary-soft);
+  box-shadow: 0 0 8px rgba(254, 251, 245, 0.8);
+  animation: quote-caret-blink 0.9s steps(1) infinite;
+}
+
+.quote-band__text.is-done .quote-band__caret {
+  display: none;
+}
+
+@keyframes quote-caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 .quote-band__author {
   margin-top: var(--space-sm);
   color: var(--color-primary-soft);
@@ -87,13 +113,19 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .quote-band__caret {
+    animation: none;
+  }
+}
+
 @media (max-width: 768px) {
   .quote-band {
     grid-template-columns: 1fr;
     justify-items: center;
     overflow: hidden;
     min-height: 40vh;
-    padding: var(--space-xl) var(--wrap-inline);
+    padding: var(--space-2xl) var(--wrap-inline);
   }
   .quote-band__overlay {
     z-index: 1;

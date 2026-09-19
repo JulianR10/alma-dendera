@@ -193,45 +193,9 @@
 }
 
 @media (max-width: 768px) {
-  /* En mobile el hero ya lleva logo + hamburguesa, así que el progreso aparece
-     recién después del hero y al scrollear hacia arriba, sin labels: solo los puntos,
-     que siguen siendo links de 44px con aria-label. */
+  /* En mobile solo queda el nav de la hamburguesa: la isla de resonancia
+     no se muestra en ningún punto del scroll. */
   .hero__nav .resonance--nav {
-    display: flex;
-    /* Alineado a la izquierda: centrado quedaría debajo de la hamburguesa
-       en pantallas de 360px. */
-    left: var(--gutter);
-    width: auto;
-    max-width: calc(100vw - var(--gutter) - var(--btn-size) - var(--gutter) * 2);
-    opacity: 0;
-    transform: translateY(-8px);
-    pointer-events: none;
-  }
-
-  .hero__nav .resonance--nav.is-visible.is-past-hero {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .resonance--nav .resonance__list {
-    width: max-content;
-    min-width: 0;
-    gap: 2px;
-    padding: 0 var(--space-3xs);
-  }
-
-  .resonance--nav .resonance__item {
-    flex: 0 0 auto;
-  }
-
-  .hero__nav .resonance--nav .resonance__label {
     display: none;
-  }
-
-  .resonance--nav .resonance__link {
-    min-width: 44px;
-    height: 44px;
-    padding: 0;
   }
 }

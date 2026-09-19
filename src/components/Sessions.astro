@@ -3,6 +3,7 @@ import { WHATSAPP_HREF } from '../lib/site';
 import soundhealingSrc from '../images/fondoSoundhealing.webp';
 import reikiSrc from '../images/fondoReiki.webp';
 import encuentrosSrc from '../images/magaEncuentros.webp';
+import SessionDialog from './SessionDialog.astro';
 ---
 
 <div class="services ambient-light">
@@ -36,12 +37,21 @@ import encuentrosSrc from '../images/magaEncuentros.webp';
         Soundhealing — con vibroacústica
       </h3>
       <p class="sound__desc text-balance">
-        Recostate, cerrá los ojos y dejá que el ruido exterior se apague. Sobre un mat o almohada
-        que vibra en sintonía con tu cuerpo, te envuelve un baño sonoro de cuencos, samafones y
-        semillas somáticas. Una hora para soltar la mente y habitar tu cuerpo en paz.
+        Volvé al cuerpo sin esfuerzo. Te recostás o te sentás sobre un mat que vibra con vos
+        mientras los cuencos tibetanos y de cuarzo, los gongs, sansulas y semillas te llevan a una
+        calma profunda. Individual o grupal: una hora para calmar la mente, soltar la ansiedad y
+        dormir mejor.
       </p>
+      <button
+        type="button"
+        class="session-more"
+        data-dialog-open="dialog-soundhealing"
+        aria-haspopup="dialog"
+      >
+        Leer más
+      </button>
       <p class="sound__meta" aria-label="Duración y modalidad">
-        <span>60 min</span><span aria-hidden="true"> · </span><span>Sesión individual</span>
+        <span>60 min</span><span aria-hidden="true"> · </span><span>Individual o grupal</span>
       </p>
     </div>
   </article>
@@ -60,12 +70,21 @@ import encuentrosSrc from '../images/magaEncuentros.webp';
     <div class="reki__body" data-animate="reki-body">
       <h3 id="reiki-title" class="reki__name text-balance">Reiki</h3>
       <p class="reki__desc text-balance">
-        Hacé una pausa y dejá que tu cuerpo descanse en un espacio de cuidado absoluto. Con
-        imposición de manos y símbolos sagrados, la energía vital disuelve tensiones y restaura tu
-        equilibrio. Un momento sagrado de calma para acompañar tus procesos con respeto y calidez.
+        Técnica japonesa para tus cuatro niveles: físico, mental, emocional y espiritual. Con
+        imposición de manos y símbolos sagrados, soy canal —no fuente— para que tu energía vital
+        vuelva a fluir. Presencial o a distancia: acompaña tus procesos con calma, y nunca puede
+        hacerte daño.
       </p>
+      <button
+        type="button"
+        class="session-more"
+        data-dialog-open="dialog-reiki"
+        aria-haspopup="dialog"
+      >
+        Leer más
+      </button>
       <p class="reki__meta" aria-label="Duración y modalidad">
-        <span>60 min</span><span aria-hidden="true"> · </span><span>Sesión individual</span>
+        <span>60 min</span><span aria-hidden="true"> · </span><span>Presencial o a distancia</span>
       </p>
     </div>
   </article>
@@ -97,8 +116,108 @@ import encuentrosSrc from '../images/magaEncuentros.webp';
         data-animate="sessions-cta"
         data-spotlight
       >
-        <span>Coordinamos un encuentro?</span>
+        <span>¡Coordinamos un encuentro!</span>
       </a>
     </div>
   </article>
+
+  <SessionDialog
+    dialogId="dialog-soundhealing"
+    titleId="dialog-soundhealing-title"
+    title="Soundhealing y vibroacústica"
+    eyebrow="60 min · Individual o grupal"
+  >
+    <p>
+      El sonido, la música y la vibración —facilitados con presencia y coherencia— se vuelven
+      agentes terapéuticos. En sesiones 1:1 o grupales, el objetivo es uno: calmar la mente, traerte
+      al presente y reconectarte con tu cuerpo y tus emociones, que impactan directo en tu
+      equilibrio.
+    </p>
+    <p>
+      Actúa sobre tu sistema nervioso: lo regula y lo entrena para que en tu día a día primen la
+      calma y la conexión, no el estrés y el automático. Los sonidos armónicos —cuencos tibetanos y
+      de cuarzo, sansulas, semillas, gongs y otros— entrenan tus redes cerebrales con frecuencias de
+      descanso, relajación y meditación.
+    </p>
+    <p>
+      También se activa el nervio vago: baja el estrés y ayuda a que cada sistema —digestivo,
+      respiratorio, cardíaco— recupere su ritmo. Así el cuerpo repara y previene desequilibrios
+      antes de que avancen.
+    </p>
+    <h4 class="session-dialog__subtitle">Cómo es en Alma Dendera</h4>
+    <p>
+      La vibroacústica es una modalidad del soundhealing: frecuencias entre 20 y 120 Hz transmitidas
+      por dispositivos que vibran en contacto directo con tu cuerpo —mat, almohadilla o camilla—.
+      Acá usamos mat o almohadilla según el caso: te recostás o te sentás, sentís la vibración en el
+      cuerpo y recibís un baño sonoro —una armonización—, un pequeño concierto que te lleva a la
+      relajación profunda.
+    </p>
+    <h4 class="session-dialog__subtitle">Beneficios</h4>
+    <ul class="session-dialog__list">
+      <li>Sensación general de bienestar</li>
+      <li>Mejora en la calidad del sueño</li>
+      <li>Disminución de la ansiedad</li>
+      <li>Reconexión somática y emocional</li>
+      <li>Mayor claridad mental</li>
+      <li>Menor reactividad emocional</li>
+      <li>Relajación muscular</li>
+      <li>Alivio del dolor</li>
+      <li>Menor dependencia farmacológica</li>
+    </ul>
+    <p class="session-dialog__note">
+      El soundhealing no reemplaza ningún tratamiento médico: lo complementa y potencia sus
+      resultados.
+    </p>
+    <a
+      href={WHATSAPP_HREF}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta cta--solid session-dialog__cta"
+      data-spotlight
+    >
+      <span>¡Quiero probar una sesión!</span>
+    </a>
+  </SessionDialog>
+
+  <SessionDialog
+    dialogId="dialog-reiki"
+    titleId="dialog-reiki-title"
+    title="Reiki"
+    eyebrow="60 min · Presencial o a distancia"
+  >
+    <p>
+      Técnica japonesa que promueve sanación en todos los niveles: físico, mental, emocional y
+      espiritual. Parte de una premisa simple: todos tenemos una energía vital —ki, prana, según
+      cada cultura— que fluye por pasajes como chakras, meridianos y nadis, y también alrededor del
+      cuerpo, en el aura.
+    </p>
+    <p>
+      Cuando esa energía fluye libre y balanceada, estamos sanos. Cuando se bloquea —por nuestros
+      pensamientos y emociones— aparecen desequilibrios que pueden conducir a la enfermedad.
+    </p>
+    <p>
+      Con imposición de manos y símbolos sagrados, la reikista se vuelve canal: no es la fuente de
+      sanación, es quien permite limpiar y desatascar para que tu energía vuelva a fluir, guiada por
+      la sabiduría espiritual donde más la necesites.
+    </p>
+    <p>
+      También sirve para limpiar espacios, acompañar procesos —una entrevista de trabajo, una
+      intervención quirúrgica— y sanar traumas.
+    </p>
+    <h4 class="session-dialog__subtitle">Cierre</h4>
+    <p>
+      El Reiki tiene su propia inteligencia: sabe dónde ir y qué hacer. No hay barreras de espacio
+      ni tiempo —puede ser presencial o a distancia, y actuar en pasado, presente y futuro—. Y nunca
+      puede causar daño.
+    </p>
+    <a
+      href={WHATSAPP_HREF}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta cta--solid session-dialog__cta"
+      data-spotlight
+    >
+      <span>¡Consultar por Reiki!</span>
+    </a>
+  </SessionDialog>
 </div>

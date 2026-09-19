@@ -100,11 +100,13 @@ const jsonLd = {
       import { AudioController } from '../lib/audio/controller';
       import { attachSpotlight } from '../lib/spotlight';
       import { initMobileMenu } from '../lib/navigation';
+      import { initSessionDialogs } from '../lib/ui/sessionDialog';
       initSmoothScroll();
       init();
       initResonance();
       initHeroSessionsTransition();
       initMobileMenu();
+      initSessionDialogs();
       attachSpotlight();
       const win = window as unknown as { __almaAudio?: AudioController };
       if (!win.__almaAudio) {
