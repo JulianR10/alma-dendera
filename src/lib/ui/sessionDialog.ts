@@ -26,7 +26,7 @@ export function initSessionDialogs(): void {
     const scroller = dialog.querySelector<HTMLElement>('.session-dialog__inner');
     if (scroller) scroller.scrollTop = 0;
     const closer = dialog.querySelector<HTMLElement>('[data-dialog-close]');
-    closer?.focus();
+    if (closer) closer.focus({ preventScroll: true });
   };
 
   const closeDialog = (dialog: HTMLDialogElement): void => {
