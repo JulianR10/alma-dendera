@@ -20,7 +20,7 @@ export function initResonance(): void {
       el.classList.toggle('is-active', isActive);
       const link = links[i];
       if (link) {
-        if (isActive) link.setAttribute('aria-current', 'true');
+        if (isActive) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       }
     });

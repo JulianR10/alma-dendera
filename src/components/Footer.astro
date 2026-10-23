@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import firmaSrc from '../images/firmaBlanca.png';
 import logoSrc from '../images/logo.webp';
 import { INSTAGRAM_HREF, SITE } from '../lib/site';
@@ -7,14 +8,14 @@ import { INSTAGRAM_HREF, SITE } from '../lib/site';
 <footer class="footer ambient-light">
   <div class="footer__inner">
     <div class="footer__brand">
-      <img
+      <Image
         class="footer__logo"
-        src={logoSrc.src}
+        src={logoSrc}
         alt="Alma Dendera"
-        width={logoSrc.width}
-        height={logoSrc.height}
         loading="lazy"
         decoding="async"
+        widths={[120, 240]}
+        sizes="84px"
       />
       <p class="footer__city text-balance">{SITE.city}, Argentina</p>
       <a class="footer__social" href={INSTAGRAM_HREF} target="_blank" rel="noopener noreferrer">
@@ -23,6 +24,9 @@ import { INSTAGRAM_HREF, SITE } from '../lib/site';
     </div>
 
     <div class="footer__legal">
+      <p class="footer__disclaimer text-balance">
+        Las sesiones acompañan y complementan los tratamientos médicos: no los reemplazan.
+      </p>
       <p class="footer__credit">
         <span class="footer__credit-label">Hecho por</span>
         <a
@@ -35,7 +39,7 @@ import { INSTAGRAM_HREF, SITE } from '../lib/site';
           <img
             class="footer__firma"
             src={firmaSrc.src}
-            alt="Julián Recorte"
+            alt="Julián Recarte"
             width={firmaSrc.width}
             height={firmaSrc.height}
             loading="lazy"

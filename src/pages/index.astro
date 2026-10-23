@@ -8,9 +8,17 @@ import QuoteBand from '../components/QuoteBand.astro';
 import Contacto from '../components/Contacto.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { getImage } from 'astro:assets';
 import fondoSrc from '../images/fondoMaga2.webp';
 import faviconSrc from '../images/favicon.webp';
 import { INSTAGRAM_HREF, SITE, WHATSAPP_HREF } from '../lib/site';
+
+const pageUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
+// JPG 1200px: el formato que mejor levantan WhatsApp/Facebook al compartir el link.
+const ogImage = await getImage({ src: fondoSrc, width: 1200, format: 'jpg' });
+const ogImageUrl = new URL(ogImage.src, Astro.site).href;
+
+const SERVICES = ['Sound Healing', 'Reiki Usui', 'Encuentros grupales de armonización sonora'];
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -20,6 +28,9 @@ const jsonLd = {
       '@id': '#almadendera',
       name: SITE.name,
       description: SITE.description,
+      url: pageUrl,
+      image: ogImageUrl,
+      telephone: `+${SITE.whatsapp}`,
       areaServed: {
         '@type': 'City',
         name: 'Buenos Aires',
@@ -32,12 +43,20 @@ const jsonLd = {
         '@type': 'ServiceChannel',
         serviceUrl: WHATSAPP_HREF,
       },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Sesiones',
+        itemListElement: SERVICES.map((service) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: service },
+        })),
+      },
     },
     {
       '@type': 'Person',
       '@id': '#magali',
       name: SITE.personName,
-      jobTitle: 'Terapeuta de soundhealing, vibroacústica y reiki',
+      jobTitle: 'Terapeuta de sound healing y Reiki Usui',
       worksFor: { '@id': '#almadendera' },
       address: {
         '@type': 'PostalAddress',
@@ -56,6 +75,13 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>{SITE.title}</title>
     <meta name="description" content={SITE.description} />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Cormorant+Garamond:ital,wght@1,300&family=Public+Sans:wght@300;400;500&display=swap"
+    />
     <meta name="author" content={SITE.personName} />
     <meta name="theme-color" content="#f5f2ec" />
     <link rel="icon" type="image/webp" href={faviconSrc.src} />
@@ -64,13 +90,17 @@ const jsonLd = {
     <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.webmanifest`} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_AR" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={SITE.title} />
     <meta property="og:description" content={SITE.description} />
-    <meta property="og:image" content={fondoSrc.src} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content={String(ogImage.attributes.width)} />
+    <meta property="og:image:height" content={String(ogImage.attributes.height)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={SITE.title} />
     <meta name="twitter:description" content={SITE.description} />
-    <meta name="twitter:image" content={fondoSrc.src} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>

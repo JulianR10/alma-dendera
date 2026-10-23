@@ -1,49 +1,7 @@
 .room {
-  --room-wave: clamp(40px, 5vw, 64px);
-  position: relative;
-  width: 90%;
   margin-block: var(--space-xl);
-  margin-inline: auto;
   color: var(--color-ink);
-  padding: var(--space-xl) 0;
   scroll-margin-top: 100px;
-  overflow: visible;
-  filter: drop-shadow(0 8px 18px rgba(45, 37, 23, 0.2));
-}
-
-.room::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  /* Tarjeta hueso plana, sin halos: los radiales claros metían círculos blancos. */
-  background: var(--color-primary-soft);
-  -webkit-mask-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath d='M0,34 C150,54 300,8 470,22 C640,36 780,52 960,38 C1140,24 1290,44 1440,26 L1440,56 L0,56 Z' fill='black'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath d='M0,22 C150,2 300,48 470,34 C640,20 780,4 960,18 C1140,32 1290,12 1440,30 L1440,0 L0,0 Z' fill='black'/%3E%3C/svg%3E"),
-    linear-gradient(black, black);
-  -webkit-mask-size:
-    100% var(--room-wave),
-    100% var(--room-wave),
-    100% calc(100% - var(--room-wave) * 2);
-  -webkit-mask-position:
-    top center,
-    bottom center,
-    center center;
-  -webkit-mask-repeat: no-repeat;
-  mask-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath d='M0,34 C150,54 300,8 470,22 C640,36 780,52 960,38 C1140,24 1290,44 1440,26 L1440,56 L0,56 Z' fill='black'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath d='M0,22 C150,2 300,48 470,34 C640,20 780,4 960,18 C1140,32 1290,12 1440,30 L1440,0 L0,0 Z' fill='black'/%3E%3C/svg%3E"),
-    linear-gradient(black, black);
-  mask-size:
-    100% var(--room-wave),
-    100% var(--room-wave),
-    100% calc(100% - var(--room-wave) * 2);
-  mask-position:
-    top center,
-    bottom center,
-    center center;
-  mask-repeat: no-repeat;
 }
 
 .room__inner {
@@ -80,36 +38,63 @@
   color: var(--ink-82);
 }
 
+/* Recorrido: los números son "cuencos" con un aro de resonancia, unidos por
+   una línea fina; sin cajas, el texto apoya directo sobre la tarjeta hueso. */
 .room__steps {
+  --step-dot: 48px;
+  --step-indent: calc(var(--step-dot) + var(--space-md));
+  position: relative;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 var(--step-indent);
   display: grid;
-  gap: var(--space-sm);
+  gap: var(--space-lg);
+}
+
+.room__steps::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--step-dot) / 2);
+  bottom: calc(var(--step-dot) / 2);
+  left: calc(var(--step-dot) / 2);
+  width: 1px;
+  background: linear-gradient(rgba(105, 73, 43, 0.35), rgba(105, 73, 43, 0.12) 85%, transparent);
 }
 
 .room__step {
+  position: relative;
   margin: 0;
   display: grid;
-  gap: 2px;
+  gap: var(--space-3xs);
   align-content: start;
-  padding: var(--space-md);
-  background: rgba(254, 251, 245, 0.5);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius-lg);
+  min-height: var(--step-dot);
 }
 
 .room__num {
+  position: absolute;
+  top: 0;
+  left: calc(var(--step-indent) * -1);
+  display: grid;
+  place-items: center;
+  width: var(--step-dot);
+  height: var(--step-dot);
+  border: 1px solid rgba(105, 73, 43, 0.35);
+  border-radius: 50%;
+  background: var(--color-primary-soft);
+  /* Aro exterior separado por un anillo hueso: la onda que se expande. */
+  box-shadow:
+    0 0 0 5px var(--color-primary-soft),
+    0 0 0 6px rgba(105, 73, 43, 0.12);
   font-family: var(--font-title);
   font-weight: 400;
-  font-size: clamp(40px, 5vw, 60px);
+  font-size: 17px;
   line-height: 1;
   color: var(--color-primary);
-  opacity: 0.42;
 }
 
 .room__step-title {
   margin: 0;
+  padding-top: 0.55em;
   font-size: var(--text-lg);
   font-weight: 500;
 }
@@ -122,10 +107,6 @@
   color: var(--ink-82);
 }
 
-.room__step--finale {
-  gap: var(--space-2xs);
-}
-
 .room__media {
   margin: var(--space-sm) 0 0;
   display: grid;
@@ -134,75 +115,29 @@
 
 .room__media-img {
   display: block;
-  width: min(100%, 230px);
+  width: 140px;
   height: auto;
   border-radius: var(--radius-lg);
 }
 
-@media (max-width: 767px) {
-  .room {
-    /* La onda recorta el fondo arriba/abajo: se suma su alto para que el
-       padding visual no quede en ~0. */
-    padding: calc(var(--space-xl) + var(--room-wave)) 0;
-  }
-
-  /* La silueta pasa a fondo centrado de la card, bien opacada para contraste. */
-  .room__inner {
-    position: relative;
-    z-index: 1;
-  }
-
-  .room__media {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    margin: 0;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-  }
-
-  .room__media-img {
-    width: min(64%, 300px);
-    opacity: 0.15;
-  }
-
-  /* Blur en cada paso: la silueta de fondo se ve distorsionada detrás. */
-  .room__step {
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-  }
-}
-
 @media (min-width: 768px) {
-  .room {
-    padding: var(--space-2xl) 0;
-  }
-
   .room__inner {
-    width: min(80%, var(--container-max));
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    column-gap: var(--space-xl);
-  }
-
-  .room__head {
-    align-self: start;
+    width: min(84%, var(--container-max));
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: center;
+    column-gap: var(--space-2xl);
   }
 
   .room__steps {
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--line-soft);
-    border: 1px solid var(--line-soft);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
+    --step-dot: 56px;
+    gap: var(--space-xl);
   }
 
-  .room__step {
-    border: 0;
-    border-radius: 0;
-    /* Sobre la base cálida, las celdas hueso se leen como una grilla. */
-    background: rgba(254, 251, 245, 0.7);
-    padding: var(--space-lg);
+  .room__num {
+    font-size: 19px;
+  }
+
+  .room__media-img {
+    width: min(100%, 230px);
   }
 }

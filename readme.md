@@ -142,7 +142,6 @@ Técnica japonesa de imposición de manos que canaliza energía vital (ki) para 
 | --------------------- | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
 | **Principal oscuro**  | `--color-primary`       | `#69492B` · ![#69492B](https://img.shields.io/badge/-69492B-69492B) | Títulos, bordes, botones outline y texto de enlaces     |
 | **Principal claro**   | `--color-primary-light` | `#FAE8CA` · ![#FAE8CA](https://img.shields.io/badge/-FAE8CA-FAE8CA) | Superficie de hero, sesiones, en la sala, sobre mí y contacto |
-| Arena               | `--color-primary-sand`  | `#F2DEBC` · ![#F2DEBC](https://img.shields.io/badge/-F2DEBC-F2DEBC) | Solo fondo de contacto (apenas más oscuro, con trama) |
 | Variación extra clara | `--color-primary-soft`  | `#FEFBF5` · ![#FEFBF5](https://img.shields.io/badge/-FEFBF5-FEFBF5) | Texto sobre superficies oscuras y tarjeta de En la sala |
 | Variación papel       | `--color-paper`         | `#F5F2EC` · ![#F5F2EC](https://img.shields.io/badge/-F5F2EC-F5F2EC) | Fondo base del body                                     |
 | Variación tinta       | `--color-ink`           | `#2B2B2B` · ![#2B2B2B](https://img.shields.io/badge/-2B2B2B-2B2B2B) | Texto principal sobre claro                             |
@@ -189,7 +188,7 @@ Cálido, claro, sin jerga médica ni espiritual densa. Frases cortas. Aclarar si
 ## Estructura del recorrido
 
 1. **Hero** — nombre, frase de esencia, CTA a sesiones
-2. **Servicios** — "Dos maneras de volver a vos" (cards Soundhealing/Reiki en vidrio + cierre grupal con incienso)
+2. **Servicios** — "Tres maneras de volver a vos" (cards Soundhealing/Reiki en vidrio + cierre grupal con incienso)
 3. **En la sala** — "¿Cómo es una sesión?" en 4 pasos
 4. **Frase** — banda con cita de Magalí
 5. **Sobre mí** — "Soy Magalí", con la silueta montada sobre esa onda

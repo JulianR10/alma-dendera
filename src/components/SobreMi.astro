@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import siluetaSrc from '../images/silueta.webp';
 ---
 
@@ -48,28 +49,38 @@ import siluetaSrc from '../images/silueta.webp';
           d="M 10 318 a 390 110 0 1 0 780 0 a 390 110 0 1 0 -780 0"></path>
       </g>
     </svg>
-    <img
+    <Image
       class="about__portrait"
-      src={siluetaSrc.src}
-      alt="Silueta de Magalí en postura de yoga"
-      width={siluetaSrc.width}
-      height={siluetaSrc.height}
+      src={siluetaSrc}
+      alt="Silueta de Maga en postura de yoga"
       loading="lazy"
       decoding="async"
+      widths={[300, siluetaSrc.width]}
+      sizes="(max-width: 768px) 260px, 330px"
     />
   </figure>
   <div class="about__intro">
     <h2 id="about-title" class="about__title display-title text-balance" data-animate="about-title">
-      Soy Magalí.
+      Soy Maga.
     </h2>
     <p class="about__body text-balance" data-animate="about-copy">
-      Yo llegué al sonido porque me costaba frenar. La cabeza iba a mil y el cuerpo me pedía otra
-      cosa. La primera vez que me recosté en un baño sonoro entendí lo que se siente cuando el ruido
-      por fin baja.
+      Alma Dendera nació a partir de un recorrido profundo, de una búsqueda.
     </p>
     <p class="about__body text-balance" data-animate="about-copy">
-      Eso es lo que te quiero compartir: una hora sin exigencias, donde no tenés que hacer nada
-      bien. Yo sostengo el espacio —con cuencos, vibroacústica o reiki— y vos venís como estás.
+      Nació al recuperar memorias que no sabía que existían.
+    </p>
+    <p class="about__body text-balance" data-animate="about-copy">
+      Nació de la convicción de que todos los seres estamos unidos, conectados y hermanados por algo
+      tan sutil como poderoso: la energía.
+    </p>
+    <p class="about__body text-balance" data-animate="about-copy">
+      Y por el deseo de ayudarnos y acompañarnos a recordar que todos venimos de, y vamos hacia, el
+      mismo lugar: la Armonía, la Unidad.
+    </p>
+    <p class="about__body text-balance" data-animate="about-copy">
+      Con profunda gratitud y consciencia me dispongo al servicio, expandiendo los recursos que
+      experimento y en los cuales confío, para promover la salud de nuestros cuerpos y la evolución
+      de nuestras almas.
     </p>
   </div>
 </section>

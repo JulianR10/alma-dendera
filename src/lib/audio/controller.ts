@@ -18,7 +18,6 @@ export class AudioController {
 
     this.audio.loop = true;
     this.audio.volume = 0.55;
-    this.audio.preload = 'auto';
 
     this.button.addEventListener('click', () => {
       void this.toggle();

@@ -181,6 +181,11 @@
   color: var(--color-ink);
 }
 
+.session-dialog__body strong {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
 .session-dialog__subtitle {
   display: flex;
   align-items: baseline;
@@ -219,7 +224,8 @@
   align-items: center;
   background: rgba(105, 73, 43, 0.07);
   border: 1px solid rgba(105, 73, 43, 0.12);
-  border-radius: var(--radius-pill);
+  /* ≈ media altura de un chip de una línea: se ve píldora, pero no deforma los que bajan de línea. */
+  border-radius: var(--radius-md);
   padding: var(--space-2xs) var(--space-sm);
   font-size: var(--text-sm);
   font-weight: 400;

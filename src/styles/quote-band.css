@@ -6,9 +6,34 @@
   column-gap: var(--space-lg);
   overflow: hidden;
   min-height: 36vh;
-  padding: var(--space-2xl) var(--wrap-inline);
+  padding: calc(var(--space-2xl) + var(--wave-h)) var(--wrap-inline);
   background: linear-gradient(160deg, var(--color-deep) 0%, #4a3a28 55%, var(--color-deep) 100%);
   isolation: isolate;
+}
+
+/* Bordes en onda: un labio del claro vecino pintado sobre la banda oscura. */
+.quote-band::before,
+.quote-band::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: var(--wave-h);
+  background: var(--color-primary-light);
+  pointer-events: none;
+  -webkit-mask: var(--wave-solid-above) center / 100% 100% no-repeat;
+  mask: var(--wave-solid-above) center / 100% 100% no-repeat;
+}
+
+.quote-band::before {
+  top: -1px;
+}
+
+/* Abajo, la misma onda rotada: claro debajo y curva distinta a la de arriba. */
+.quote-band::after {
+  bottom: -1px;
+  transform: rotate(180deg);
 }
 
 .quote-band__bg {
@@ -125,7 +150,7 @@
     justify-items: center;
     overflow: hidden;
     min-height: 40vh;
-    padding: var(--space-2xl) var(--wrap-inline);
+    padding: calc(var(--space-2xl) + var(--wave-h)) var(--wrap-inline);
   }
   .quote-band__overlay {
     z-index: 1;

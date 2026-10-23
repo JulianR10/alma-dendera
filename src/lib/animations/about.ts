@@ -98,16 +98,15 @@ define('about-title', (el) => {
 
 define('about-copy', (el) => {
   if (prefersReducedMotion()) {
-    gsap.set(el, { clearProps: 'transform,opacity,filter' });
+    gsap.set(el, { clearProps: 'transform,opacity' });
     return;
   }
   gsap.fromTo(
     el,
-    { y: 18, opacity: 0, filter: 'blur(8px)' },
+    { y: 18, opacity: 0 },
     {
       y: 0,
       opacity: 1,
-      filter: 'blur(0px)',
       duration: 0.85,
       ease: 'power2.out',
       scrollTrigger: {

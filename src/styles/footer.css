@@ -1,8 +1,24 @@
 .footer {
+  position: relative;
   background: var(--color-deep);
   color: var(--color-on-deep);
-  padding: var(--space-2xl) var(--wrap-inline) var(--space-lg);
+  padding: calc(var(--space-2xl) + var(--wave-h)) var(--wrap-inline) var(--space-lg);
   padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom));
+}
+
+/* Borde superior en onda: el claro de contacto se derrama sobre el footer. */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: var(--wave-h);
+  background: var(--color-primary-light);
+  pointer-events: none;
+  -webkit-mask: var(--wave-solid-above) center / 100% 100% no-repeat;
+  mask: var(--wave-solid-above) center / 100% 100% no-repeat;
+  transform: scaleX(-1);
 }
 
 .footer__inner {
@@ -65,6 +81,16 @@
   display: grid;
   gap: var(--space-sm);
   justify-items: center;
+}
+
+.footer__disclaimer {
+  margin: 0;
+  max-width: 36em;
+  font-size: var(--text-xs);
+  font-weight: 300;
+  line-height: 1.7;
+  text-align: center;
+  opacity: 0.75;
 }
 
 .footer__credit {

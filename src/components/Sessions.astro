@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import { WHATSAPP_HREF } from '../lib/site';
 import soundhealingSrc from '../images/fondoSoundhealing.webp';
 import reikiSrc from '../images/fondoReiki.webp';
 import encuentrosSrc from '../images/magaEncuentros.webp';
 import SessionDialog from './SessionDialog.astro';
+import BenefitChips from './BenefitChips.astro';
 ---
 
 <div class="services ambient-light">
@@ -15,33 +17,37 @@ import SessionDialog from './SessionDialog.astro';
           class="sessions__title display-title text-balance"
           data-animate="sessions-title"
         >
-          Dos maneras de volver a vos
+          Tres maneras de volver a vos
         </h2>
       </div>
     </div>
   </section>
 
   <article id="soundhealing" class="sound" aria-labelledby="soundhealing-title">
-    <img
+    <Image
       class="sound__img"
       data-animate="sound-img"
-      src={soundhealingSrc.src}
+      src={soundhealingSrc}
       alt="Sesión de soundhealing vista desde arriba: persona recostada en esterilla rodeada de cuencos tibetanos junto a la terapeuta"
-      width={soundhealingSrc.width}
-      height={soundhealingSrc.height}
       loading="lazy"
       decoding="async"
+      widths={[480, 768, 1024]}
+      sizes="(max-width: 768px) 90vw, 45vw"
     />
     <div class="sound__body" data-animate="sound-body">
-      <h3 id="soundhealing-title" class="sound__name text-balance">
-        Soundhealing — con vibroacústica
-      </h3>
+      <h3 id="soundhealing-title" class="sound__name text-balance">Sound Healing</h3>
       <p class="sound__desc text-balance">
-        Volvé al cuerpo sin esfuerzo. Te recostás o te sentás sobre un mat que vibra con vos
-        mientras los cuencos tibetanos y de cuarzo, los gongs, sansulas y semillas te llevan a una
-        calma profunda. Individual o grupal: una hora para calmar la mente, soltar la ansiedad y
-        dormir mejor.
+        El sonido, la música y la vibración —facilitados con presencia, coherencia e intención— se
+        vuelven agentes terapéuticos. Sesiones 1:1 donde el objetivo es serenar la mente y conectar
+        con el cuerpo.
       </p>
+      <BenefitChips
+        items={[
+          'Mejora en la calidad del sueño',
+          'Disminución de la ansiedad',
+          'Regulación emocional',
+        ]}
+      />
       <button
         type="button"
         class="session-more"
@@ -51,30 +57,40 @@ import SessionDialog from './SessionDialog.astro';
         Leer más
       </button>
       <p class="sound__meta" aria-label="Duración y modalidad">
-        <span>60 min</span><span aria-hidden="true"> · </span><span>Individual o grupal</span>
+        <span>1:30 hs</span><span aria-hidden="true"> · </span><span>Sesión individual</span>
       </p>
     </div>
   </article>
 
   <article id="reiki" class="reki" aria-labelledby="reiki-title">
-    <img
+    <Image
       class="reki__img"
       data-animate="reki-img"
-      src={reikiSrc.src}
+      src={reikiSrc}
       alt="Sesión de Reiki: imposición de manos"
-      width={reikiSrc.width}
-      height={reikiSrc.height}
       loading="lazy"
       decoding="async"
+      widths={[480, 768, 1024]}
+      sizes="(max-width: 768px) 90vw, 45vw"
     />
     <div class="reki__body" data-animate="reki-body">
-      <h3 id="reiki-title" class="reki__name text-balance">Reiki</h3>
+      <h3 id="reiki-title" class="reki__name text-balance">Reiki Usui</h3>
       <p class="reki__desc text-balance">
-        Técnica japonesa para tus cuatro niveles: físico, mental, emocional y espiritual. Con
-        imposición de manos y símbolos sagrados, soy canal —no fuente— para que tu energía vital
-        vuelva a fluir. Presencial o a distancia: acompaña tus procesos con calma, y nunca puede
-        hacerte daño.
+        Técnica japonesa que promueve la salud física, mental, emocional y espiritual. Se administra
+        mediante el posicionamiento de las manos sobre el cuerpo (no necesariamente en contacto) y
+        la utilización de símbolos sagrados.
       </p>
+      <p class="reki__desc text-balance">
+        No existen barreras espaciales ni temporales: puede brindarse de manera presencial o a
+        distancia, y actuar en el pasado, el presente y el futuro.
+      </p>
+      <BenefitChips
+        items={[
+          'Mayor bienestar general',
+          'Regulación del sistema nervioso',
+          'Complementa otros tipos de terapias',
+        ]}
+      />
       <button
         type="button"
         class="session-more"
@@ -84,29 +100,29 @@ import SessionDialog from './SessionDialog.astro';
         Leer más
       </button>
       <p class="reki__meta" aria-label="Duración y modalidad">
-        <span>60 min</span><span aria-hidden="true"> · </span><span>Presencial o a distancia</span>
+        <span>1:30 hs</span><span aria-hidden="true"> · </span><span>Presencial o a distancia</span>
       </p>
     </div>
   </article>
 
   <article id="encuentros" class="gather" aria-labelledby="encuentros-title">
-    <img
+    <Image
       class="gather__img"
       data-animate="gather-img"
-      src={encuentrosSrc.src}
+      src={encuentrosSrc}
       alt=""
       aria-hidden="true"
-      width={encuentrosSrc.width}
-      height={encuentrosSrc.height}
       loading="lazy"
       decoding="async"
+      widths={[640, 1024]}
+      sizes="(max-width: 768px) 100vw, 1024px"
     />
     <div class="gather__overlay" aria-hidden="true"></div>
     <div class="gather__body" data-animate="gather-body">
       <h3 id="encuentros-title" class="gather__name text-balance">Encuentros grupales</h3>
       <p class="gather__desc text-balance">
-        Un pequeño concierto compartido. La misma escucha profunda, en ronda y con contención. Ideal
-        si querés venir con alguien o probar por primera vez.
+        Una armonización sonora compartida. Escucha profunda y contención para corregular nuestros
+        sistemas nerviosos.
       </p>
       <a
         href={WHATSAPP_HREF}
@@ -124,48 +140,53 @@ import SessionDialog from './SessionDialog.astro';
   <SessionDialog
     dialogId="dialog-soundhealing"
     titleId="dialog-soundhealing-title"
-    title="Soundhealing y vibroacústica"
-    eyebrow="60 min · Individual o grupal"
+    title="Sound Healing"
+    eyebrow="1:30 hs · Sesión individual"
   >
+    <p>Actúa regulando y reentrenando tu sistema nervioso.</p>
     <p>
-      El sonido, la música y la vibración —facilitados con presencia y coherencia— se vuelven
-      agentes terapéuticos. En sesiones 1:1 o grupales, el objetivo es uno: calmar la mente, traerte
-      al presente y reconectarte con tu cuerpo y tus emociones, que impactan directo en tu
-      equilibrio.
+      Los sonidos armónicos de los diferentes instrumentos que utilizo resuenan en el cuerpo.
+      Sincronizan las ondas cerebrales con frecuencias vinculadas al descanso, a la relajación y a
+      estados meditativos.
     </p>
     <p>
-      Actúa sobre tu sistema nervioso: lo regula y lo entrena para que en tu día a día primen la
-      calma y la conexión, no el estrés y el automático. Los sonidos armónicos —cuencos tibetanos y
-      de cuarzo, sansulas, semillas, gongs y otros— entrenan tus redes cerebrales con frecuencias de
-      descanso, relajación y meditación.
-    </p>
-    <p>
-      También se activa el nervio vago: baja el estrés y ayuda a que cada sistema —digestivo,
-      respiratorio, cardíaco— recupere su ritmo. Así el cuerpo repara y previene desequilibrios
-      antes de que avancen.
+      También estimulan el nervio vago, disminuyendo el estrés y ayudando a restablecer nuestro
+      equilibrio fisiológico. De este modo, se previenen desequilibrios que pueden conducir a la
+      enfermedad y se promueve la reparación de nuestro cuerpo.
     </p>
     <h4 class="session-dialog__subtitle">Cómo es en Alma Dendera</h4>
     <p>
-      La vibroacústica es una modalidad del soundhealing: frecuencias entre 20 y 120 Hz transmitidas
-      por dispositivos que vibran en contacto directo con tu cuerpo —mat, almohadilla o camilla—.
-      Acá usamos mat o almohadilla según el caso: te recostás o te sentás, sentís la vibración en el
-      cuerpo y recibís un baño sonoro —una armonización—, un pequeño concierto que te lleva a la
-      relajación profunda.
+      ¡Cada sesión se adapta a vos! Combino diferentes modalidades de sound healing para conducirte
+      a un estado de relajación profunda.
+    </p>
+    <p>
+      <strong>Terapia vibroacústica:</strong> utilizo dispositivos —mat o almohadilla— que vibran en contacto
+      directo con tu cuerpo, transmitiéndole frecuencias específicas que selecciono de acuerdo a lo que
+      necesites ese día.
+    </p>
+    <p>
+      <strong>Masaje sonoro:</strong> tu cuerpo siente vibraciones orgánicas que provienen del contacto
+      con los cuencos tibetanos.
+    </p>
+    <p>
+      <strong>Armonización sonora:</strong> los sonidos y la vibración de los cuencos tibetanos, de cuarzo,
+      el handpan, semillas y otros instrumentos, generan una envoltura que te sostiene y serena.
     </p>
     <h4 class="session-dialog__subtitle">Beneficios</h4>
     <ul class="session-dialog__list">
       <li>Sensación general de bienestar</li>
       <li>Mejora en la calidad del sueño</li>
       <li>Disminución de la ansiedad</li>
-      <li>Reconexión somática y emocional</li>
+      <li>Reconexión somática</li>
       <li>Mayor claridad mental</li>
-      <li>Menor reactividad emocional</li>
+      <li>Regulación emocional</li>
       <li>Relajación muscular</li>
       <li>Alivio del dolor</li>
       <li>Menor dependencia farmacológica</li>
+      <li>Entre otros</li>
     </ul>
     <p class="session-dialog__note">
-      El soundhealing no reemplaza ningún tratamiento médico: lo complementa y potencia sus
+      El sound healing no reemplaza ningún tratamiento médico: lo complementa y potencia sus
       resultados.
     </p>
     <a
@@ -182,33 +203,46 @@ import SessionDialog from './SessionDialog.astro';
   <SessionDialog
     dialogId="dialog-reiki"
     titleId="dialog-reiki-title"
-    title="Reiki"
-    eyebrow="60 min · Presencial o a distancia"
+    title="Reiki Usui"
+    eyebrow="1:30 hs · Presencial o a distancia"
   >
     <p>
-      Técnica japonesa que promueve sanación en todos los niveles: físico, mental, emocional y
-      espiritual. Parte de una premisa simple: todos tenemos una energía vital —ki, prana, según
-      cada cultura— que fluye por pasajes como chakras, meridianos y nadis, y también alrededor del
-      cuerpo, en el aura.
+      Todos los seres vivos poseemos una energía vital —ki, prana, ka y otros, según cada cultura—
+      que fluye dentro del cuerpo físico por pasajes llamados chakras, meridianos y nadis, y también
+      alrededor del mismo en nuestro campo energético llamado aura.
     </p>
     <p>
-      Cuando esa energía fluye libre y balanceada, estamos sanos. Cuando se bloquea —por nuestros
-      pensamientos y emociones— aparecen desequilibrios que pueden conducir a la enfermedad.
+      El flujo elevado, libre y balanceado de nuestra energía vital promueve nuestra salud y
+      bienestar en todos los niveles. Pero cuando es bajo, se restringe o bloquea —por pensamientos
+      o sentimientos negativos—, estamos más vulnerables.
     </p>
     <p>
-      Con imposición de manos y símbolos sagrados, la reikista se vuelve canal: no es la fuente de
-      sanación, es quien permite limpiar y desatascar para que tu energía vuelva a fluir, guiada por
-      la sabiduría espiritual donde más la necesites.
+      El Reiki, entonces, limpia, desatasca y sana los canales para reestablecer y aumentar el flujo
+      de tu energía vital.
     </p>
     <p>
-      También sirve para limpiar espacios, acompañar procesos —una entrevista de trabajo, una
-      intervención quirúrgica— y sanar traumas.
+      También es útil para limpiar y armonizar espacios y acompañar procesos —como una entrevista de
+      trabajo o una intervención quirúrgica—.
     </p>
-    <h4 class="session-dialog__subtitle">Cierre</h4>
     <p>
-      El Reiki tiene su propia inteligencia: sabe dónde ir y qué hacer. No hay barreras de espacio
-      ni tiempo —puede ser presencial o a distancia, y actuar en pasado, presente y futuro—. Y nunca
-      puede causar daño.
+      El Reiki tiene su propia inteligencia: sabe dónde ir y qué hacer. Y nunca puede causar daño.
+    </p>
+    <h4 class="session-dialog__subtitle">Beneficios</h4>
+    <ul class="session-dialog__list">
+      <li>Mayor bienestar general</li>
+      <li>Regulación del sistema nervioso</li>
+      <li>Regulación emocional</li>
+      <li>Promueve la sanación de disfunciones y enfermedades</li>
+      <li>
+        Mejora la efectividad de tratamientos médicos y disminuye sus posibles efectos colaterales
+        negativos
+      </li>
+      <li>Complementa otros tipos de terapias</li>
+      <li>Menor dependencia farmacológica</li>
+      <li>Entre otros</li>
+    </ul>
+    <p class="session-dialog__note">
+      El Reiki no reemplaza ningún tratamiento médico: lo complementa y potencia sus resultados.
     </p>
     <a
       href={WHATSAPP_HREF}

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import soundSrc from '../images/sound.webp';
 ---
 
@@ -9,13 +10,13 @@ import soundSrc from '../images/sound.webp';
   aria-label="Reproducir sonido"
   aria-pressed="false"
 >
-  <img
-    src={soundSrc.src}
+  <Image
+    src={soundSrc}
     alt=""
     aria-hidden="true"
-    width={soundSrc.width}
-    height={soundSrc.height}
     loading="lazy"
     decoding="async"
+    widths={[48]}
+    sizes="24px"
   />
 </button>

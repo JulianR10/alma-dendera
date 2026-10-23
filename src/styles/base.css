@@ -22,6 +22,8 @@ main {
   /* Base cálida única: la misma de sesiones, para que "En la sala" no abra
      una banda aparte y el corte lo marque la tarjeta hueso. */
   background: var(--color-primary-light);
+  /* Contiene el margen de la última tarjeta: si colapsa hacia afuera asoma el papel del body. */
+  display: flow-root;
 }
 
 body::before {
@@ -153,6 +155,70 @@ body::before {
 .ambient-light {
   position: relative;
   isolation: isolate;
+}
+
+/* ——— Tarjeta hueso con bordes en onda (En la sala, Contacto) ——— */
+.wave-card {
+  position: relative;
+  width: 90%;
+  margin-inline: auto;
+  padding: var(--space-xl) 0;
+  overflow: visible;
+  filter: drop-shadow(0 8px 18px rgba(45, 37, 23, 0.2));
+}
+
+.wave-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Tarjeta hueso plana, sin halos: los radiales claros metían círculos blancos. */
+  background: var(--color-primary-soft);
+  -webkit-mask-image:
+    var(--wave-solid-below), var(--wave-solid-above), linear-gradient(black, black);
+  -webkit-mask-size:
+    100% var(--wave-h),
+    100% var(--wave-h),
+    100% calc(100% - var(--wave-h) * 2);
+  -webkit-mask-position:
+    top center,
+    bottom center,
+    center center;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--wave-solid-below), var(--wave-solid-above), linear-gradient(black, black);
+  mask-size:
+    100% var(--wave-h),
+    100% var(--wave-h),
+    100% calc(100% - var(--wave-h) * 2);
+  mask-position:
+    top center,
+    bottom center,
+    center center;
+  mask-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  .wave-card {
+    /* La onda recorta el fondo arriba/abajo: se suma su alto para que el
+       padding visual no quede en ~0. */
+    padding: calc(var(--space-xl) + var(--wave-h)) 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .wave-card {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+/* Texto solo para lectores de pantalla y buscadores. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* ——— Shared type utilities ——— */

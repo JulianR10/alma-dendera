@@ -1,6 +1,22 @@
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { define } from './registry';
 import { prefersReducedMotion } from './reducedMotion';
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Los loops ambientales del hero no gastan batería mientras el hero no se ve.
+function pauseOffscreen(tween: gsap.core.Tween): void {
+  ScrollTrigger.create({
+    trigger: '#hero',
+    start: 'top bottom',
+    end: 'bottom top',
+    onToggle: (self) => {
+      if (self.isActive) tween.resume();
+      else tween.pause();
+    },
+  });
+}
 
 define('hero-logo', (el) => {
   if (prefersReducedMotion()) return;
@@ -31,35 +47,38 @@ define('hero-eyebrow', (el) => {
 
   gsap.fromTo(
     targets,
-    { y: 8, opacity: 0, filter: 'blur(4px)' },
+    { y: 8, opacity: 0 },
     {
       y: 0,
       opacity: 1,
-      filter: 'blur(0px)',
       duration: 0.65,
       delay: 1.05,
       stagger: 0.1,
       ease: 'power2.out',
       onComplete: () => {
         if (prefersReducedMotion()) return;
-        gsap.to(el, {
-          opacity: 0.82,
-          duration: 2.2,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-        });
-        const dots = el.querySelectorAll<HTMLElement>('.hero__eyebrow-dot');
-        if (dots.length > 0) {
-          gsap.to(dots, {
-            scale: 1.25,
-            opacity: 0.3,
-            duration: 1.6,
-            stagger: 0.35,
+        pauseOffscreen(
+          gsap.to(el, {
+            opacity: 0.82,
+            duration: 2.2,
             ease: 'sine.inOut',
             yoyo: true,
             repeat: -1,
-          });
+          }),
+        );
+        const dots = el.querySelectorAll<HTMLElement>('.hero__eyebrow-dot');
+        if (dots.length > 0) {
+          pauseOffscreen(
+            gsap.to(dots, {
+              scale: 1.25,
+              opacity: 0.3,
+              duration: 1.6,
+              stagger: 0.35,
+              ease: 'sine.inOut',
+              yoyo: true,
+              repeat: -1,
+            }),
+          );
         }
       },
     },
@@ -114,8 +133,10 @@ define('hero-breath', (el) => {
   const chars = el.querySelectorAll<HTMLElement>('.hero__breath-char');
   const center = (chars.length - 1) / 2;
 
-  gsap.set(chars, { force3D: true, opacity: BREATH_REST_OPACITY });
-  gsap.to(chars, {
+  // rotation mínima: con traslación pura Chrome redondea las letras a píxel entero
+  // y un movimiento tan lento se ve a saltos.
+  gsap.set(chars, { force3D: true, opacity: BREATH_REST_OPACITY, rotation: 0.01 });
+  const breath = gsap.to(chars, {
     y: BREATH_LIFT,
     x: (index: number) => (center - index) * BREATH_SPREAD,
     opacity: 1,
@@ -126,6 +147,7 @@ define('hero-breath', (el) => {
     yoyo: true,
     delay: BREATH_START_DELAY,
   });
+  pauseOffscreen(breath);
 });
 
 define('hero-cta', (el) => {

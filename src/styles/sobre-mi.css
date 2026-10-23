@@ -134,12 +134,14 @@
 
   /* Eje compartido: retrato y aros se centran en el mismo punto, clavado en el
      borde derecho (mitad visible, mitad oculta; .about recorta en x). */
+  /* Anclada al pie con tope de alto: con texto largo la sección crece y la
+     silueta (alto 100%) se agrandaba hasta tapar el texto. */
   .about__figure {
     position: absolute;
-    top: 0;
     right: 0;
     bottom: 0;
     width: 50%;
+    height: min(100%, 520px);
     margin: 0;
   }
 

@@ -5,14 +5,15 @@ import { prefersReducedMotion } from './reducedMotion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function reveal(el: HTMLElement, delay: number): void {
+// Desenfoque solo en el título: en texto corrido es caro y no suma.
+function reveal(el: HTMLElement, delay: number, blur = false): void {
   if (prefersReducedMotion()) {
-    gsap.set(el, { clearProps: 'transform,opacity,filter' });
+    gsap.set(el, { clearProps: 'transform,opacity' });
     return;
   }
   gsap.fromTo(
     el,
-    { y: 16, opacity: 0, filter: 'blur(6px)' },
+    { y: 16, opacity: 0, filter: blur ? 'blur(6px)' : 'blur(0px)' },
     {
       y: 0,
       opacity: 1,
@@ -29,7 +30,7 @@ function reveal(el: HTMLElement, delay: number): void {
   );
 }
 
-define('contact-title', (el) => reveal(el, 0));
+define('contact-title', (el) => reveal(el, 0, true));
 define('contact-copy', (el) => reveal(el, 0.06));
 define('contact-actions', (el) => reveal(el, 0.12));
 define('contact-meta', (el) => reveal(el, 0.16));

@@ -26,7 +26,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "typescript-eslint": "^8.62.1"
   },
-  "description": "Soundhealing, vibroacústica y reiki — sitio web one-page con narrativa de scroll.",
+  "description": "Sound healing y Reiki Usui — sitio web one-page con narrativa de scroll.",
   "main": "eslint.config.js",
   "repository": {
     "type": "git",

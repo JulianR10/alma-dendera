@@ -1,20 +1,17 @@
 .contacto {
-  position: relative;
-  isolation: isolate;
-  background: var(--color-primary-sand);
+  margin-block: var(--space-lg) var(--space-2xl);
   color: var(--color-ink);
-  padding: var(--section-pad-top) var(--wrap-inline) var(--section-pad-top);
-  padding-bottom: var(--section-pad-top-safe);
+  padding: var(--section-pad-top) var(--gutter);
   scroll-margin-top: 80px;
 }
 
-/* Trama de puntos tono-sobre-tono: avanza desde ambos costados hacia el centro
-   y se degrada al llegar al texto (máscara lineal horizontal). */
-.contacto::before {
+/* Trama de puntos tono-sobre-tono dentro de la tarjeta (sin invadir la onda):
+   avanza desde ambos costados y se degrada al llegar al texto. */
+.contacto::after {
   content: '';
   position: absolute;
-  inset: 0;
-  z-index: -1;
+  inset: var(--wave-h) 0;
+  z-index: 0;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%2369492B' fill-opacity='0.1'/%3E%3C/svg%3E");
   background-size: 22px 22px;
@@ -29,6 +26,8 @@
 }
 
 .contacto__inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: var(--space-sm);
   justify-items: center;
@@ -99,7 +98,6 @@
 @media (max-width: 768px) {
   /* Mismo aire arriba y abajo en mobile (el pad-top de sección pesaba más). */
   .contacto {
-    padding: var(--space-3xl) var(--wrap-inline);
-    padding-bottom: calc(var(--space-3xl) + env(safe-area-inset-bottom));
+    padding: calc(var(--space-2xl) + var(--wave-h)) var(--gutter);
   }
 }

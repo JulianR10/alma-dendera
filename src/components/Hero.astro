@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import MusicToggle from './MusicToggle.astro';
 import ResonanceColumn from './ResonanceColumn.astro';
 import logoSrc from '../images/logo.webp';
@@ -6,36 +7,38 @@ import fondoSrc from '../images/fondoMaga2.webp';
 import MorphIcon from 'morphicons/astro';
 import { Menu } from 'lucide';
 import { NAV_LINKS } from '../lib/navigation';
+import { SITE } from '../lib/site';
 ---
 
 <section id="hero" class="hero" aria-label="Alma Dendera — hero">
   <div class="hero__maga-wrap" aria-hidden="true">
-    <img
-      src={fondoSrc.src}
+    <Image
+      src={fondoSrc}
       alt=""
       aria-hidden="true"
       class="hero__maga"
-      width={fondoSrc.width}
-      height={fondoSrc.height}
       loading="eager"
       decoding="async"
       fetchpriority="high"
       data-animate="hero-maga"
+      widths={[640, 960, 1280, fondoSrc.width]}
+      sizes="100vw"
     />
   </div>
   <div class="hero__gradient" aria-hidden="true"></div>
   <nav class="hero__nav" aria-label="Principal">
     <h1 class="hero__logo-wrap" data-animate="hero-logo">
-      <a href="#hero" class="hero__nav-logo" aria-label="Alma Dendera — Inicio">
-        <img
-          src={logoSrc.src}
+      <a href="#hero" class="hero__nav-logo">
+        <Image
+          src={logoSrc}
           alt="Alma Dendera"
           class="hero__logo"
-          width={logoSrc.width}
-          height={logoSrc.height}
           loading="eager"
           decoding="async"
+          widths={[120, 240]}
+          sizes="(max-width: 768px) 92px, 104px"
         />
+        <span class="visually-hidden">— Sound Healing y Reiki Usui en {SITE.city}</span>
       </a>
     </h1>
     <ResonanceColumn />
@@ -57,22 +60,13 @@ import { NAV_LINKS } from '../lib/navigation';
       Un&nbsp;<span class="hero__breath" data-animate="hero-breath" aria-label="respiro"
         >respiro</span
       >
-      para volver a vos, habitar tu cuerpo y relajar los sentidos.
+      para volver a vos, habitar tu cuerpo y serenar la mente.
     </p>
 
-    <p
-      class="hero__eyebrow kicker"
-      data-animate="hero-eyebrow"
-      aria-label="Soundhealing · Vibroacústica · Reiki"
-    >
+    <p class="hero__eyebrow kicker" data-animate="hero-eyebrow" aria-label="Sound Healing · Reiki">
       <span class="hero__eyebrow-pair"
         ><span class="hero__eyebrow-dot" aria-hidden="true">·</span><span class="hero__eyebrow-item"
-          >Soundhealing</span
-        ></span
-      >
-      <span class="hero__eyebrow-pair"
-        ><span class="hero__eyebrow-dot" aria-hidden="true">·</span><span class="hero__eyebrow-item"
-          >Vibroacústica</span
+          >Sound Healing</span
         ></span
       >
       <span class="hero__eyebrow-pair"
@@ -90,7 +84,7 @@ import { NAV_LINKS } from '../lib/navigation';
   <audio
     id="bg-music"
     src={`${import.meta.env.BASE_URL}audio/ambiente.mp3`}
-    preload="auto"
+    preload="none"
     loop
     playsinline
     aria-hidden="true"></audio>

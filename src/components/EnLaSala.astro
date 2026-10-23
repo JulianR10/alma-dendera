@@ -1,55 +1,50 @@
 ---
+import { Image } from 'astro:assets';
 import siluetaSentadaSrc from '../images/siluetaSentada.webp';
 ---
 
-<section id="en-la-sala" class="room" aria-labelledby="room-title">
+<section id="en-la-sala" class="room wave-card" aria-labelledby="room-title">
   <div class="room__inner">
     <div class="room__head">
       <h2 id="room-title" class="room__title display-title text-balance" data-animate="room-title">
         ¿Cómo es una sesión?
       </h2>
       <p class="room__intro text-balance" data-animate="room-copy">
-        Llegás como estás, sin saber nada de antemano. La sesión es individual o grupal y dura una
-        hora: ese tiempo y ese espacio son para vos.
+        Llegás como estás, sin saber nada de antemano. Ese tiempo y ese espacio son para vos.
       </p>
       <figure class="room__media" data-animate="room-media">
-        <img
+        <Image
           class="room__media-img"
-          src={siluetaSentadaSrc.src}
-          alt="Silueta de Magalí en postura sentada de meditación"
-          width={siluetaSentadaSrc.width}
-          height={siluetaSentadaSrc.height}
+          src={siluetaSentadaSrc}
+          alt="Silueta de Maga en postura sentada de meditación"
           loading="lazy"
           decoding="async"
+          widths={[300, 600]}
+          sizes="(max-width: 768px) 140px, 230px"
         />
       </figure>
     </div>
     <ol class="room__steps" aria-label="Pasos de la sesión">
       <li class="room__step" data-animate="room-step">
         <span class="room__num" aria-hidden="true">01</span>
-        <h3 class="room__step-title text-balance">Llegamos</h3>
+        <h3 class="room__step-title text-balance">Nos encontramos</h3>
         <p class="room__step-text text-balance">
-          Charlamos un momento para saber cómo venís y qué necesitás hoy.
+          Me reservo 1:30 hs para vos. Charlamos sin prisa para saber cómo estás y qué necesitás ese
+          día.
         </p>
       </li>
       <li class="room__step" data-animate="room-step">
         <span class="room__num" aria-hidden="true">02</span>
-        <h3 class="room__step-title text-balance">Suena</h3>
+        <h3 class="room__step-title text-balance">Me dispongo a tu servicio</h3>
         <p class="room__step-text text-balance">
-          Te recostás, cerrás los ojos y los cuencos, la vibración y el silencio hacen el resto.
+          Te brindaré el recurso que elegiste, con presencia, amor y profunda gratitud.
         </p>
       </li>
       <li class="room__step" data-animate="room-step">
         <span class="room__num" aria-hidden="true">03</span>
         <h3 class="room__step-title text-balance">Integramos</h3>
         <p class="room__step-text text-balance">
-          Despertamos despacio, tomamos algo calentito y volvés a tu día en otro ritmo.
-        </p>
-      </li>
-      <li class="room__step room__step--finale" data-animate="room-step">
-        <span class="room__num" aria-hidden="true">04</span>
-        <p class="room__step-text text-balance">
-          Te llevás la mente en silencio, el cuerpo liviano y el resto del día en otro ritmo.
+          Volvés despacio, compartimos lo que desees y retomás tu día con otro ritmo.
         </p>
       </li>
     </ol>

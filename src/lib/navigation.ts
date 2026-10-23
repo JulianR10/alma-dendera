@@ -9,9 +9,9 @@ export interface NavLink {
 /** Menú completo: todo destino al que se puede saltar. */
 export const NAV_LINKS: NavLink[] = [
   { href: '#hero', label: 'Inicio' },
-  { href: '#soundhealing', label: 'Soundhealing' },
+  { href: '#soundhealing', label: 'Sound Healing' },
   { href: '#reiki', label: 'Reiki' },
-  { href: '#en-la-sala', label: 'En la sala' },
+  { href: '#en-la-sala', label: 'La sesión' },
   { href: '#sobre-mi', label: 'Sobre mí' },
   { href: '#contacto', label: 'Contacto' },
 ];
@@ -20,7 +20,7 @@ export const NAV_LINKS: NavLink[] = [
 export const SECTION_WAYPOINTS: NavLink[] = [
   { href: '#hero', label: 'Inicio' },
   { href: '#sesiones', label: 'Sesiones' },
-  { href: '#en-la-sala', label: 'En la sala' },
+  { href: '#en-la-sala', label: 'La sesión' },
   { href: '#sobre-mi', label: 'Sobre mí' },
   { href: '#contacto', label: 'Contacto' },
 ];

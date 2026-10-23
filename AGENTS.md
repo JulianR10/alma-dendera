@@ -34,8 +34,8 @@ src/pages/index.astro · src/styles/global.css + tokens/base/hero/sobre-mi/sessi
 
 ## Estado
 
-**Hecho:** Hero (fondoMaga2 `cover`, nav + MusicToggle, tagline + eyebrow + CTA a #sesiones, menú mobile). Transición hero→sesiones seamless con Lenis + scrub (parallax maga/center/logo, rise de header y cards, sin hueco). Servicios "Dos maneras de volver a vos" (título Cinzel): cards Soundhealing/Reiki en vidrio esmerilado (`backdrop-filter`) con copy corto voseo, cierre "Encuentros grupales" + Incense canvas a su derecha (varilla diagonal 12° sobre cuenco, humo topo, ciclo 8 min, top-fade, static/reduced-motion, pausa offscreen). SobreMi "Soy Magali" (`silueta.webp` + 4 aros `about__ripples` anclados al pie con `bottom:0` + `translate(-50%,20.5%)`, 100% visibles con `margin-bottom` reservado; onda ancha `about__field` eliminada por decisión). QuoteBand (frase Magali 2 líneas cursiva + firma). Isla nav `.resonance--nav` (se oculta bajando 200px, reaparece subiendo con blur; el fade del hero apunta a `.hero__logo-wrap` para no taparla). Deploy GitHub Pages (`site` + `base:/alma-dendera/`, workflow `deploy.yml` en cada push a `main`). Favicon set completo desde `favicon.webp` 512 (`favicon.ico`, webp importado, `apple-touch-icon.png` 180 sobre hueso, `icon-192/512.png` + `manifest.webmanifest`). Terapeuta: **Magali · CABA**.
-Escala de radios en tokens; píldora CTA única `.cta` con modificadores `--solid`/`--outline`. "En la sala" con los 4 pasos en tarjeta hueso sobre el mismo cálido de sesiones como corte de capítulo. Contacto (`#contacto`, WA/IG/CABA) y Footer (marca, IG, ciudad, disclaimer, firma linkeada). Columna de resonancia con **waypoints de sección** (`SECTION_WAYPOINTS`, 5) separada del menú completo (`NAV_LINKS`, 6); en mobile aparece recién pasado el hero, alineada a la izquierda y solo con puntos.
+**Hecho:** Hero (fondoMaga2 `cover`, nav + MusicToggle, tagline + eyebrow + CTA a #sesiones, menú mobile). Transición hero→sesiones seamless con Lenis + scrub (parallax maga/center/logo, rise de header y cards, sin hueco). Servicios "Tres maneras de volver a vos" (título Cinzel): cards Soundhealing/Reiki en vidrio esmerilado (`backdrop-filter`) con copy corto voseo, cierre "Encuentros grupales" + Incense canvas a su derecha (varilla diagonal 12° sobre cuenco, humo topo, ciclo 8 min, top-fade, static/reduced-motion, pausa offscreen). SobreMi "Soy Magali" (`silueta.webp` + 4 aros `about__ripples` anclados al pie con `bottom:0` + `translate(-50%,20.5%)`, 100% visibles con `margin-bottom` reservado; onda ancha `about__field` eliminada por decisión). QuoteBand (frase Magali 2 líneas cursiva + firma). Isla nav `.resonance--nav` (se oculta bajando 200px, reaparece subiendo con blur; el fade del hero apunta a `.hero__logo-wrap` para no taparla). Deploy GitHub Pages (`site` + `base:/alma-dendera/`, workflow `deploy.yml` en cada push a `main`). Favicon set completo desde `favicon.webp` 512 (`favicon.ico`, webp importado, `apple-touch-icon.png` 180 sobre hueso, `icon-192/512.png` + `manifest.webmanifest`). Terapeuta: **Magali · CABA**.
+Escala de radios en tokens; píldora CTA única `.cta` con modificadores `--solid`/`--outline`. "En la sala" (¿Cómo es una sesión?): tarjeta hueso en 2 columnas (título + intro + silueta | 3 pasos como recorrido vertical: número en círculo con aro de resonancia unidos por una línea fina, sin cajas); en mobile apilado. Contacto (`#contacto`, WA/IG/CABA) y Footer (marca, IG, ciudad, disclaimer, firma linkeada). Columna de resonancia con **waypoints de sección** (`SECTION_WAYPOINTS`, 5) separada del menú completo (`NAV_LINKS`, 6); en mobile aparece recién pasado el hero, alineada a la izquierda y solo con puntos.
 
 ## Checklist validación (auto — antes de dar por hecho)
 
@@ -51,12 +51,12 @@ Antes de marcar cualquier entrega como hecha, verificar sin que lo pidas:
 ## Diseño
 
 **Paleta y tipografía:** la fuente de verdad es `readme.md` (secciones "Paleta de color" y "Tipografía"). No dupliques hex ni nombres de fuentes acá: si cambia un token en `tokens.css`, actualizá la tabla del readme y listo.
-**Ritmo de fondos:** cálido `--color-primary-light` (hero, sesiones, en la sala, sobre mí, contacto) → noche `--color-deep` (frase, footer). Contacto va en arena `--color-primary-sand` (apenas más oscuro). Sobre esa base plana: la **trama de puntos** de Contacto (`.contacto::before`).
+**Ritmo de fondos:** cálido `--color-primary-light` (hero, sesiones, en la sala, sobre mí, contacto) → noche `--color-deep` (frase, footer). Sin cortes rectos: cada borde claro↔oscuro es una onda (`--wave-solid-above/below` + `--wave-h` en `tokens.css`, pintada como labio claro sobre la banda oscura). En la sala y Contacto son tarjetas hueso `.wave-card` (base.css) sobre el claro; dentro de Contacto, la **trama de puntos** (`.contacto::after`).
 **Copy:** cálido, frases cortas, sin jerga, aclara "acompaña no reemplaza tratamiento".
 **Recorrido scroll:** Hero → Sesiones → En la sala → Frase → Sobre mí → Contacto → Footer.
 **Movimiento:** Transición cresta onda SVG, ambient 6s loop no distractivo, solo columna progresa, un momento de riesgo, `prefers-reduced-motion`.
 
-**Columna resonancia:** rail de progreso con los waypoints de sección (Hero / Sesiones / En la sala / Sobre mí / Contacto). Progreso discreto (carga en Hero, avanza/retrocede 0.5s por sección, no pasa el último). Solo desktop: en mobile la isla está oculta y queda únicamente el nav de la hamburguesa. Waypoints clickeables. `ScrollTrigger onEnter/onEnterBack`.
+**Columna resonancia:** rail de progreso con los waypoints de sección (Inicio / Sesiones / La sesión / Sobre mí / Contacto). Progreso discreto (carga en Hero, avanza/retrocede 0.5s por sección, no pasa el último). Solo desktop: en mobile la isla está oculta y queda únicamente el nav de la hamburguesa. Waypoints clickeables. `ScrollTrigger onEnter/onEnterBack`.
 **Naming:** Componentes PascalCase, módulos camelCase, data/clases/IDs kebab (`data-animate="hero-title"`).
 
 ## Mobile / iOS
@@ -70,7 +70,7 @@ Antes de marcar cualquier entrega como hecha, verificar sin que lo pidas:
 
 ## Imágenes/Recursos — Performance — a11y
 
-**Imgs:** WebP/AVIF, `loading=lazy` fuera de fold, `width/height` (CLS), comprimir, `srcset` si amerita.
+**Imgs:** siempre `<Image>` de `astro:assets` con `widths` + `sizes` (nunca `<img src={x.src}>`), `loading=lazy` fuera de fold. OG en JPG 1200 vía `getImage` con URL absoluta.
 **Perf:** INP≤200ms LCP≤2.5s CLS<0.1 · JS no bloqueante, `font-display:swap`, code splitting, medir Lighthouse/CrUX.
 **a11y:** Contraste AA, teclado + focus visible (no `outline:none` sin reemplazo), labels en inputs, ARIA solo si semántica no alcanza.
 
