@@ -44,10 +44,99 @@
     0 2px 0 rgba(255, 255, 255, 0.4) inset,
     0 24px 64px rgba(30, 26, 17, 0.3);
   color: var(--color-ink);
+
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  filter: blur(6px);
+  transition:
+    opacity var(--dur-dialog) var(--ease-soft),
+    transform var(--dur-dialog) var(--ease-soft),
+    filter var(--dur-dialog) var(--ease-soft),
+    overlay var(--dur-dialog) allow-discrete,
+    display var(--dur-dialog) allow-discrete;
+}
+
+.session-dialog[open] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@starting-style {
+  .session-dialog[open] {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+    filter: blur(6px);
+  }
 }
 
 .session-dialog::backdrop {
+  background: rgba(30, 26, 17, 0);
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  transition:
+    background var(--dur-dialog) var(--ease-soft),
+    backdrop-filter var(--dur-dialog) var(--ease-soft),
+    overlay var(--dur-dialog) allow-discrete,
+    display var(--dur-dialog) allow-discrete;
+}
+
+.session-dialog[open]::backdrop {
   background: rgba(30, 26, 17, 0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+@starting-style {
+  .session-dialog[open]::backdrop {
+    background: rgba(30, 26, 17, 0);
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+  }
+}
+
+/* Contenido: aparece escalonado después de que el marco se abre. */
+.session-dialog__head,
+.session-dialog__body > *,
+.session-dialog__foot {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--dur-dialog) var(--ease-soft),
+    transform var(--dur-dialog) var(--ease-soft);
+}
+
+.session-dialog[open] .session-dialog__head,
+.session-dialog[open] .session-dialog__body > *,
+.session-dialog[open] .session-dialog__foot {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(120ms + var(--i, 0) * 60ms);
+}
+
+@starting-style {
+  .session-dialog[open] .session-dialog__head,
+  .session-dialog[open] .session-dialog__body > *,
+  .session-dialog[open] .session-dialog__foot {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.session-dialog__body > :nth-child(1) {
+  --i: 1;
+}
+.session-dialog__body > :nth-child(2) {
+  --i: 2;
+}
+.session-dialog__body > :nth-child(3) {
+  --i: 3;
+}
+.session-dialog__body > :nth-child(4) {
+  --i: 4;
+}
+.session-dialog__body > :nth-child(n + 5) {
+  --i: 5;
 }
 
 .session-dialog__inner {
@@ -215,30 +304,34 @@
   padding: 0;
   list-style: none;
   display: grid;
-  gap: var(--space-2xs);
+  gap: var(--space-xs) var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(105, 73, 43, 0.07);
+  border: 1px solid rgba(105, 73, 43, 0.12);
+  border-radius: var(--radius-md);
 }
 
 .session-dialog__list li {
   display: flex;
   gap: var(--space-2xs);
-  align-items: center;
-  background: rgba(105, 73, 43, 0.07);
-  border: 1px solid rgba(105, 73, 43, 0.12);
-  /* ≈ media altura de un chip de una línea: se ve píldora, pero no deforma los que bajan de línea. */
-  border-radius: var(--radius-md);
-  padding: var(--space-2xs) var(--space-sm);
+  align-items: flex-start;
   font-size: var(--text-sm);
   font-weight: 400;
   color: var(--color-ink);
 }
 
+/* Tilde de éxito (círculo + check) como máscara: toma el color plum. */
 .session-dialog__list li::before {
   content: '';
   flex: none;
-  width: 6px;
-  height: 6px;
-  border-radius: var(--radius-pill);
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
   background: var(--color-plum);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m7.5 12.5 3 3 6-7'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m7.5 12.5 3 3 6-7'/%3E%3C/svg%3E")
+    center / contain no-repeat;
 }
 
 .session-dialog__note {
@@ -334,9 +427,15 @@
 
 @media (prefers-reduced-motion: reduce) {
   .session-dialog,
+  .session-dialog::backdrop,
+  .session-dialog__head,
+  .session-dialog__body > *,
+  .session-dialog__foot,
   .session-dialog__close,
   .session-more {
     transition: none;
     animation: none;
+    transform: none;
+    filter: none;
   }
 }

@@ -45,6 +45,10 @@
   --radius-xl: 28px;
   --radius-pill: 999px;
 
+  /* ——— Movimiento ——— */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-dialog: 0.6s;
+
   /* Ondas de corte entre superficies (máscaras): lleno debajo / arriba de la curva. */
   --wave-h: clamp(28px, 5vw, 64px);
   --wave-solid-below: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath d='M0,34 C150,54 300,8 470,22 C640,36 780,52 960,38 C1140,24 1290,44 1440,26 L1440,56 L0,56 Z' fill='black'/%3E%3C/svg%3E");
