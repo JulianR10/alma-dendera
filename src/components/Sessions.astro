@@ -24,16 +24,17 @@ import BenefitChips from './BenefitChips.astro';
   </section>
 
   <article id="soundhealing" class="sound" aria-labelledby="soundhealing-title">
-    <Image
-      class="sound__img"
-      data-animate="sound-img"
-      src={soundhealingSrc}
-      alt="Sesión de sound healing vista desde arriba: persona recostada en esterilla rodeada de cuencos tibetanos junto a la terapeuta"
-      loading="lazy"
-      decoding="async"
-      widths={[480, 768, 1024]}
-      sizes="(max-width: 768px) 90vw, 45vw"
-    />
+    <figure class="sound__media" data-animate="sound-media">
+      <Image
+        class="sound__img"
+        src={soundhealingSrc}
+        alt="Sesión de sound healing vista desde arriba: persona recostada en esterilla rodeada de cuencos tibetanos junto a la terapeuta"
+        loading="lazy"
+        decoding="async"
+        widths={[480, 768, 1024]}
+        sizes="(max-width: 768px) 90vw, 45vw"
+      />
+    </figure>
     <div class="sound__body" data-animate="sound-body">
       <h3 id="soundhealing-title" class="sound__name text-balance">Sound Healing</h3>
       <p class="sound__desc text-balance">
@@ -63,16 +64,18 @@ import BenefitChips from './BenefitChips.astro';
   </article>
 
   <article id="reiki" class="reki" aria-labelledby="reiki-title">
-    <Image
-      class="reki__img"
-      data-animate="reki-img"
-      src={reikiSrc}
-      alt="Sesión de Reiki: imposición de manos"
-      loading="lazy"
-      decoding="async"
-      widths={[480, 768, 1024]}
-      sizes="(max-width: 768px) 90vw, 45vw"
-    />
+    <figure class="reki__media" data-animate="reki-media">
+      <Image
+        class="reki__img"
+        src={reikiSrc}
+        alt="Sesión de Reiki: imposición de manos"
+        loading="lazy"
+        decoding="async"
+        widths={[480, 768, 1024]}
+        sizes="(max-width: 768px) 90vw, 45vw"
+      />
+      <span class="reki__glow" aria-hidden="true"></span>
+    </figure>
     <div class="reki__body" data-animate="reki-body">
       <h3 id="reiki-title" class="reki__name text-balance">Reiki Usui</h3>
       <p class="reki__desc text-balance">

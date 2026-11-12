@@ -82,9 +82,62 @@ function revealBody(el: HTMLElement): void {
   );
 }
 
-define('sound-img', revealImage);
+// Parallax (solo desktop) y loops CSS encendidos únicamente con la card en pantalla.
+function liveMedia(el: HTMLElement): void {
+  const card = el.closest('article') ?? el;
+  ScrollTrigger.create({
+    trigger: card,
+    start: 'top bottom',
+    end: 'bottom top',
+    toggleClass: { targets: el, className: 'is-playing' },
+  });
+  if (window.matchMedia('(max-width: 768px)').matches) return;
+  gsap.fromTo(
+    el,
+    { yPercent: -6 },
+    {
+      yPercent: 6,
+      ease: 'none',
+      scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true },
+    },
+  );
+}
+
+// Sound healing: la foto se abre como una onda que nace del cuenco golpeado.
+define('sound-media', (el) => {
+  if (prefersReducedMotion()) return;
+  liveMedia(el);
+  gsap.fromTo(
+    el,
+    { clipPath: 'circle(0% at 60% 81%)' },
+    {
+      clipPath: 'circle(130% at 60% 81%)',
+      duration: 1.8,
+      ease: 'power2.inOut',
+      clearProps: 'clipPath',
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    },
+  );
+});
+
+// Reiki: la foto se "enciende", de desenfocada y cálida a nítida.
+define('reki-media', (el) => {
+  if (prefersReducedMotion()) return;
+  liveMedia(el);
+  gsap.fromTo(
+    el.querySelector('.reki__img'),
+    { opacity: 0, filter: 'blur(14px) sepia(0.45) brightness(1.12)' },
+    {
+      opacity: 1,
+      filter: 'blur(0px) sepia(0) brightness(1)',
+      duration: 1.8,
+      ease: 'power2.out',
+      clearProps: 'filter',
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    },
+  );
+});
 define('sound-body', revealBody);
-define('reki-img', revealImage);
 define('reki-body', revealBody);
 define('gather-img', revealImage);
 define('gather-body', revealBody);

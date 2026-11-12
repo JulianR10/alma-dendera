@@ -84,22 +84,85 @@
     1px 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.sound__img,
-.reki__img {
-  display: block;
+/* La figura recorta (blob) y aloja la luz del Reiki; la foto adentro solo hace zoom lento. */
+.sound__media,
+.reki__media {
+  position: relative;
+  isolation: isolate;
   width: 86%;
-  height: auto;
   margin: 0 auto;
-  object-fit: cover;
-  object-position: center;
+  overflow: hidden;
 }
 
-.sound__img {
+.sound__media {
+  /* Punto donde el mazo toca el cuenco: de ahí se abre la foto y se centra el zoom. */
+  --ox: 60%;
+  --oy: 81%;
   border-radius: var(--radius-blob-a);
 }
 
-.reki__img {
+.reki__media {
+  /* Manos sobre la frente: ahí vive la luz. */
+  --ox: 46%;
+  --oy: 62%;
   border-radius: var(--radius-blob-b);
+}
+
+.sound__img,
+.reki__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: var(--ox) var(--oy);
+}
+
+.reki__glow {
+  position: absolute;
+  left: var(--ox);
+  top: var(--oy);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  width: 46%;
+  margin: -23% 0 0 -23%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 222, 165, 0.6) 0%,
+    rgba(255, 205, 140, 0.22) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sound__img,
+  .reki__img {
+    animation: media-drift 22s ease-in-out infinite alternate;
+  }
+
+  .reki__glow {
+    animation: reki-glow 5s ease-in-out infinite alternate;
+  }
+
+  /* Los loops solo corren con la card en pantalla (clase que pone sessions.ts). */
+  .sound__media:not(.is-playing) *,
+  .reki__media:not(.is-playing) * {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes media-drift {
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes reki-glow {
+  to {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
 }
 
 .sound__body,
@@ -270,9 +333,8 @@
     min-height: clamp(380px, 60vh, 520px);
   }
 
-  .sound__img,
-  .reki__img {
-    width: 86%;
+  .sound__media,
+  .reki__media {
     justify-self: center;
   }
 
@@ -290,7 +352,7 @@
     margin-top: var(--space-xl);
   }
 
-  .reki__img {
+  .reki__media {
     order: 2;
   }
 
