@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import logoSrc from '../images/logo.webp';
+---
+
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__mark">
+    <span class="preloader__ring"></span>
+    <span class="preloader__ring preloader__ring--late"></span>
+    <Image
+      src={logoSrc}
+      alt=""
+      class="preloader__logo"
+      loading="eager"
+      decoding="async"
+      widths={[120, 240]}
+      sizes="120px"
+    />
+  </div>
+</div>

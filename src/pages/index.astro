@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Preloader from '../components/Preloader.astro';
 import Hero from '../components/Hero.astro';
 import SobreMi from '../components/SobreMi.astro';
 import EnLaSala from '../components/EnLaSala.astro';
@@ -82,6 +83,11 @@ const jsonLd = {
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Cormorant+Garamond:ital,wght@1,300&family=Public+Sans:wght@300;400;500&display=swap"
     />
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('has-preloader');
+      }
+    </script>
     <meta name="author" content={SITE.personName} />
     <meta name="theme-color" content="#f5f2ec" />
     <link rel="icon" type="image/webp" href={faviconSrc.src} />
@@ -104,6 +110,7 @@ const jsonLd = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
+    <Preloader />
     <main>
       <Hero />
       <Sessions />
@@ -114,15 +121,18 @@ const jsonLd = {
     </main>
     <Footer />
     <WhatsAppFloat />
+    <div class="cursor" aria-hidden="true"></div>
 
     <script>
       import { init } from '../lib/animations/registry';
       import '../lib/animations/hero';
+      import '../lib/animations/titleReveal';
       import '../lib/animations/about';
       import '../lib/animations/room';
       import '../lib/animations/sessions';
       import '../lib/animations/quote';
       import '../lib/animations/contact';
+      import { playPreloader } from '../lib/animations/preloader';
       import { initResonance } from '../lib/animations/resonance';
       import { initSmoothScroll } from '../lib/scroll/smooth';
       import { initHeroSessionsTransition } from '../lib/animations/heroSessions';
@@ -131,29 +141,27 @@ const jsonLd = {
       import { attachSpotlight } from '../lib/spotlight';
       import { initMobileMenu } from '../lib/navigation';
       import { initSessionDialogs } from '../lib/ui/sessionDialog';
+      import { initMicroInteractions } from '../lib/ui/microInteractions';
+      import { initCursor } from '../lib/ui/cursor';
       initSmoothScroll();
-      init();
+      void playPreloader().then(init);
       initResonance();
       initHeroSessionsTransition();
       initMobileMenu();
       initSessionDialogs();
       attachSpotlight();
-      const win = window as unknown as { __almaAudio?: AudioController };
-      if (!win.__almaAudio) {
-        const audio = document.getElementById('bg-music');
-        if (audio instanceof HTMLAudioElement) {
-          win.__almaAudio = new AudioController('bg-music', 'music-toggle');
-        }
+      initMicroInteractions();
+      initCursor();
+      if (!window.__almaAudio && document.getElementById('bg-music')) {
+        window.__almaAudio = new AudioController('bg-music', 'music-toggle');
       }
       const startIncense = (): void => {
         const canvas = document.querySelector<HTMLCanvasElement>('.incense__canvas');
         if (canvas) initIncense(canvas);
       };
-      const idleWindow = window as unknown as {
-        requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => void;
-      };
-      if (typeof idleWindow.requestIdleCallback === 'function') {
-        idleWindow.requestIdleCallback(startIncense, { timeout: 3000 });
+      // Safari no implementa requestIdleCallback.
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(startIncense, { timeout: 3000 });
       } else {
         startIncense();
       }

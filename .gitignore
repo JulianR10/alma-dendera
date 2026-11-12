@@ -4,3 +4,10 @@ dist/
 .DS_Store
 *.local
 tmp/
+
+# Generados por Astro
+.astro/
+
+# Material de la clienta (no se publica)
+informacion.txt
+modificaciones.docx

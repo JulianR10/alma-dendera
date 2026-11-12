@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    __almaAudio?: AudioController;
+  }
+}
+
 export class AudioController {
   private audio: HTMLAudioElement;
   private button: HTMLButtonElement;

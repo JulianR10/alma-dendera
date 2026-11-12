@@ -75,27 +75,6 @@ define('about-figure', (el) => {
   );
 });
 
-define('about-title', (el) => {
-  if (prefersReducedMotion()) {
-    gsap.set(el, { clipPath: 'none', opacity: 1 });
-    return;
-  }
-  gsap.fromTo(
-    el,
-    { clipPath: 'inset(0 100% 0 0)' },
-    {
-      clipPath: 'inset(0 0% 0 0)',
-      duration: 1.15,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        once: true,
-      },
-    },
-  );
-});
-
 define('about-copy', (el) => {
   if (prefersReducedMotion()) {
     gsap.set(el, { clearProps: 'transform,opacity' });

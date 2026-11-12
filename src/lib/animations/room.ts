@@ -5,18 +5,17 @@ import { prefersReducedMotion } from './reducedMotion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function reveal(el: HTMLElement, delay: number, blur: boolean): void {
+function reveal(el: HTMLElement, delay: number): void {
   if (prefersReducedMotion()) {
-    gsap.set(el, { clearProps: 'transform,opacity,filter' });
+    gsap.set(el, { clearProps: 'transform,opacity' });
     return;
   }
   gsap.fromTo(
     el,
-    { y: 20, opacity: 0, filter: blur ? 'blur(8px)' : 'blur(0px)' },
+    { y: 20, opacity: 0 },
     {
       y: 0,
       opacity: 1,
-      filter: 'blur(0px)',
       duration: 0.9,
       delay,
       ease: 'power2.out',
@@ -34,7 +33,22 @@ function siblingDelay(el: HTMLElement, step: number): number {
   return Math.max(0, siblings.indexOf(el)) * step;
 }
 
-define('room-title', (el) => reveal(el, 0, true));
-define('room-copy', (el) => reveal(el, 0, false));
-define('room-step', (el) => reveal(el, siblingDelay(el, 0.1), false));
-define('room-media', (el) => reveal(el, 0, false));
+// Cada aro se enciende al llegar a él y el tramo de línea anterior se dibuja (CSS, vía .is-lit).
+define('room-steps', (el) => {
+  const steps = Array.from(el.querySelectorAll<HTMLElement>('.room__step'));
+  if (prefersReducedMotion()) {
+    steps.forEach((step) => step.classList.add('is-lit'));
+    return;
+  }
+  steps.forEach((step) => {
+    ScrollTrigger.create({
+      trigger: step,
+      start: 'top 65%',
+      onEnter: () => step.classList.add('is-lit'),
+      onLeaveBack: () => step.classList.remove('is-lit'),
+    });
+  });
+});
+define('room-copy', (el) => reveal(el, 0));
+define('room-step', (el) => reveal(el, siblingDelay(el, 0.1)));
+define('room-media', (el) => reveal(el, 0));

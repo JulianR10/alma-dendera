@@ -62,6 +62,29 @@ body::before {
   text-decoration: none;
   border-radius: var(--radius-pill);
   text-align: center;
+  translate: var(--mx, 0) var(--my, 0);
+}
+
+.cta__ripple {
+  position: absolute;
+  left: var(--rx);
+  top: var(--ry);
+  z-index: 0;
+  width: 12px;
+  aspect-ratio: 1;
+  margin: -6px 0 0 -6px;
+  border-radius: var(--radius-pill);
+  background: currentcolor;
+  opacity: 0.28;
+  pointer-events: none;
+  animation: cta-ripple 0.8s var(--ease-soft) forwards;
+}
+
+@keyframes cta-ripple {
+  to {
+    transform: scale(30);
+    opacity: 0;
+  }
 }
 
 .cta::before {
@@ -231,6 +254,20 @@ body::before {
   font-size: var(--text-xs);
   letter-spacing: 0.28em;
   text-transform: uppercase;
+}
+
+.title-reveal__mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Deja entrar tildes y descendentes dentro de la máscara. */
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+.title-reveal__word {
+  display: inline-block;
+  will-change: transform;
 }
 
 .display-title {

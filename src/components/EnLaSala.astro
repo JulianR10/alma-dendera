@@ -6,7 +6,11 @@ import siluetaSentadaSrc from '../images/siluetaSentada.webp';
 <section id="en-la-sala" class="room wave-card" aria-labelledby="room-title">
   <div class="room__inner">
     <div class="room__head">
-      <h2 id="room-title" class="room__title display-title text-balance" data-animate="room-title">
+      <h2
+        id="room-title"
+        class="room__title display-title text-balance"
+        data-animate="title-reveal"
+      >
         ¿Cómo es una sesión?
       </h2>
       <p class="room__intro text-balance" data-animate="room-copy">
@@ -16,7 +20,7 @@ import siluetaSentadaSrc from '../images/siluetaSentada.webp';
         <Image
           class="room__media-img"
           src={siluetaSentadaSrc}
-          alt="Silueta de Maga en postura sentada de meditación"
+          alt="Silueta de Maga sentada tocando un cuenco tibetano"
           loading="lazy"
           decoding="async"
           widths={[300, 600]}
@@ -24,7 +28,7 @@ import siluetaSentadaSrc from '../images/siluetaSentada.webp';
         />
       </figure>
     </div>
-    <ol class="room__steps" aria-label="Pasos de la sesión">
+    <ol class="room__steps" aria-label="Pasos de la sesión" data-animate="room-steps">
       <li class="room__step" data-animate="room-step">
         <span class="room__num" aria-hidden="true">01</span>
         <h3 class="room__step-title text-balance">Nos encontramos</h3>

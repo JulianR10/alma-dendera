@@ -1,5 +1,7 @@
 @import './tokens.css';
 @import './base.css';
+@import './preloader.css';
+@import './cursor.css';
 @import './hero.css';
 @import './sessions.css';
 @import './session-dialog.css';

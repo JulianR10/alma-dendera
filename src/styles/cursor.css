@@ -1,0 +1,40 @@
+.cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    display: block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-pill);
+    background: rgba(250, 232, 202, 0);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      width 0.4s var(--ease-soft),
+      height 0.4s var(--ease-soft),
+      background 0.4s ease;
+  }
+
+  .cursor.is-visible {
+    opacity: 0.55;
+  }
+
+  .cursor.is-active {
+    width: 64px;
+    height: 64px;
+    background: rgba(250, 232, 202, 0.22);
+  }
+
+  .cursor.is-pressed {
+    width: 22px;
+    height: 22px;
+  }
+}

@@ -42,23 +42,39 @@
    una línea fina; sin cajas, el texto apoya directo sobre la tarjeta hueso. */
 .room__steps {
   --step-dot: 48px;
+  --step-gap: var(--space-lg);
   --step-indent: calc(var(--step-dot) + var(--space-md));
   position: relative;
+  isolation: isolate;
   list-style: none;
   margin: 0;
   padding: 0 0 0 var(--step-indent);
   display: grid;
-  gap: var(--space-lg);
+  gap: var(--step-gap);
 }
 
-.room__steps::before {
+/* Cada paso dibuja su tramo hasta el centro del siguiente círculo: la línea muere en el último. */
+.room__step:not(:last-child)::before,
+.room__step:not(:last-child)::after {
   content: '';
   position: absolute;
+  z-index: -1;
   top: calc(var(--step-dot) / 2);
-  bottom: calc(var(--step-dot) / 2);
-  left: calc(var(--step-dot) / 2);
+  left: calc(var(--step-dot) / 2 - var(--step-indent));
   width: 1px;
-  background: linear-gradient(rgba(105, 73, 43, 0.35), rgba(105, 73, 43, 0.12) 85%, transparent);
+  height: calc(100% + var(--step-gap));
+  background: rgba(105, 73, 43, 0.2);
+}
+
+.room__step:not(:last-child)::after {
+  background: var(--color-plum);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.9s var(--ease-soft);
+}
+
+.room__step:has(+ .is-lit)::after {
+  transform: scaleY(1);
 }
 
 .room__step {
@@ -90,6 +106,107 @@
   font-size: 17px;
   line-height: 1;
   color: var(--color-primary);
+  transition:
+    background 0.6s var(--ease-soft),
+    color 0.6s var(--ease-soft),
+    border-color 0.6s var(--ease-soft),
+    box-shadow 0.6s var(--ease-soft);
+}
+
+.room__step.is-lit .room__num {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-soft);
+  box-shadow:
+    0 0 0 5px var(--color-primary-soft),
+    0 0 0 6px rgba(123, 93, 120, 0.4),
+    0 0 18px 6px rgba(123, 93, 120, 0.22);
+}
+
+/* Vida del cuenco: halo que respira (::before) y aro que se expande y se apaga (::after).
+   Desfasados por paso para que la onda baje por el recorrido. */
+.room__num::before,
+.room__num::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.room__num::before {
+  inset: -45%;
+  background: radial-gradient(circle, rgba(123, 93, 120, 0.22) 0%, transparent 65%);
+}
+
+.room__num::after {
+  border: 1px solid rgba(105, 73, 43, 0.35);
+}
+
+.room__step.is-lit .room__num::after {
+  border-color: rgba(123, 93, 120, 0.55);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .room__num::before {
+    animation: room-halo 6s ease-in-out infinite;
+    animation-delay: var(--pulse-delay, 0s);
+  }
+
+  .room__num::after {
+    animation: room-ring 6s ease-out infinite;
+    animation-delay: var(--pulse-delay, 0s);
+  }
+
+  .room__step:nth-child(2) {
+    --pulse-delay: 1.2s;
+  }
+
+  .room__step:nth-child(3) {
+    --pulse-delay: 2.4s;
+  }
+
+  .room__step.is-lit .room__num::before {
+    animation-name: room-halo-lit;
+  }
+}
+
+@keyframes room-halo {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+@keyframes room-halo-lit {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes room-ring {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  60%,
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
 }
 
 .room__step-title {
@@ -130,7 +247,7 @@
 
   .room__steps {
     --step-dot: 56px;
-    gap: var(--space-xl);
+    --step-gap: var(--space-xl);
   }
 
   .room__num {

@@ -28,37 +28,6 @@ function fadeUp(el: HTMLElement, delay: number): void {
   );
 }
 
-define('sessions-title', (el) => {
-  if (prefersReducedMotion()) {
-    gsap.set(el, { opacity: 1, filter: 'blur(0px)', y: 0 });
-    return;
-  }
-  const text = el.textContent ?? '';
-  if (text.length === 0) return;
-  el.textContent = '';
-  el.setAttribute('aria-label', text);
-  for (const char of text) {
-    const span = document.createElement('span');
-    span.className = 'sessions__title-char';
-    span.textContent = char;
-    span.setAttribute('aria-hidden', 'true');
-    el.appendChild(span);
-  }
-  const chars = el.querySelectorAll<HTMLElement>('.sessions__title-char');
-  gsap.fromTo(
-    chars,
-    { y: 8, opacity: 0, filter: 'blur(6px)' },
-    {
-      y: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-      duration: 0.7,
-      ease: 'power2.out',
-      stagger: { each: 0.06, from: 'center' },
-      scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    },
-  );
-});
 define('sessions-cta', (el) => fadeUp(el, 0.06));
 
 const SOUND_LINE_STAGGER = 0.08;
