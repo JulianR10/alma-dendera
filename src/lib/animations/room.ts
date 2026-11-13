@@ -51,4 +51,16 @@ define('room-steps', (el) => {
 });
 define('room-copy', (el) => reveal(el, 0));
 define('room-step', (el) => reveal(el, siblingDelay(el, 0.1)));
-define('room-media', (el) => reveal(el, 0));
+define('room-media', (el) => {
+  reveal(el, 0);
+  const video = el.querySelector('video');
+  if (!video || prefersReducedMotion()) return;
+  // Solo se reproduce en pantalla; si el navegador bloquea el play, queda el póster.
+  ScrollTrigger.create({
+    trigger: el,
+    onToggle: ({ isActive }) => {
+      if (isActive) video.play().catch(() => video.pause());
+      else video.pause();
+    },
+  });
+});

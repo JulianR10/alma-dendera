@@ -26,7 +26,7 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'ProfessionalService',
-      '@id': '#almadendera',
+      '@id': `${pageUrl}#almadendera`,
       name: SITE.name,
       description: SITE.description,
       url: pageUrl,
@@ -37,8 +37,8 @@ const jsonLd = {
         name: 'Buenos Aires',
         containedInPlace: { '@type': 'Country', name: 'Argentina' },
       },
-      founder: { '@id': '#magali' },
-      employee: { '@id': '#magali' },
+      founder: { '@id': `${pageUrl}#magali` },
+      employee: { '@id': `${pageUrl}#magali` },
       sameAs: [INSTAGRAM_HREF],
       availableChannel: {
         '@type': 'ServiceChannel',
@@ -55,10 +55,10 @@ const jsonLd = {
     },
     {
       '@type': 'Person',
-      '@id': '#magali',
+      '@id': `${pageUrl}#magali`,
       name: SITE.personName,
       jobTitle: 'Terapeuta de sound healing y Reiki Usui',
-      worksFor: { '@id': '#almadendera' },
+      worksFor: { '@id': `${pageUrl}#almadendera` },
       address: {
         '@type': 'PostalAddress',
         addressLocality: SITE.city,

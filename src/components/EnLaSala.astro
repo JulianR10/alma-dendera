@@ -1,6 +1,9 @@
 ---
-import { Image } from 'astro:assets';
-import siluetaSentadaSrc from '../images/siluetaSentada.webp';
+import { getImage } from 'astro:assets';
+import siluetaSentadaVideo from '../images/siluetaSentada.mp4';
+import siluetaSentadaPosterSrc from '../images/siluetaSentadaPoster.webp';
+
+const poster = await getImage({ src: siluetaSentadaPosterSrc, width: 460, format: 'webp' });
 ---
 
 <section id="en-la-sala" class="room wave-card" aria-labelledby="room-title">
@@ -17,15 +20,17 @@ import siluetaSentadaSrc from '../images/siluetaSentada.webp';
         Llegás como estás, sin saber nada de antemano. Ese tiempo y ese espacio son para vos.
       </p>
       <figure class="room__media" data-animate="room-media">
-        <Image
+        <video
           class="room__media-img"
-          src={siluetaSentadaSrc}
-          alt="Silueta de Maga sentada tocando un cuenco tibetano"
-          loading="lazy"
-          decoding="async"
-          widths={[300, 600]}
-          sizes="(max-width: 768px) 140px, 230px"
-        />
+          src={siluetaSentadaVideo}
+          poster={poster.src}
+          width="460"
+          height="580"
+          muted
+          loop
+          playsinline
+          preload="none"
+          aria-hidden="true"></video>
       </figure>
     </div>
     <ol class="room__steps" aria-label="Pasos de la sesión" data-animate="room-steps">

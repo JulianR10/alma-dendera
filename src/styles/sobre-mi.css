@@ -152,14 +152,14 @@
     right: 0;
     height: 100%;
     width: auto;
-    transform: translateX(calc(50% - 50px));
+    transform: translateX(50%);
   }
 
   .about__ripples {
     left: auto;
     right: 0;
     width: 220%;
-    transform: translateX(calc(50% - 50px)) translateY(20.5%);
+    transform: translate(50%, 20.5%);
   }
 }
 

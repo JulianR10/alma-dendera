@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { define } from './registry';
+import { srText } from './srText';
 import { prefersReducedMotion } from './reducedMotion';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,13 +35,12 @@ define('quote-band', (el) => {
   const lines = Array.from(text.querySelectorAll<HTMLElement>('.quote-band__line'));
   if (lines.length === 0) return;
 
-  text.setAttribute('aria-label', lines.map((line) => line.textContent ?? '').join(' '));
-
   if (prefersReducedMotion()) {
     gsap.set(el, { opacity: 1, y: 0 });
     return;
   }
 
+  text.prepend(srText(lines.map((line) => line.textContent ?? '').join(' ')));
   const chars: HTMLElement[] = [];
   lines.forEach((line) => splitLine(line, chars));
   if (chars.length === 0) return;

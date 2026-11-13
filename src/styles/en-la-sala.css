@@ -228,6 +228,9 @@
   margin: var(--space-sm) 0 0;
   display: grid;
   justify-items: center;
+  /* El video viene sobre blanco: multiply lo funde con el hueso de la tarjeta.
+     Va en el figure porque GSAP lo transforma y eso aislaría el blend del video. */
+  mix-blend-mode: multiply;
 }
 
 .room__media-img {

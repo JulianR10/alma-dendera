@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { define } from './registry';
+import { srText } from './srText';
 import { prefersReducedMotion } from './reducedMotion';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -120,7 +121,6 @@ define('hero-breath', (el) => {
   const text = el.textContent ?? '';
   if (text.length === 0) return;
   el.textContent = '';
-  el.setAttribute('aria-label', text);
 
   for (const char of text) {
     const span = document.createElement('span');
@@ -129,6 +129,8 @@ define('hero-breath', (el) => {
     span.setAttribute('aria-hidden', 'true');
     el.appendChild(span);
   }
+
+  el.appendChild(srText(text));
 
   const chars = el.querySelectorAll<HTMLElement>('.hero__breath-char');
   const center = (chars.length - 1) / 2;
