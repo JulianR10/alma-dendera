@@ -28,7 +28,7 @@ import { INSTAGRAM_HREF, SITE } from '../lib/site';
         Las sesiones acompañan y complementan los tratamientos médicos: no los reemplazan.
       </p>
       <p class="footer__credit">
-        <span class="footer__credit-label">Desarrollador por</span>
+        <span class="footer__credit-label">Desarrollado por</span>
         <a
           class="footer__firma-link"
           href="https://julianrecarte.dev/es/"
@@ -36,14 +36,14 @@ import { INSTAGRAM_HREF, SITE } from '../lib/site';
           rel="noopener noreferrer"
           aria-label="Julián Recarte — sitio personal"
         >
-          <img
+          <Image
             class="footer__firma"
-            src={firmaSrc.src}
+            src={firmaSrc}
             alt="Julián Recarte"
-            width={firmaSrc.width}
-            height={firmaSrc.height}
             loading="lazy"
             decoding="async"
+            widths={[112, firmaSrc.width]}
+            sizes="(max-width: 767px) 96px, 112px"
           />
         </a>
       </p>

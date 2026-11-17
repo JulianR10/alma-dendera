@@ -62,6 +62,10 @@
 }
 
 .contacto__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 44px;
   font-family: var(--font-body);
   font-size: var(--text-sm);
   color: var(--color-primary);
@@ -69,6 +73,12 @@
   text-decoration-color: rgba(105, 73, 43, 0.4);
   text-underline-offset: 4px;
   transition: text-decoration-color 0.25s ease;
+}
+
+.contacto__link-icon {
+  width: 1.4em;
+  height: 1.4em;
+  flex-shrink: 0;
 }
 
 .contacto__link:hover {
