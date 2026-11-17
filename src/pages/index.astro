@@ -10,12 +10,12 @@ import Contacto from '../components/Contacto.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import { getImage } from 'astro:assets';
-import fondoSrc from '../images/fondoMaga2.webp';
+import fondoSrc from '../images/magaEscritorio.webp';
 import faviconSrc from '../images/favicon.webp';
 import { INSTAGRAM_HREF, SITE, WHATSAPP_HREF } from '../lib/site';
 
 const pageUrl = new URL(import.meta.env.BASE_URL, Astro.site).href;
-// JPG 1200px: el formato que mejor levantan WhatsApp/Facebook al compartir el link.
+// Foto horizontal del hero en JPG 1200px: el formato que mejor levantan WhatsApp/Facebook al compartir el link.
 const ogImage = await getImage({ src: fondoSrc, width: 1200, format: 'jpg' });
 const ogImageUrl = new URL(ogImage.src, Astro.site).href;
 

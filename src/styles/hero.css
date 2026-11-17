@@ -22,6 +22,34 @@
   z-index: 1;
 }
 
+/* Grano fino de película: disimula la falta de detalle y los artefactos de la foto. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+    0 0 / 160px 160px;
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Borde en onda hacia Sesiones: labio del claro vecino pintado sobre la foto. */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  z-index: 3;
+  height: var(--wave-h);
+  background: var(--color-primary-light);
+  pointer-events: none;
+  -webkit-mask: var(--wave-solid-below) center / 100% 100% no-repeat;
+  mask: var(--wave-solid-below) center / 100% 100% no-repeat;
+}
+
 .hero__maga-wrap {
   position: absolute;
   inset: 0;
@@ -36,7 +64,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 72% 38%;
+  object-position: 50% 60%;
   pointer-events: none;
 }
 
@@ -217,7 +245,7 @@
     height: 100svh;
   }
   .hero__maga {
-    object-position: 62% 28%;
+    object-position: 55% 50%;
   }
   .hero__center {
     grid-row: 2;

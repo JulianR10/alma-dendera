@@ -77,7 +77,7 @@ alma-dendera/
 │   │   ├── navigation.ts      # NAV_LINKS (menú) + SECTION_WAYPOINTS (rail)
 │   │   ├── site.ts            # datos del negocio y links de WhatsApp/Instagram
 │   │   └── spotlight.ts       # brillo que sigue al cursor en los CTA
-│   ├── images/                # logo, fondoMaga2, silueta, instrumentos, fondos, firma
+│   ├── images/                # logo, magaEscritorio/magaMobile (hero), silueta, instrumentos, fondos, firma
 │   ├── pages/
 │   │   └── index.astro        # compone todos los componentes
 │   └── styles/

@@ -1,29 +1,49 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import MusicToggle from './MusicToggle.astro';
 import ResonanceColumn from './ResonanceColumn.astro';
 import logoSrc from '../images/logo.webp';
-import fondoSrc from '../images/fondoMaga2.webp';
+import fondoSrc from '../images/magaMobile.webp';
+import fondoDesktopSrc from '../images/magaEscritorio.webp';
 import MorphIcon from 'morphicons/astro';
 import { Menu } from 'lucide';
 import { NAV_LINKS } from '../lib/navigation';
 import { SITE } from '../lib/site';
+
+// El hero es la imagen principal: calidad alta para no recomprimir de más una foto ya comprimida.
+const HERO_QUALITY = 90;
+
+const fondoDesktop = await getImage({
+  src: fondoDesktopSrc,
+  widths: [640, 1280, fondoDesktopSrc.width],
+  sizes: '100vw',
+  quality: HERO_QUALITY,
+});
 ---
 
 <section id="hero" class="hero" aria-label="Inicio">
   <div class="hero__maga-wrap" aria-hidden="true">
-    <Image
-      src={fondoSrc}
-      alt=""
-      aria-hidden="true"
-      class="hero__maga"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-      data-animate="hero-maga"
-      widths={[640, 960, 1280, fondoSrc.width]}
-      sizes="100vw"
-    />
+    <picture>
+      <source
+        media="(min-width: 769px)"
+        srcset={fondoDesktop.srcSet.attribute}
+        sizes="100vw"
+        type="image/webp"
+      />
+      <Image
+        src={fondoSrc}
+        alt=""
+        aria-hidden="true"
+        class="hero__maga"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        data-animate="hero-maga"
+        widths={[640, 960, 1280, fondoSrc.width]}
+        sizes="100vw"
+        quality={HERO_QUALITY}
+      />
+    </picture>
   </div>
   <div class="hero__gradient" aria-hidden="true"></div>
   <nav class="hero__nav" aria-label="Principal">
