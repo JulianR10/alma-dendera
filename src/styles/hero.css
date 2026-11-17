@@ -235,7 +235,7 @@
   backface-visibility: hidden;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .hero {
     grid-template-rows: auto auto 1fr;
     /* Altura anclada al viewport pequeño: cuando Chrome oculta la barra URL

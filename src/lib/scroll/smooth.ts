@@ -55,7 +55,7 @@ export function initSmoothScroll(): Lenis | null {
   if (prefersReducedMotion()) return null;
   // En táctil el scroll nativo con momentum es más estable: Lenis + scrub
   // producía saltos en Safari/Chrome mobile.
-  if (window.matchMedia('(pointer: coarse), (max-width: 768px)').matches) return null;
+  if (window.matchMedia('(pointer: coarse), (max-width: 767px)').matches) return null;
 
   const lenis = new Lenis({ lerp: 0.1 });
   window.__almaLenis = lenis;

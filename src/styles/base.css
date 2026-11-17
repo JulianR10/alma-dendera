@@ -38,7 +38,7 @@ body::before {
 
 /* En mobile la capa fija de grano repinta toda la pantalla en cada frame del
    scroll (saltos en Safari/Chrome): se apaga y el fondo queda limpio. */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   body::before {
     display: none;
   }

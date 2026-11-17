@@ -105,7 +105,7 @@
   color: var(--color-plum);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   /* Mismo aire arriba y abajo en mobile (el pad-top de sección pesaba más). */
   .contacto {
     padding: calc(var(--space-2xl) + var(--wave-h)) var(--gutter);

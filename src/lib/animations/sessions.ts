@@ -48,7 +48,7 @@ function revealImage(el: HTMLElement): void {
       scrollTrigger: { trigger: el, start: 'top 85%', once: true },
     },
   );
-  if (window.matchMedia('(max-width: 768px)').matches) return;
+  if (window.matchMedia('(max-width: 767px)').matches) return;
   gsap.fromTo(
     el,
     { yPercent: -6 },
@@ -91,7 +91,7 @@ function liveMedia(el: HTMLElement): void {
     end: 'bottom top',
     toggleClass: { targets: el, className: 'is-playing' },
   });
-  if (window.matchMedia('(max-width: 768px)').matches) return;
+  if (window.matchMedia('(max-width: 767px)').matches) return;
   gsap.fromTo(
     el,
     { yPercent: -6 },

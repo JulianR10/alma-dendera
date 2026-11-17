@@ -26,9 +26,6 @@
   --font-quote: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Public Sans', sans-serif;
 
-  /* ——— Breakpoints ——— */
-  --bp-md: 768px;
-
   /* ——— Typography (fluid) ——— */
   --text-xs: 12px;
   --text-sm: clamp(13px, 0.85vw + 0.55rem, 14px);

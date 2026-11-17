@@ -42,7 +42,7 @@ define('about-figure', (el) => {
   }
   // En mobile el scrub sobre la figura parpadeaba (aparecer/desaparecer) con el
   // scroll nativo: entrada única y queda fija.
-  if (window.matchMedia('(max-width: 768px)').matches) {
+  if (window.matchMedia('(max-width: 767px)').matches) {
     gsap.fromTo(
       el,
       { y: 40, opacity: 0 },

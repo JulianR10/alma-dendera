@@ -398,7 +398,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .session-dialog {
     margin: auto;
     width: 90%;

@@ -16,7 +16,7 @@ export function initHeroSessionsTransition(): void {
     return;
   }
 
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const isMobile = window.matchMedia('(max-width: 767px)').matches;
   const centerLift = isMobile ? -40 : -70;
   const cardRise = isMobile ? 28 : 44;
 
