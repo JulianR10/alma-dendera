@@ -209,6 +209,11 @@
   margin-top: var(--space-lg);
 }
 
+/* El corte en dos líneas es solo de mobile: angosta la píldora para no tapar la cara de la foto. */
+.hero__cta-break {
+  display: none;
+}
+
 /* ——— Tagline ——— */
 .hero__tagline {
   margin: 0 0 var(--space-md);
@@ -246,6 +251,12 @@
   }
   .hero__maga {
     object-position: 55% 50%;
+  }
+  .hero__cta {
+    line-height: 1.3;
+  }
+  .hero__cta-break {
+    display: inline;
   }
   .hero__center {
     grid-row: 2;
