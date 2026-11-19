@@ -85,7 +85,7 @@ alma-dendera/
 │       ├── tokens.css         # paleta, fuentes, radios, espaciados, layout
 │       ├── base.css           # reset + píldora CTA compartida
 │       ├── hero.css
-│       ├── sessions.css       # cards vidrio esmerilado
+│       ├── sessions.css       # cards semitransparentes con foto en blob
 │       ├── en-la-sala.css     # banda beige + grilla de pasos
 │       ├── sobre-mi.css
 │       ├── quote-band.css
@@ -188,7 +188,7 @@ Cálido, claro, sin jerga médica ni espiritual densa. Frases cortas. Aclarar si
 ## Estructura del recorrido
 
 1. **Hero** — nombre, frase de esencia, CTA a sesiones
-2. **Servicios** — "Tres maneras de volver a vos" (cards Soundhealing/Reiki en vidrio + cierre grupal con incienso)
+2. **Servicios** — "Tres maneras de volver a vos" (cards Soundhealing/Reiki semitransparentes con foto en blob + cierre grupal con incienso)
 3. **En la sala** — "¿Cómo es una sesión?" en 4 pasos
 4. **Frase** — banda con cita de Magalí
 5. **Sobre mí** — "Soy Magalí", con la silueta montada sobre esa onda
