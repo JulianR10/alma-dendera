@@ -24,6 +24,9 @@ main {
   background: var(--color-primary-light);
   /* Contiene el margen de la última tarjeta: si colapsa hacia afuera asoma el papel del body. */
   display: flow-root;
+  /* Los aros de Sobre mí se pasan del borde derecho: se recorta acá y no en la
+     sección, porque ahí overflow-x: clip también cortaba su mitad de abajo. */
+  overflow-x: clip;
 }
 
 body::before {

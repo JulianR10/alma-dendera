@@ -8,11 +8,6 @@
   background: var(--color-primary-light);
   color: var(--color-ink);
   scroll-margin-top: 80px;
-  /* Los aros se centran en la figura y se pasan del borde derecho de la pantalla
-     en notebooks (~1280px), generando scroll horizontal. Se recortan en horizontal
-     y se deja el vertical visible para que la figura siga montándose sobre la sección anterior. */
-  overflow-x: clip;
-  overflow-y: visible;
 }
 
 .about__figure {
