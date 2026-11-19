@@ -103,15 +103,15 @@ function liveMedia(el: HTMLElement): void {
   );
 }
 
-// Sound healing: la foto se abre como una onda que nace del cuenco golpeado.
+// Sound healing: la foto se abre como una onda que nace de los cuencos.
 define('sound-media', (el) => {
   if (prefersReducedMotion()) return;
   liveMedia(el);
   gsap.fromTo(
     el,
-    { clipPath: 'circle(0% at 60% 81%)' },
+    { clipPath: 'circle(0% at 50% 76%)' },
     {
-      clipPath: 'circle(130% at 60% 81%)',
+      clipPath: 'circle(130% at 50% 76%)',
       duration: 1.8,
       ease: 'power2.inOut',
       clearProps: 'clipPath',

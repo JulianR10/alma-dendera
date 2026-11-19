@@ -93,16 +93,16 @@
 }
 
 .sound__media {
-  /* Punto donde el mazo toca el cuenco: de ahí se abre la foto y se centra el zoom. */
-  --ox: 60%;
-  --oy: 81%;
+  /* Centro de los cuencos: de ahí se abre la foto y se centra el zoom. */
+  --ox: 50%;
+  --oy: 76%;
   border-radius: var(--radius-blob-a);
 }
 
 .reki__media {
-  /* Manos sobre la frente: ahí vive la luz. */
-  --ox: 46%;
-  --oy: 62%;
+  /* Manos sobre la cabeza: ahí vive la luz. */
+  --ox: 52%;
+  --oy: 57%;
   border-radius: var(--radius-blob-b);
 }
 
