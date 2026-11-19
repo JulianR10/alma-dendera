@@ -104,6 +104,9 @@
   --ox: 52%;
   --oy: 57%;
   border-radius: var(--radius-blob-b);
+  /* En mobile (sin parallax) WebKit no recorta con border-radius la foto animada
+     (blur + zoom + glow en screen) y se veía el rectángulo: clip-path sí la recorta. */
+  clip-path: inset(0 round var(--radius-blob-b));
 }
 
 .sound__img,
